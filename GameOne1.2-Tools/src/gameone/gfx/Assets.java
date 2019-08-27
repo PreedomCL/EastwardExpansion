@@ -18,13 +18,13 @@ public class Assets {
 
 	
 	public static void init() {
+		System.out.println(System.getProperty("user.dir"));
+		font28 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 28);
+		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
 		
-		font28 = FontLoader.loadFont("C:/Users/preed_000/eclipse-workspace/GameOne-res/fonts/GermaniaOne-Regular.ttf", 28);
-		font14 = FontLoader.loadFont("C:/Users/preed_000/eclipse-workspace/GameOne-res/fonts/GermaniaOne-Regular.ttf", 14);
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/SpriteSheet.png"));
 		
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("C:/Users/preed_000/eclipse-workspace/GameOne-res/textures/SpriteSheet.png"));
-		
-		inventoryScreen = ImageLoader.loadImage("C:/Users/preed_000/eclipse-workspace/GameOne-res/textures/InventoryScreen.png");
+		inventoryScreen = ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/InventoryScreen.png");
 		
 		start = new BufferedImage[2];
 		tree = new BufferedImage[4];

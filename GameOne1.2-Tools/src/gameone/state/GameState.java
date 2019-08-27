@@ -12,7 +12,7 @@ public class GameState extends State {
 	
 	public GameState(Handler handler) {
 		super(handler);
-		world = new World(handler, "C:/Users/preed_000/eclipse-workspace/GameOne-res/world/world1.txt");
+		world = new World(handler, System.getProperty("user.dir") + "/res/world/world1.txt");
 		handler.setWorld(world);
 		
 		
