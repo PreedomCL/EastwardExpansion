@@ -2,7 +2,7 @@ package gameone.utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.Random;
 public class Utils {
 	
 	public static String loadFileAsString(String path) {
@@ -30,6 +30,17 @@ public class Utils {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+	public static int randomLocation(int maxSpawn,int minSpawn) {
+		int max = maxSpawn;
+		Random random = new Random();
+		int min = 0;
+		int randomValue = 0;
+		randomValue =random.nextInt(max - min + 1);	
+		return randomValue;
+		
+		
+		
 	}
 	
 }

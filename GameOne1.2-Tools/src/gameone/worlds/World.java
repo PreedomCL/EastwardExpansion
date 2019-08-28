@@ -1,5 +1,6 @@
 package gameone.worlds;
 import java.awt.Graphics;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,7 +19,9 @@ import gameone.utils.Utils;
 
 public class World {
 	
-	
+	private int maxStones = Utils.randomLocation(10, 1) ;
+	private int maxTree = Utils.randomLocation(15, 1);
+	private int maxRockbug = Utils.randomLocation(10, 5);
 
 	private Handler handler;
 	private int width, height;
@@ -41,18 +44,32 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
+		for(int i=0; i < maxStones; i++) { 
+			
+			entityManager.addEntity(new Stone(handler, Utils.randomLocation(1300, 0), Utils.randomLocation(1300, 0)));
+			
+		}
+		for(int i=0; i < maxTree; i++) { 
+			
+			entityManager.addEntity(new Tree(handler, Utils.randomLocation(1300, 0), Utils.randomLocation(1300, 0)));
+			
+		}
+		for(int i=0; i < maxRockbug; i++) { 
+			
+			entityManager.addEntity(new RockbugCreature(handler, Utils.randomLocation(1300, 0),Utils.randomLocation(1300, 0)));
+			
+		}
+				
+					
+					
 		
-		entityManager.addEntity(new Tree(handler, 128, 128));
-		entityManager.addEntity(new Stone(handler, 400, 400));
-		entityManager.addEntity(new Sapling(handler, 700, 400));
-		entityManager.addEntity(new RockbugCreature(handler, 200, 200));
-	
+		
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
 		
-	}
+	}	
 	
 	public void tick() {
 		itemManager.tick();
