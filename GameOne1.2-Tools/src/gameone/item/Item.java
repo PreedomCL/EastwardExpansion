@@ -74,7 +74,7 @@ public abstract class Item {
 	
 	
 	
-	//getters and Setters
+	//Getters and Setters
 	public Handler getHandler() {
 		return handler;
 	}
