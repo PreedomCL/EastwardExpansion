@@ -1,9 +1,10 @@
 package gameone.item;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import com.sun.glass.events.KeyEvent;
+
 
 import gameone.Handler;
 import gameone.entities.Entity;
@@ -36,7 +37,7 @@ public abstract class Item {
 		this.count = count;
 		bounds = new Rectangle( (int)x, (int)y, ITEMWIDTH, ITEMHEIGHT);
 		
-		//items[id] = this;
+		
 	}
 	
 	public void tick() {
