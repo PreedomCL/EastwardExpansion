@@ -31,6 +31,7 @@ public class Utils {
 			return 0;
 		}
 	}
+	
 	public static int randomLocation(int maxSpawn,int minSpawn) {
 		int max = maxSpawn;
 		Random random = new Random();

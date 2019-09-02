@@ -1,10 +1,14 @@
 package gameone.worlds;
 import java.awt.Graphics;
 import java.util.Random;
+
+import com.sun.glass.events.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import gameone.Handler;
+import gameone.crafting.Recipe;
 import gameone.entities.Entity;
 import gameone.entities.EntityManager;
 import gameone.entities.creature.Player;
@@ -34,6 +38,7 @@ public class World {
 	
 	//Items
 	private ItemManager itemManager;
+	
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
@@ -68,6 +73,7 @@ public class World {
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
+		
 		
 	}	
 	
@@ -132,6 +138,7 @@ public class World {
 		return t;
 	}
 	private void loadWorld(String path) {
+		
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
 		width = Utils.parseInt(tokens[0]);
@@ -181,5 +188,7 @@ public class World {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+
+	
 	
 }

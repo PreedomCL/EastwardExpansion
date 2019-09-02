@@ -43,7 +43,7 @@ public class Tree extends StaticEntity{
 			try{
 				g.drawImage(Assets.tree[4 -((int) (health / 3))], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 			}catch(Exception e){
-				g.drawImage(Assets.tree[3 -((int) (health / 3))], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(Assets.tree[3 -(Math.abs((int) (health / 3)))], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 				
 			}
 		}

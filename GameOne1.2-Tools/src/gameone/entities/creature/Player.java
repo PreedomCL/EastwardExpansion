@@ -66,6 +66,8 @@ public class Player extends Creature {
 		//Actions		
 		if(handler.getMouseManager().isRightPressed() && inventoryItems[inventory.getSelectedItem()] != null) {
 			inventoryItems[inventory.getSelectedItem()].use(this);
+			handler.getGame().getRecipeManager().staff.checkCraftable(inventory);
+			
 		}else if(handler.getMouseManager().isLeftPressed()){
 			checkAttacks();
 			checkDestroy();

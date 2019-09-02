@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import gameone.crafting.Recipe;
+import gameone.crafting.RecipeManager;
 import gameone.display.Display;
 import gameone.gfx.Assets;
 import gameone.gfx.GameCamera;
@@ -39,6 +41,9 @@ public class Game implements Runnable {
 	//Handler
 	private Handler handler;
 	
+	//Crafting
+	private RecipeManager recipeManager;
+	
 	public Game(String title, int width,int height) {
 		this.width = width;
 		this.height = height;
@@ -59,6 +64,10 @@ public class Game implements Runnable {
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
+		
+		
+		recipeManager = new RecipeManager(handler);
+		recipeManager.init();
 		
 		
 		gameState = new GameState(handler);
@@ -118,26 +127,6 @@ public class Game implements Runnable {
 		stop();
 	}
 	
-	public KeyManager getKeyManager() {
-		return keyManager;
-	}
-	
-	public MouseManager getMouseManager() {
-		return mouseManager;
-	}
-	
-	public GameCamera getGameCamera() {
-		return gameCamera;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
-	
 	public synchronized void start() {
 		if(running)
 			return;
@@ -161,4 +150,35 @@ public class Game implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}	
+	public RecipeManager getRecipeManager() {
+		return recipeManager;
+	}
+
+	public void setRecipeManager(RecipeManager recipeManager) {
+		this.recipeManager = recipeManager;
+	}
+
+	
 }
