@@ -31,16 +31,21 @@ public class Utils {
 			return 0;
 		}
 	}
-	
-	public static int randomLocation(int Max,int Min) {
+
+	public static int randomNumber(int Max,int Min) {
 		int max = Max;
 		int min = Min;
-		
+		int randomValue;
+
 		Random random = new Random();
+
 		
 		
-		int randomValue = 0;
+		
 		randomValue =random.nextInt(max - min + 1);	
+
+		randomValue = random.nextInt(max - min + 1);	
+
 		return randomValue;
 	}
 	

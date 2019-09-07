@@ -1,4 +1,5 @@
 package gameone.worlds;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -16,6 +17,8 @@ import gameone.entities.creature.RockbugCreature;
 import gameone.entities.staticentity.Sapling;
 import gameone.entities.staticentity.Stone;
 import gameone.entities.staticentity.Tree;
+import gameone.gfx.Assets;
+import gameone.gfx.Text;
 import gameone.item.Item;
 import gameone.item.ItemManager;
 import gameone.tiles.Tile;
@@ -23,9 +26,9 @@ import gameone.utils.Utils;
 
 public class World {
 	
-	private int maxStones = Utils.randomLocation(10, 1) ;
-	private int maxTree = Utils.randomLocation(15, 1);
-	private int maxRockbug = Utils.randomLocation(10, 5);
+	private int maxStones = Utils.randomNumber(10, 1) ;
+	private int maxTree = Utils.randomNumber(15, 1);
+	private int maxRockbug = Utils.randomNumber(10, 5);
 
 	private Handler handler;
 	private int width, height;
@@ -51,17 +54,17 @@ public class World {
 		
 		for(int i=0; i < maxStones; i++) { 
 			
-			entityManager.addEntity(new Stone(handler, Utils.randomLocation(1300, 0), Utils.randomLocation(1300, 0)));
+			entityManager.addEntity(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
 			
 		}
 		for(int i=0; i < maxTree; i++) { 
 			
-			entityManager.addEntity(new Tree(handler, Utils.randomLocation(1300, 0), Utils.randomLocation(1300, 0)));
+			entityManager.addEntity(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
 			
 		}
 		for(int i=0; i < maxRockbug; i++) { 
 			
-			entityManager.addEntity(new RockbugCreature(handler, Utils.randomLocation(1300, 0),Utils.randomLocation(1300, 0)));
+			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 			
 		}
 				
@@ -126,6 +129,15 @@ public class World {
 		itemManager.render(g);
 		//Entities
 		entityManager.render(g);
+		
+		if (!getEntityManager().getPlayer().isActive()) {
+			Text.drawString(g, "Stop Killing Rockbugs Nathan", 562, 315, true, Color.BLACK, Assets.font28);
+		}
+		
+		
+		
+		
+		
 	}
 	
 	public Tile getTile(int x, int y) {

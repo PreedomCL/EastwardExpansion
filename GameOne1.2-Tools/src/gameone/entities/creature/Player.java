@@ -16,6 +16,7 @@ import gameone.item.Item;
 import gameone.item.tools.SpearTool;
 import gameone.item.tools.StaffTool;
 import gameone.state.MenuState;
+import gameone.utils.Utils;
 
 public class Player extends Creature {
 	
@@ -27,9 +28,14 @@ public class Player extends Creature {
 	
 	private Inventory inventory;
 	private Item inventoryItems[];
+	private int hunger;
+	
+	
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		
+	
 		
 		//Entity
 		
@@ -46,8 +52,10 @@ public class Player extends Creature {
 		inventoryItems = new Item[10];
 		
 		inventory.addItem(new StaffTool(handler, 1, 0, 0));
-		//inventory.addItem(new SpearTool(handler, 1, 0, 0));
-		
+
+		inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		hunger = 10;
+
 	}
 
 	@Override
@@ -59,6 +67,11 @@ public class Player extends Creature {
 		
 		animAttack.tick();
 		
+		if (Utils.randomNumber (500, 1 ) == 77)
+			hunger --;
+		if (hunger <= 0){                          
+			hurt(1);
+		}
 		//Inventory
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
@@ -158,7 +171,7 @@ public class Player extends Creature {
 	@Override
 	public void onDie() {
 		System.out.println("You Lose");
-		handler.getGame().gameState.setState(handler.getGame().menuState);
+		//handler.getGame().gameState.setState(handler.getGame().menuState);
 		//handler.getMouseManager().setUIManager();
 	}
 	
@@ -186,6 +199,13 @@ public class Player extends Creature {
 	public void postRender(Graphics g) {
 		inventory.render(g);
 		
+		g.setColor(Color.GRAY);
+		g.fillRect(409, 575, 302, 16);
+		
+		g.setColor(Color.RED);
+		g.fillRect(410, 576, hunger * 30, 14);
+		
+		Text.drawString(g, "Happy Birthday Nathan", 560, 583, true, Color.BLACK, Assets.font14);
 		
 		
 		g.setColor(Color.GRAY);
@@ -194,7 +214,7 @@ public class Player extends Creature {
 		g.setColor(Color.YELLOW);
 		g.fillRect(410, 600, health * 30, 14);
 		
-		Text.drawString(g, "Health", 560, 607, true, Color.BLACK, Assets.font14);
+		Text.drawString(g, "From Curtis and Coen!!!", 560, 607, true, Color.BLACK, Assets.font14);
 		
 		
 		
@@ -207,7 +227,10 @@ public class Player extends Creature {
 			return Assets.player[0];
 		}
 	}
-
+	
+	
+	//G&S
+	
 	public Inventory getInventory() {
 		return inventory;
 	}
@@ -215,6 +238,15 @@ public class Player extends Creature {
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
+
+	public int getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+	
 	
 
 }
