@@ -215,8 +215,7 @@ public class Player extends Creature {
 		g.fillRect(410, 600, health * 30, 14);
 		
 		Text.drawString(g, "From Curtis and Coen!!!", 560, 607, true, Color.BLACK, Assets.font14);
-		
-		
+	//the thing is so cool
 		
 	}
 	
