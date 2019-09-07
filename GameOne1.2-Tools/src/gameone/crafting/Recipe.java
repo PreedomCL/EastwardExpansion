@@ -12,14 +12,15 @@ public class Recipe {
 	private boolean checkedItems[] = new boolean[10];
 	private boolean isCraftable;
 	private Item checkI, yield;
-	private int length, itemsRemaining;
+	private int length, itemsRemaining, id;
 		
 	
-	public Recipe(Handler handler, Item items[], Item yield, int length) {
+	public Recipe(Handler handler,int id , int length , Item yield, Item items[]) {
 		this.items = items;
 		this.handler = handler;
 		this.length = length;
 		this.yield = yield;
+		this.id = id;
 	}
 	
 	public void craft(Inventory inv) {
@@ -94,4 +95,23 @@ public class Recipe {
 		return isCraftable;
 	}
 
+	public Item getYield() {
+		return yield;
+	}
+
+	public void setYield(Item yield) {
+		this.yield = yield;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
+	//G&S
+	
 }

@@ -66,7 +66,7 @@ public class Game implements Runnable {
 		gameCamera = new GameCamera(handler, 0, 0);
 		
 		
-		recipeManager = new RecipeManager(handler);
+		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.txt");
 		recipeManager.init();
 		
 		

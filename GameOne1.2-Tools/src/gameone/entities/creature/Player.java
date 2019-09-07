@@ -46,7 +46,7 @@ public class Player extends Creature {
 		inventoryItems = new Item[10];
 		
 		inventory.addItem(new StaffTool(handler, 1, 0, 0));
-		inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		//inventory.addItem(new SpearTool(handler, 1, 0, 0));
 		
 	}
 
@@ -67,8 +67,8 @@ public class Player extends Creature {
 		
 		//Crafting Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			if(handler.getGame().getRecipeManager().staff.checkCraftable(inventory)) {
-				handler.getGame().getRecipeManager().staff.craft(inventory);
+			if(handler.getGame().getRecipeManager().getRecipes()[0].checkCraftable(inventory)) {
+				handler.getGame().getRecipeManager().getRecipes()[0].craft(inventory);
 			}
 		}
 		//

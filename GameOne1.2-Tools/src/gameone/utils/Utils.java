@@ -32,16 +32,16 @@ public class Utils {
 		}
 	}
 	
-	public static int randomLocation(int maxSpawn,int minSpawn) {
-		int max = maxSpawn;
+	public static int randomLocation(int Max,int Min) {
+		int max = Max;
+		int min = Min;
+		
 		Random random = new Random();
-		int min = 0;
+		
+		
 		int randomValue = 0;
 		randomValue =random.nextInt(max - min + 1);	
 		return randomValue;
-		
-		
-		
 	}
 	
 }
