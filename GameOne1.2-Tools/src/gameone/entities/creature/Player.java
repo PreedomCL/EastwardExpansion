@@ -63,11 +63,19 @@ public class Player extends Creature {
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
 		
-		//Actions		
+		//Actions
+		
+		//Crafting Test Code
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
+			if(handler.getGame().getRecipeManager().staff.checkCraftable(inventory)) {
+				handler.getGame().getRecipeManager().staff.craft(inventory);
+			}
+		}
+		//
+		
+		
 		if(handler.getMouseManager().isRightPressed() && inventoryItems[inventory.getSelectedItem()] != null) {
 			inventoryItems[inventory.getSelectedItem()].use(this);
-			handler.getGame().getRecipeManager().staff.checkCraftable(inventory);
-			
 		}else if(handler.getMouseManager().isLeftPressed()){
 			checkAttacks();
 			checkDestroy();

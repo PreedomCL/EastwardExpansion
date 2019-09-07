@@ -11,18 +11,47 @@ public class Recipe {
 	private Item items[] = new Item[10];
 	private boolean checkedItems[] = new boolean[10];
 	private boolean isCraftable;
-	private Item checkI;
-	private int length;
+	private Item checkI, yield;
+	private int length, itemsRemaining;
 		
 	
-	public Recipe(Handler handler, Item items[], Item yeild, int length) {
+	public Recipe(Handler handler, Item items[], Item yield, int length) {
 		this.items = items;
 		this.handler = handler;
 		this.length = length;
+		this.yield = yield;
 	}
 	
-	public void onCraft(Inventory inv) {
+	public void craft(Inventory inv) {
+		for(Item cI : items) {
+			if(cI == null)
+				continue;
+			itemsRemaining = cI.getCount();
+			
+			for(Item i: inv.getInventoryItems()) {
+				if(i == null )
+					continue;		
+				if(itemsRemaining == 0)
+					continue;
+				
+				if(i.getId() == cI.getId()) {
+					
+					if(i.getCount() < cI.getCount()) {
+						itemsRemaining = cI.getCount() - i.getCount();
+						i.setCount(0);
+					}else {
+						i.setCount(i.getCount() - cI.getCount());
+					}
+					
+				}
+			}
+		}
 		
+		if(inv.acceptItem(yield)) {
+			inv.addItem(yield);
+		}else {
+			System.out.println("You do not have enough space to accept " + yield.getCount() + " " + yield.getName() + "(s)");
+		}
 	}
 	
 	
