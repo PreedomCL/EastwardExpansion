@@ -205,7 +205,7 @@ public class Player extends Creature {
 		g.setColor(Color.RED);
 		g.fillRect(410, 576, hunger * 30, 14);
 		
-		Text.drawString(g, "Happy Birthday Nathan", 560, 583, true, Color.BLACK, Assets.font14);
+		Text.drawString(g, "Hunger", 560, 583, true, Color.BLACK, Assets.font14);
 		
 		
 		g.setColor(Color.GRAY);
@@ -214,7 +214,7 @@ public class Player extends Creature {
 		g.setColor(Color.YELLOW);
 		g.fillRect(410, 600, health * 30, 14);
 		
-		Text.drawString(g, "From Curtis and Coen!!!", 560, 607, true, Color.BLACK, Assets.font14);
+		Text.drawString(g, "Health", 560, 607, true, Color.BLACK, Assets.font14);
 	//the thing is so cool
 		
 	}
