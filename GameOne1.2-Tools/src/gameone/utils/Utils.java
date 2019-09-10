@@ -38,15 +38,12 @@ public class Utils {
 		int randomValue;
 
 		Random random = new Random();
-
-		
-		
-		
 		randomValue =random.nextInt(max - min + 1);	
 
 		randomValue = random.nextInt(max - min + 1);	
 
 		return randomValue;
 	}
+	
 	
 }

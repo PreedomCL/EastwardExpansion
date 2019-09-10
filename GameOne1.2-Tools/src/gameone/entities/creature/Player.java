@@ -16,6 +16,7 @@ import gameone.item.Item;
 import gameone.item.tools.SpearTool;
 import gameone.item.tools.StaffTool;
 import gameone.state.MenuState;
+import gameone.utils.Timer;
 import gameone.utils.Utils;
 
 public class Player extends Creature {
@@ -28,6 +29,7 @@ public class Player extends Creature {
 	
 	private Inventory inventory;
 	private Item inventoryItems[];
+	private Timer starvationTimer;
 	private int hunger;
 	
 	
@@ -35,7 +37,7 @@ public class Player extends Creature {
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
-	
+		starvationTimer = new Timer();
 		
 		//Entity
 		
@@ -67,11 +69,21 @@ public class Player extends Creature {
 		
 		animAttack.tick();
 		
-		if (Utils.randomNumber (500, 1 ) == 77)
+		
+		
+		//Hunger
+		if (Utils.randomNumber (500, 1 ) == 5)
 			hunger --;
-		if (hunger <= 0){                          
-			hurt(1);
+		if (hunger <= 0){
+			starvationTimer.start(1000);
+			
+			if(starvationTimer.run()) {
+				hurt(1);
+				starvationTimer.stop();
+			}
 		}
+		
+		
 		//Inventory
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
@@ -95,6 +107,9 @@ public class Player extends Creature {
 		}
 		if(!handler.getMouseManager().isLeftPressed())
 			isAttacking = false;
+		
+		
+		
 		
 		
 	}
