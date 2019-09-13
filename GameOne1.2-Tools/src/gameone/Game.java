@@ -63,16 +63,15 @@ public class Game implements Runnable {
 		Assets.init();
 		
 		handler = new Handler(this);
+		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
 		gameCamera = new GameCamera(handler, 0, 0);
-		
-		
-		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.txt");
-		recipeManager.init();
-		
-		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
+		handler.getGame().getRecipeManager().init();
 		State.setState(menuState);
+		
+		
+		
 	}
 	
 	private void tick() {

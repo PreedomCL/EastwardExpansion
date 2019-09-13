@@ -4,16 +4,28 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import gameone.Handler;
+import gameone.item.items.StoneItem;
+import gameone.item.items.WoodItem;
+import gameone.item.tools.SpearTool;
+import gameone.item.tools.StaffTool;
 
 public class ItemManager {
 	
 	private Handler handler;
 	private ArrayList<Item> items, itemsToAdd;
 	
+	//handler
+	private Item itemList[] = {new WoodItem(handler,0,0,0), new StoneItem(handler,0,0,0), new StaffTool(handler,0,0,0),
+			new SpearTool(handler,0,0,0)};
+	
 	public ItemManager(Handler handler) {
 		this.handler = handler;
 		items = new ArrayList<Item>();
 		itemsToAdd = new ArrayList<Item>();
+		
+		
+		//Handler Stuff
+		
 	}
 	
 	public void tick() {
@@ -48,6 +60,15 @@ public class ItemManager {
 	public void setItemsToAdd(ArrayList<Item> itemsToAdd) {
 		this.itemsToAdd = itemsToAdd;
 	}
+
+	public Item[] getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(Item[] itemList) {
+		this.itemList = itemList;
+	}
+	
 	
 	
 }

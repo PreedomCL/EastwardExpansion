@@ -23,7 +23,7 @@ public class RecipeManager {
 	}
 	
 	public void init() {
-		Item items[] = new Item[10], yield;
+		Item items[], yield;
 		int id, length;
 		int start = 0;
 		
@@ -33,13 +33,25 @@ public class RecipeManager {
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
 		
-		for(int i = 0; i <= tokens.length; i++) {
+		int j = 0;
+		while (j < tokens.length) {
+			start = j;
+			items = new Item[10];
+			System.out.println(start);
+			
 			id = Utils.parseInt(tokens[0 + start]);
 			length = Utils.parseInt(tokens[1 + start]);
+			yield = handler.getWorld().getItemManager().getItemList()[Utils.parseInt(tokens[2 + start]) - 1];
+			yield.setCount(Utils.parseInt(tokens[3 + start]));
 			
+			for(int i = 0; i < length; i++) {
+				System.out.println(i);
+				items[i] = handler.getWorld().getItemManager().getItemList()[Utils.parseInt(tokens[start + i * 2 + 4]) - 1];
+				items[i].setCount(Utils.parseInt(tokens[start + i + 5]));
+			}
+			recipes[id] = new Recipe(handler, id, length, yield, items);
+			j = start + 4 + (length * 2);
 		}
-		//width = Utils.parseInt(tokens[0]);
-		
 		
 	}
 	

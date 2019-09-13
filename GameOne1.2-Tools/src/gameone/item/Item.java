@@ -27,6 +27,8 @@ public abstract class Item {
 	protected boolean pickedUp = false;
 	
 	
+	
+	
 	public Item(Handler handler,BufferedImage texture,String name, int id, int count, float x, float y) {
 		this.name = name;
 		this.id = id;

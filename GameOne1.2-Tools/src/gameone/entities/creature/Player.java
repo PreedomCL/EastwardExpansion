@@ -92,8 +92,8 @@ public class Player extends Creature {
 		
 		//Crafting Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			if(handler.getGame().getRecipeManager().getRecipes()[0].checkCraftable(inventory)) {
-				handler.getGame().getRecipeManager().getRecipes()[0].craft(inventory);
+			if(handler.getGame().getRecipeManager().getRecipes()[1].checkCraftable(inventory)) {
+				handler.getGame().getRecipeManager().getRecipes()[1].craft(inventory);
 			}
 		}
 		//

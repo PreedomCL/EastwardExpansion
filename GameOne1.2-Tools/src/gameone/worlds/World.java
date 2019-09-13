@@ -67,10 +67,6 @@ public class World {
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 			
 		}
-				
-					
-					
-		
 		
 		loadWorld(path);
 		
@@ -124,7 +120,6 @@ public class World {
 			
 		}
 		
-		
 		//Item
 		itemManager.render(g);
 		//Entities
@@ -132,12 +127,7 @@ public class World {
 		
 		if (!getEntityManager().getPlayer().isActive()) {
 			Text.drawString(g, "Stop Killing Rockbugs Nathan", 562, 315, true, Color.BLACK, Assets.font28);
-		}
-		
-		
-		
-		
-		
+		}	
 	}
 	
 	public Tile getTile(int x, int y) {
