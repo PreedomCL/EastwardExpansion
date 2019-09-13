@@ -47,7 +47,7 @@ public class RecipeManager {
 			for(int i = 0; i < length; i++) {
 				System.out.println(i);
 				items[i] = handler.getWorld().getItemManager().getItemList()[Utils.parseInt(tokens[start + i * 2 + 4]) - 1];
-				items[i].setCount(Utils.parseInt(tokens[start + i + 5]));
+				items[i].setCount(Utils.parseInt(tokens[start + i * 2 + 5]));
 			}
 			recipes[id] = new Recipe(handler, id, length, yield, items);
 			j = start + 4 + (length * 2);

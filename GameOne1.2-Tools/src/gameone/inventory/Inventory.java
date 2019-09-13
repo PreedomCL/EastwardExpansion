@@ -56,7 +56,13 @@ public class Inventory {
 			selectedItem = 9;
 		}
 		
-		
+		for(int i = 0; i < inventoryItems.length; i++) {
+			if(inventoryItems[i] == null)
+				continue;
+			if(inventoryItems[i].getCount() <= 0) {
+				inventoryItems[i] = null;
+			}
+		}
 	}
 	
 	public void render(Graphics g) {
