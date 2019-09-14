@@ -8,11 +8,13 @@ public class UIImageButton extends UIObject{
 	
 	private BufferedImage[] images;
 	private ClickListener clicker;
+	private boolean singleUse;
 	
-	public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
-		super(x, y, width, height);
+	public UIImageButton(float x, float y, int width, int height,boolean singleUse, BufferedImage[] images, ClickListener clicker) {
+		super(null, x, y, width, height);
 		this.images = images;
 		this.clicker = clicker;
+		this.singleUse = singleUse;
 		
 	}
 
@@ -32,8 +34,11 @@ public class UIImageButton extends UIObject{
 
 	@Override
 	public void onClick() {
-		if(this.active = true)
+		if(active)
 			clicker.onClick();
+		if(singleUse)
+			active = false;
+			
 	}
 
 }

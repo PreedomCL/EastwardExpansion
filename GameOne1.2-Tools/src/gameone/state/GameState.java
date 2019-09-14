@@ -2,6 +2,7 @@ package gameone.state;
 import java.awt.Graphics;
 
 import gameone.Handler;
+import gameone.ui.UIManager;
 import gameone.worlds.World;
 
 public class GameState extends State {
@@ -15,8 +16,7 @@ public class GameState extends State {
 		world = new World(handler, System.getProperty("user.dir") + "/res/world/world1.txt");
 		handler.setWorld(world);
 		
-		
-		
+				
 	}
 	
 	public void tick() {

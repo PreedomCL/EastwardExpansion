@@ -91,7 +91,6 @@ public class Recipe {
 				isCraftable = false;
 		}
 		
-		System.out.println("Is Craftable:" + isCraftable);
 		return isCraftable;
 	}
 

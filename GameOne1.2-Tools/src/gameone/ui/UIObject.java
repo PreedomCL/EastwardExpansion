@@ -3,18 +3,22 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+import gameone.Handler;
+
 public abstract class UIObject {
 	
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
 	protected boolean hovering =  false, active = true;
+	protected Handler handler;
 	
-	public UIObject(float x, float y, int width, int height) {
+	public UIObject(Handler handler,float x, float y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.handler = handler;
 		bounds = new Rectangle((int) x, (int) y, width, height);
 	}
 	
