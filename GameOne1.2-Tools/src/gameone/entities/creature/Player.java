@@ -234,7 +234,7 @@ public class Player extends Creature {
 		g.fillRect(409, 599, 302, 16);
 		
 		g.setColor(Color.YELLOW);
-		g.fillRect(410, 600, health * 30, 14);
+		g.fillRect(410, 600, health * 30, 14);   
 		
 		Text.drawString(g, "Health", 560, 607, true, Color.BLACK, Assets.font14);
 	//the thing is so cool
