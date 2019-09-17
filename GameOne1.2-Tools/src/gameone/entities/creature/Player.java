@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import gameone.Handler;
+import gameone.crafting.CraftingMenu;
+import gameone.crafting.Recipe;
 import gameone.entities.Entity;
 import gameone.gfx.Animation;
 import gameone.gfx.Assets;
@@ -29,9 +31,10 @@ public class Player extends Creature {
 	
 	private Inventory inventory;
 	private Item inventoryItems[];
+	private CraftingMenu playerCrafting;
+	
 	private Timer starvationTimer;
 	private int hunger;
-	
 	
 	
 	public Player(Handler handler, float x, float y) {
@@ -49,15 +52,19 @@ public class Player extends Creature {
 		//Player
 		isAttacking = false;
 		animAttack = new Animation(500, Assets.player);
+		
 		inventory = new Inventory(handler);
-		
 		inventoryItems = new Item[10];
-		
 		inventory.addItem(new StaffTool(handler, 1, 0, 0));
-
 		inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		
+		
+		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};
+		playerCrafting = new CraftingMenu(handler, recipes);
+		playerCrafting.loadMenu();
+		
 		hunger = 10;
-
+		
 	}
 
 	@Override

@@ -30,6 +30,8 @@ public class UIRecipeButton extends UIObject{
 		
 		g.fillRect((int) x,(int) y, width, height);
 		
+		if(recipe == null)
+			return;
 		if(recipe.checkCraftable(handler.getWorld().getEntityManager().getPlayer().getInventory())) 
 			g.setColor(Color.GREEN);
 		else 
@@ -41,6 +43,8 @@ public class UIRecipeButton extends UIObject{
 
 	@Override
 	public void onClick() {
+		if(recipe == null)
+			return;
 		if(recipe.checkCraftable(handler.getWorld().getEntityManager().getPlayer().getInventory()))
 			recipe.craft(handler.getWorld().getEntityManager().getPlayer().getInventory());
 	}

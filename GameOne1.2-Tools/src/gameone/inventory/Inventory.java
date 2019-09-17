@@ -17,7 +17,6 @@ public class Inventory {
 	private Item inventoryItems[];
 	private int selectedItem = 0;
 	
-	UIManager uiManager = new UIManager(handler);
 	
 	private int invX = 320, invY = 519, invSpacing = 48;
 	
@@ -25,11 +24,7 @@ public class Inventory {
 		
 		this.handler = handler;
 		this.inventoryItems = new Item[10];
-		
-		//Crafting Test Code
-		
-		handler.getMouseManager().setUIManager(uiManager);
-		uiManager.addObject(new UIRecipeButton(handler, 0, 0, handler.getGame().getRecipeManager().getRecipes()[0]));
+	
 	}
 	
 	public void tick() {
@@ -95,7 +90,6 @@ public class Inventory {
 		
 		//Text.drawString(g, "Heyyyo", 200, 200, false, Color.WHITE, Assets.font28);
 		
-		uiManager.render(g);
 	}
 	
 	//Inventory Methods

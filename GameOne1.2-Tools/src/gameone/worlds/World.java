@@ -22,6 +22,7 @@ import gameone.gfx.Text;
 import gameone.item.Item;
 import gameone.item.ItemManager;
 import gameone.tiles.Tile;
+import gameone.ui.UIManager;
 import gameone.utils.Utils;
 
 public class World {
@@ -29,7 +30,8 @@ public class World {
 	private int maxStones = Utils.randomNumber(10, 1) ;
 	private int maxTree = Utils.randomNumber(15, 1);
 	private int maxRockbug = Utils.randomNumber(10, 5);
-
+	
+	
 	private Handler handler;
 	private int width, height;
 	private int spawnX, spawnY;
@@ -45,6 +47,8 @@ public class World {
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
+		
+		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 		
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entitiesToAdd = new ArrayList<Entity>();
@@ -77,6 +81,8 @@ public class World {
 	}	
 	
 	public void tick() {
+		
+		handler.getGame().getUiManager().tick();
 		itemManager.tick();
 		entityManager.tick();
 		
@@ -124,6 +130,8 @@ public class World {
 		itemManager.render(g);
 		//Entities
 		entityManager.render(g);
+		
+		handler.getGame().getUiManager().render(g);
 		
 		if (!getEntityManager().getPlayer().isActive()) {
 			Text.drawString(g, "Stop Killing Rockbugs Nathan", 562, 315, true, Color.BLACK, Assets.font28);
@@ -190,7 +198,5 @@ public class World {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
-	
 	
 }

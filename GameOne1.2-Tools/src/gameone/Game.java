@@ -14,6 +14,7 @@ import gameone.input.MouseManager;
 import gameone.state.GameState;
 import gameone.state.MenuState;
 import gameone.state.State;
+import gameone.ui.UIManager;
 
 public class Game implements Runnable {
 	
@@ -44,6 +45,9 @@ public class Game implements Runnable {
 	//Crafting
 	private RecipeManager recipeManager;
 	
+	//UIManager
+	private UIManager uiManager;
+	
 	public Game(String title, int width,int height) {
 		this.width = width;
 		this.height = height;
@@ -51,6 +55,8 @@ public class Game implements Runnable {
 		
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
+		
+		
 	}
 	
 	private void init() {
@@ -64,10 +70,13 @@ public class Game implements Runnable {
 		
 		handler = new Handler(this);
 		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
+		uiManager = new UIManager(handler);
 		gameCamera = new GameCamera(handler, 0, 0);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		handler.getGame().getRecipeManager().init();
+		
+		
 		State.setState(menuState);
 		
 		
@@ -177,6 +186,14 @@ public class Game implements Runnable {
 
 	public void setRecipeManager(RecipeManager recipeManager) {
 		this.recipeManager = recipeManager;
+	}
+
+	public UIManager getUiManager() {
+		return uiManager;
+	}
+
+	public void setUiManager(UIManager uiManager) {
+		this.uiManager = uiManager;
 	}
 
 	
