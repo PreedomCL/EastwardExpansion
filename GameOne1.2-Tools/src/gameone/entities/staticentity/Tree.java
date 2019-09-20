@@ -6,10 +6,13 @@ import gameone.Handler;
 import gameone.gfx.Assets;
 import gameone.item.Item;
 import gameone.item.items.WoodItem;
+import gameone.item.food.*;
 import gameone.tiles.Tile;
+import gameone.utils.Utils;
+  
 
 public class Tree extends StaticEntity{
-
+	public int appleSpawn;
 	public Tree(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4);
 		
@@ -28,7 +31,11 @@ public class Tree extends StaticEntity{
 	
 	@Override
 	public void onDie() {
+		appleSpawn = Utils.randomNumber(25, 1);
 		handler.getWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, 5, x, y));
+		if(appleSpawn == 7) {
+		handler.getWorld().getItemManager().getItemsToAdd().add(new Food(handler, null, null, 2, health, x, y));
+		}
 		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Sapling(handler, (int) x + Tile.TILEWIDTH / 2,(int) y + Tile.TILEWIDTH * 3));
 		
 	}
