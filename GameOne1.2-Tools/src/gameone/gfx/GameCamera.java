@@ -17,14 +17,14 @@ public class GameCamera {
 	public void checkBlankSpace() {
 		if(xOffset < 32) {
 			xOffset = 32;
-		}else if(xOffset > handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
-			xOffset = handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth();
+		}else if(xOffset + 32 > handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
+			xOffset = handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth() - 32;
 		}
 		
 		if(yOffset < 32) {
 			yOffset = 32;
-		}else if(yOffset > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
-			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
+		}else if(yOffset + 32 > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
+			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight() - 32;
 		}
 	}
 	
