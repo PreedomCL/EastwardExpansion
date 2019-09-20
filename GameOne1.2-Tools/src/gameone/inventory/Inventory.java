@@ -122,9 +122,17 @@ public class Inventory {
 				return;
 			}
 		}
+	}
+	
+	public void removeItem (Item item, int count) {	
 		
-		
-		
+		for (Item i : inventoryItems) {
+			if(i == null)
+				return;
+			if(i.getId() == item.getId()) {
+				i.setCount(i.getCount() - count); 
+			}
+		}
 		
 	}
 	

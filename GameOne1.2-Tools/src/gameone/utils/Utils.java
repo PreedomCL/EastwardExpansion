@@ -32,15 +32,11 @@ public class Utils {
 		}
 	}
 
-	public static int randomNumber(int Max,int Min) {
-		int max = Max;
-		int min = Min;
+	public static int randomNumber(int max,int min) {
 		int randomValue;
 
 		Random random = new Random();
-		randomValue =random.nextInt(max - min + 1);	
-
-		randomValue = random.nextInt(max - min + 1);	
+		randomValue = random.nextInt(max - min + 1) + min;
 
 		return randomValue;
 	}

@@ -10,7 +10,7 @@ import gameone.item.food.*;
 import gameone.tiles.Tile;
 import gameone.utils.Utils;
   
-
+//the hting is so cool that I thin th
 public class Tree extends StaticEntity{
 	public int appleSpawn;
 	public Tree(Handler handler, float x, float y) {
@@ -31,10 +31,9 @@ public class Tree extends StaticEntity{
 	
 	@Override
 	public void onDie() {
-		appleSpawn = Utils.randomNumber(25, 1);
 		handler.getWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, 5, x, y));
-		if(appleSpawn == 7) {
-		handler.getWorld().getItemManager().getItemsToAdd().add(new Food(handler, null, null, 2, health, x, y));
+		if( Utils.randomNumber(7, 7) == 7) {
+			handler.getWorld().getItemManager().getItemsToAdd().add(new Apple(handler, 2, x-16, y-16));
 		}
 		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Sapling(handler, (int) x + Tile.TILEWIDTH / 2,(int) y + Tile.TILEWIDTH * 3));
 		
