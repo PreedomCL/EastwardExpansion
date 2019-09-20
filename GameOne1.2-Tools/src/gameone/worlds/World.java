@@ -12,6 +12,7 @@ import gameone.Handler;
 import gameone.crafting.Recipe;
 import gameone.entities.Entity;
 import gameone.entities.EntityManager;
+import gameone.entities.creature.NPC;
 import gameone.entities.creature.Player;
 import gameone.entities.creature.RockbugCreature;
 import gameone.entities.staticentity.Sapling;
@@ -71,6 +72,7 @@ public class World {
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 			
 		}
+		entityManager.addEntity(new NPC(handler, Assets.unknown, 150, 150, 32, 48));
 		
 		loadWorld(path);
 		
