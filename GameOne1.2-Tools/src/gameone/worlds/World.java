@@ -65,7 +65,7 @@ public class World {
 		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 		}
-		entityManager.addEntity(new NPC(handler, Assets.unknown, 150, 150, 32, 48));
+		//entityManager.addEntity(new NPC(handler, Assets.unknown, 150, 150, 32, 48));
 		
 		
 		

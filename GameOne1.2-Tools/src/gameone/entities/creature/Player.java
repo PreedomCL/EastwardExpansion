@@ -66,7 +66,7 @@ public class Player extends Creature {
 //		playerCrafting.loadMenu();
 		
 		hunger = 10;
-		
+		//
 	}
 
 	@Override

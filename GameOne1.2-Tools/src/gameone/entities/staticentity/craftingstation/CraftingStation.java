@@ -27,7 +27,7 @@ public abstract class CraftingStation extends StaticEntity{
 		this.recipes = recipes;
 		this.texture = texture;
 		craftingMenu = new CraftingMenu(handler, recipes);
-		
+		//
 		System.out.println(handler.getWorld());
 		activeBounds = new Rectangle();
 		activeBounds.x = (int) (-16 + x);
