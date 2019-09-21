@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import gameone.Handler;
 import gameone.entities.creature.Player;
+import gameone.entities.staticentity.craftingstation.CraftingStation;
 
 public class EntityManager {
 	
@@ -41,6 +42,8 @@ public class EntityManager {
 			e.tick();
 		}
 		entities.sort(renderSorter);
+		
+		
 	}
 	public void render(Graphics g) {
 		for(Entity e: entities) {
@@ -89,4 +92,6 @@ public class EntityManager {
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}
+
+	
 }

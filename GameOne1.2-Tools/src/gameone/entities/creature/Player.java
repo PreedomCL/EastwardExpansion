@@ -10,6 +10,8 @@ import gameone.Handler;
 import gameone.crafting.CraftingMenu;
 import gameone.crafting.Recipe;
 import gameone.entities.Entity;
+import gameone.entities.staticentity.craftingstation.CraftingStation;
+import gameone.entities.staticentity.craftingstation.DefaultStation;
 import gameone.gfx.Animation;
 import gameone.gfx.Assets;
 import gameone.gfx.Text;
@@ -59,9 +61,9 @@ public class Player extends Creature {
 		inventory.addItem(new SpearTool(handler, 1, 0, 0));
 		
 		
-		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};
-		playerCrafting = new CraftingMenu(handler, recipes);
-		playerCrafting.loadMenu();
+//		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};
+//		playerCrafting = new CraftingMenu(handler, recipes);
+//		playerCrafting.loadMenu();
 		
 		hunger = 10;
 		
@@ -99,9 +101,7 @@ public class Player extends Creature {
 		
 		//Crafting Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			if(handler.getGame().getRecipeManager().getRecipes()[1].checkCraftable(inventory)) {
-				handler.getGame().getRecipeManager().getRecipes()[1].craft(inventory);
-			}
+			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DefaultStation(handler, 200, 200));
 		}
 		//
 		

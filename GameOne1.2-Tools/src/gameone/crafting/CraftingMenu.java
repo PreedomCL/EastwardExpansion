@@ -11,14 +11,13 @@ import gameone.ui.UIRecipeButton;
 public class CraftingMenu {
 	
 	private Handler handler;
-	private UIManager uiManager;
 	private Recipe recipes[];
 	
 	public CraftingMenu(Handler handler, Recipe recipes[]) {
 		this.handler = handler;
 		this.recipes = recipes;
-		uiManager = handler.getGame().getUiManager();
 		this.recipes = recipes;
+		System.out.println(recipes);
 	}
 	
 	public void tick() {
@@ -26,12 +25,17 @@ public class CraftingMenu {
 	}
 	
 	public void loadMenu() {
+		handler.getGame().setUiManager(new UIManager(handler));
 		for(int r = 0; r < recipes.length; r++) {
-			uiManager.addObject(new UIRecipeButton(handler, 32, r * 33 + 33, recipes[0]));
+			
+			handler.getGame().getUiManager().addObject(new UIRecipeButton(handler, 32, r * 33 + 33, recipes[r]));
+			
 		}
+		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 	}
 	
 	public void closeMenu() {
 		handler.getGame().setUiManager(new UIManager(handler));
+		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 	}
 }

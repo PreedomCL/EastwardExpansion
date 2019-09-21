@@ -32,6 +32,10 @@ public abstract class Entity {
 	public abstract void render(Graphics g);
 	public abstract void onDie();
 	
+	public int getInstance() {
+		return (Integer) null;
+	}
+	
 	public void hurt(int damage) {
 		health -= damage;
 		if(health <= 0) {

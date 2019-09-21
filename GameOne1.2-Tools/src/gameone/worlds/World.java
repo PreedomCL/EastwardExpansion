@@ -18,6 +18,7 @@ import gameone.entities.creature.RockbugCreature;
 import gameone.entities.staticentity.Sapling;
 import gameone.entities.staticentity.Stone;
 import gameone.entities.staticentity.Tree;
+import gameone.entities.staticentity.craftingstation.DefaultStation;
 import gameone.gfx.Assets;
 import gameone.gfx.Text;
 import gameone.item.Item;
@@ -28,9 +29,7 @@ import gameone.utils.Utils;
 
 public class World {
 	
-	private int maxStones = Utils.randomNumber(10, 1) ;
-	private int maxTree = Utils.randomNumber(15, 1);
-	private int maxRockbug = Utils.randomNumber(10, 5);
+	
 	
 	
 	private Handler handler;
@@ -57,22 +56,18 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-		for(int i=0; i < maxStones; i++) { 
-			
+		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 			entityManager.addEntity(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-			
 		}
-		for(int i=0; i < maxTree; i++) { 
-			
+		for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
 			entityManager.addEntity(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-			
 		}
-		for(int i=0; i < maxRockbug; i++) { 
-			
+		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
-			
 		}
 		entityManager.addEntity(new NPC(handler, Assets.unknown, 150, 150, 32, 48));
+		
+		
 		
 		loadWorld(path);
 		
