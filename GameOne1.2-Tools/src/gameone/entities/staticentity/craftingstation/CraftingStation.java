@@ -52,8 +52,7 @@ public abstract class CraftingStation extends StaticEntity{
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && open) {
 			open = false;
 			craftingMenu.closeMenu();
-		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && !open) {
+		}else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && !open) {
 			open = true;
 			craftingMenu.loadMenu();
 		}

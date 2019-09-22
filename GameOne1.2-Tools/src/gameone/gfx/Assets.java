@@ -18,19 +18,24 @@ public class Assets {
 
 	
 	public static void init() {
-		System.out.println(System.getProperty("user.dir"));
 		font28 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 28);
 		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
 		
+		SpriteSheet PlayerSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/PlayerSheet.png"));
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/SpriteSheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/InventoryScreen.png");
 		
 		start = new BufferedImage[2];
 		tree = new BufferedImage[4];
-		player = new BufferedImage[2];
+		player = new BufferedImage[12];
 		
+		//Player
+		for(int p = 0; p < player.length; p++) {
+			player[p] = PlayerSheet.crop(p * 64, 0, 64, 64);
+		}
 		
+		//Sheet
 		
 		//row 1
 		grass = sheet.crop(0, 0, height, width);
@@ -50,8 +55,6 @@ public class Assets {
 		//row 4
 		start[0] = sheet.crop(0, height * 3, height/2, width);
 		start[1] = sheet.crop(0, (height * 3) + (height/2), height/2, width);
-		player[0] = sheet.crop(width, height *3, height, width);
-		player[1] = sheet.crop(width * 2, height *3, height, width);
 		sapling = sheet.crop(width*3, height*3, height, width);
 		unknown = sheet.crop(width * 4, height * 3, height, width);
 	}

@@ -26,10 +26,12 @@ import gameone.utils.Utils;
 public class Player extends Creature {
 	
 	private Animation animAttack;
+	private Animation[] animPlayer;
 	
 	private long lastAttackTime, attackCooldown = 500, attackTimer = attackCooldown,lastDestroyTime, destroyCooldown = 500, destroyTimer = destroyCooldown;
 	private float mouseX, mouseY;
 	private boolean isAttacking;
+	private int direction;
 	
 	private Inventory inventory;
 	private Item inventoryItems[];
@@ -55,6 +57,14 @@ public class Player extends Creature {
 		isAttacking = false;
 		animAttack = new Animation(500, Assets.player);
 		
+		BufferedImage[] frames;
+		animPlayer = new Animation[4];
+		
+		animPlayer[0] = new Animation(500, frames = new BufferedImage[]{Assets.player[1], Assets.player[2]});
+		animPlayer[1] = new Animation(500, frames = new BufferedImage[]{Assets.player[4], Assets.player[5]});
+		animPlayer[2] = new Animation(300, frames = new BufferedImage[]{Assets.player[7],Assets.player[6], Assets.player[8],Assets.player[6]});
+		animPlayer[3] = new Animation(300, frames = new BufferedImage[]{Assets.player[10],Assets.player[9], Assets.player[11],Assets.player[9]});
+		
 		inventory = new Inventory(handler);
 		inventoryItems = new Item[10];
 		inventory.addItem(new StaffTool(handler, 1, 0, 0));
@@ -76,12 +86,29 @@ public class Player extends Creature {
 		move();
 		handler.getGameCamera().centerOnEntity(this);
 		
+		
+		//Animations
+		
 		animAttack.tick();
+		
+		for(Animation a: animPlayer) {
+			a.tick();
+		}
+		//Direction
+		
+		if(handler.getKeyManager().down)
+			direction = 0;
+		else if(handler.getKeyManager().up)
+			direction = 1;
+		else if(handler.getKeyManager().right)
+			direction = 2;
+		else if(handler.getKeyManager().left)
+			direction = 3;
 		
 		
 		
 		//Hunger
-		if (Utils.randomNumber (500, 1 ) == 5)
+		if (Utils.randomNumber (1000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
 			starvationTimer.start(1000);
@@ -92,19 +119,16 @@ public class Player extends Creature {
 			}
 		}
 		
-		
 		//Inventory
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
-		
-		//Actions
 		
 		//Crafting Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
 			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DefaultStation(handler, 200, 200));
 		}
-		//
 		
+		//Actions
 		
 		if(handler.getMouseManager().isRightPressed() && inventoryItems[inventory.getSelectedItem()] != null) {
 			inventoryItems[inventory.getSelectedItem()].use(this);
@@ -114,11 +138,6 @@ public class Player extends Creature {
 		}
 		if(!handler.getMouseManager().isLeftPressed())
 			isAttacking = false;
-		
-		
-		
-		
-		
 	}
 	
 	private void checkAttacks() {
@@ -242,10 +261,10 @@ public class Player extends Creature {
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
-		if(isAttacking) {
-			return animAttack.getCurrentFrame();
+		if(xMove == 0 && yMove == 0) {
+			return Assets.player[direction * 3];
 		}else {
-			return Assets.player[0];
+			return animPlayer[direction].getCurrentFrame();
 		}
 	}
 	
