@@ -12,7 +12,7 @@ public class Assets {
 	  
 	public static Font font28, font14;
 	
-	public static BufferedImage grass, dirt, rock, barrier, sapling, log, rockbug, stones, unknown;
+	public static BufferedImage grass, dirt, rock, barrier,water, sapling, log, rockbug, stones, unknown, craftingStation, spear, axe, pickaxe, apple;
 	public static BufferedImage[] start, tree, player; 
 	public static BufferedImage inventoryScreen;
 
@@ -41,21 +41,29 @@ public class Assets {
 		grass = sheet.crop(0, 0, height, width);
 		dirt = sheet.crop(width, 0, height, width);
 		barrier = sheet.crop(width * 2, 0, height, width);
-		rock = sheet.crop(width * 3, 0, height, width);
-		log = sheet.crop(width * 4, 0, height, width);
-		
+		unknown = sheet.crop(width * 3, 0, height, width);
+		water = sheet.crop(width * 4, 0, height, width);
 		//row 2 row 3
 		tree[0] = sheet.crop(0, height, height*2, width);
 		tree[1] = sheet.crop(width, height, height*2, width);
 		tree[2] = sheet.crop(width * 2, height, height*2, width);
 		tree[3] = sheet.crop(width * 3, height, height*2, width);
-		rockbug = sheet.crop(width * 4, height, height, width);
-		stones = sheet.crop(width * 4,height * 2, height, width);
+		rock = sheet.crop(width * 4, height, height, width);
+		craftingStation = sheet.crop(width * 4,height * 2, height, width);
+		sapling = sheet.crop(width * 5, height, height, width);
 		
 		//row 4
 		start[0] = sheet.crop(0, height * 3, height/2, width);
 		start[1] = sheet.crop(0, (height * 3) + (height/2), height/2, width);
-		sapling = sheet.crop(width*3, height*3, height, width);
-		unknown = sheet.crop(width * 4, height * 3, height, width);
+		
+		//row 5
+		log = sheet.crop(0, height * 4, height, width);
+		stones = sheet.crop(width, height * 4, height, width);
+		spear = sheet.crop(width * 2, height * 4, height, width);
+		axe = sheet.crop(width * 3, height * 4, height, width);
+		pickaxe = sheet.crop(width * 4, height * 4, height, width);
+		apple = sheet.crop(width * 5, height * 4, height, width);
+		//row 6
+		rockbug = sheet.crop(0, height * 5, height, width);
 	}
 }

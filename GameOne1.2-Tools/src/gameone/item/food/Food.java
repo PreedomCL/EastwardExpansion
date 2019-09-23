@@ -13,10 +13,9 @@ public abstract class Food extends Item{
 	protected int eatTime;
 	
 	public Food(Handler handler, BufferedImage texture, String name, int id, int count, int foodValue, float x, float y) {
-		super(handler, Assets.unknown, name, id, count, x, y);
+		super(handler, texture, name, id, count, x, y);
 		this.foodValue = foodValue;
 		eatTime = 50;
-		
 	}
 	public void use(Entity e){
 		eatTime --;

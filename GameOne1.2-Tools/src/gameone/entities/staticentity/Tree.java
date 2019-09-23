@@ -21,7 +21,7 @@ public class Tree extends StaticEntity{
 		
 		bounds.width = width - 20;
 		bounds.height = Tile.TILEHEIGHT;
-		tool = 3;
+		tool = 6;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Tree extends StaticEntity{
 	public void onDie() {
 		handler.getWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, 5, x, y));
 		if( Utils.randomNumber(7, 7) == 7) {
-			handler.getWorld().getItemManager().getItemsToAdd().add(new Apple(handler, 2, x-16, y-16));
+			handler.getWorld().getItemManager().getItemsToAdd().add(new AppleFood(handler, 2, x-16, y-16));
 		}
 		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Sapling(handler, (int) x + Tile.TILEWIDTH / 2,(int) y + Tile.TILEWIDTH * 3));
 		

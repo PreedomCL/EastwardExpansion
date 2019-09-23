@@ -17,6 +17,8 @@ import gameone.gfx.Assets;
 import gameone.gfx.Text;
 import gameone.inventory.Inventory;
 import gameone.item.Item;
+import gameone.item.tools.AxeTool;
+import gameone.item.tools.PickaxeTool;
 import gameone.item.tools.SpearTool;
 import gameone.item.tools.StaffTool;
 import gameone.state.MenuState;
@@ -67,8 +69,8 @@ public class Player extends Creature {
 		
 		inventory = new Inventory(handler);
 		inventoryItems = new Item[10];
-		inventory.addItem(new StaffTool(handler, 1, 0, 0));
-		inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		inventory.addItem(new AxeTool(handler, 1, 0, 0));
+		inventory.addItem(new PickaxeTool(handler, 1, 0, 0));
 		
 		
 //		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};

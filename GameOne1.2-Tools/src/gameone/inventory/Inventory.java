@@ -21,10 +21,8 @@ public class Inventory {
 	private int invX = 320, invY = 519, invSpacing = 48;
 	
 	public Inventory(Handler handler) {
-		
 		this.handler = handler;
 		this.inventoryItems = new Item[10];
-	
 	}
 	
 	public void tick() {

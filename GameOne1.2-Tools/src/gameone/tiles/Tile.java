@@ -12,6 +12,7 @@ public class Tile {
 	public static Tile dirtTile = new DirtTile(1);
 	public static Tile rockTile = new RockTile(2);
 	public static Tile barrierTile = new BarrierTile(3);
+	public static Tile waterTile = new WaterTile(4);
 	
 	//CLASS
 	public static final int TILEWIDTH = 32, TILEHEIGHT = 32;

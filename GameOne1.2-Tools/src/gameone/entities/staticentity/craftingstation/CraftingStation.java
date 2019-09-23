@@ -32,8 +32,8 @@ public abstract class CraftingStation extends StaticEntity{
 		activeBounds = new Rectangle();
 		activeBounds.x = (int) (-16 + x);
 		activeBounds.y = (int) (-16 + y);
-		activeBounds.width = 64;
-		activeBounds.height = 64;
+		activeBounds.width = width + 32;
+		activeBounds.height = height + 32;
 		
 	}
 	
@@ -61,7 +61,7 @@ public abstract class CraftingStation extends StaticEntity{
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(texture, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		g.drawImage(texture, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width, height, null);
 		if(inRange && !open) {
 			g.setColor(Color.lightGray);
 			g.fillRect((int) (x + 40 - handler.getGameCamera().getxOffset()),(int) (y - 13 - handler.getGameCamera().getyOffset()), 100, 17);

@@ -17,6 +17,7 @@ public class Stone extends StaticEntity {
 		
 		bounds.width = 32;
 		bounds.height = 32;
+		tool = 7;
 	}
 
 	@Override
