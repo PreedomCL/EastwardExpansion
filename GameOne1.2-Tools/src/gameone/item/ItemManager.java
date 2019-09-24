@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import gameone.Handler;
+import gameone.item.food.AppleFood;
 import gameone.item.items.StoneItem;
 import gameone.item.items.WoodItem;
+import gameone.item.tools.AxeTool;
+import gameone.item.tools.PickaxeTool;
 import gameone.item.tools.SpearTool;
 import gameone.item.tools.StaffTool;
 
@@ -16,7 +19,7 @@ public class ItemManager {
 	
 	//handler
 	private Item itemList[] = {new WoodItem(handler,0,0,0), new StoneItem(handler,0,0,0), new StaffTool(handler,0,0,0),
-			new SpearTool(handler,0,0,0)};
+			new SpearTool(handler,0,0,0),new AppleFood(handler,0,0,0), new AxeTool(handler,0,0,0), new PickaxeTool(handler,0,0,0)};
 	
 	public ItemManager(Handler handler) {
 		this.handler = handler;
