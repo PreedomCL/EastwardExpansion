@@ -65,7 +65,8 @@ public class World {
 		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 		}
-		//entityManager.addEntity(new NPC(handler, Assets.unknown, 150, 150, 32, 48));
+		String[] speech;
+		entityManager.addEntity(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, brave adventurer. ", "I have a task for you"}, 150, 300  , 32, 48));
 		
 		
 		

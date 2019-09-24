@@ -10,7 +10,7 @@ public class Assets {
 	
 	private static final int width = 32, height = 32;
 	  
-	public static Font font28, font14;
+	public static Font font28, font14,font20;
 	
 	public static BufferedImage grass, dirt, rock, barrier,water, sapling, log, rockbug, stones, unknown, craftingStation, spear, axe, pickaxe, apple;
 	public static BufferedImage[] start, tree, player; 
@@ -19,6 +19,7 @@ public class Assets {
 	
 	public static void init() {
 		font28 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 28);
+		font20 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 20);
 		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
 		
 		SpriteSheet PlayerSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/PlayerSheet.png"));
