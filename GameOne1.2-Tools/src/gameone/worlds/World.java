@@ -66,7 +66,7 @@ public class World {
 			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 		}
 		String[] speech;
-		entityManager.addEntity(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, brave adventurer. ", "I have a task for you"}, 150, 300  , 32, 48));
+		entityManager.addEntity(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, 150, 300  , 32, 48));
 		
 		
 		
@@ -132,7 +132,7 @@ public class World {
 		handler.getGame().getUiManager().render(g);
 		
 		if (!getEntityManager().getPlayer().isActive()) {
-			Text.drawString(g, "Stop Killing Rockbugs Nathan", 562, 315, true, Color.BLACK, Assets.font28);
+			Text.drawString(g, "Game Over", 562, 315, true, Color.BLACK, Assets.font28);
 		}	
 	}
 	
