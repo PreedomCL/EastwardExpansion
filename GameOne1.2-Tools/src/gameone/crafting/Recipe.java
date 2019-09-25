@@ -48,8 +48,8 @@ public class Recipe {
 			}
 		}
 		
-		if(inv.acceptItem(yield)) {
-			inv.addItem(yield);
+		if(inv.acceptItem(handler.getWorld().getItemManager().getItem(yield.getId(), yield.getCount()))) {
+			inv.addItem(handler.getWorld().getItemManager().getItem(yield.getId(), yield.getCount()));
 		}else {
 			System.out.println("You do not have enough space to accept " + yield.getCount() + " " + yield.getName() + "(s)");
 		}
@@ -110,6 +110,14 @@ public class Recipe {
 		this.id = id;
 	}
 
+	public Item[] getItems() {
+		return items;
+	}
+
+	public void setItems(Item[] items) {
+		this.items = items;
+	}
+	
 	
 	//G&S
 	

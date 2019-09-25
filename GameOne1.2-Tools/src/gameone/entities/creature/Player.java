@@ -22,6 +22,7 @@ import gameone.item.tools.PickaxeTool;
 import gameone.item.tools.SpearTool;
 import gameone.item.tools.StaffTool;
 import gameone.state.MenuState;
+import gameone.ui.UIRecipeButton;
 import gameone.utils.Timer;
 import gameone.utils.Utils;
 
@@ -83,7 +84,6 @@ public class Player extends Creature {
 
 	@Override
 	public void tick() {
-		
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);

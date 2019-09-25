@@ -18,8 +18,7 @@ public class ItemManager {
 	private ArrayList<Item> items, itemsToAdd;
 	
 	//handler
-	private Item itemList[] = {new WoodItem(handler,0,0,0), new StoneItem(handler,0,0,0), new StaffTool(handler,0,0,0),
-			new SpearTool(handler,0,0,0),new AppleFood(handler,0,0,0), new AxeTool(handler,0,0,0), new PickaxeTool(handler,0,0,0)};
+	
 	
 	public ItemManager(Handler handler) {
 		this.handler = handler;
@@ -49,7 +48,26 @@ public class ItemManager {
 	public void addItem(Item i) {
 		items.add(i);
 	}
-
+	
+	public Item getItem(int index, int count) {
+		switch(index) {
+			case 1:
+				return new WoodItem(handler, count, 0, 0);
+			case 2:
+				return new StoneItem(handler, count, 0, 0);
+			case 3:
+				return new StaffTool(handler, count, 0, 0);
+			case 4:
+				return new SpearTool(handler, count, 0, 0);
+			case 5:
+				return new AppleFood(handler, count, 0, 0);
+			case 6:
+				return new AxeTool(handler, count, 0, 0);
+			case 7:
+				return new PickaxeTool(handler, count, 0, 0);
+		}
+		return null;
+	}
 	//Getters Setters
 	
 	public Handler getHandler() {
@@ -63,14 +81,8 @@ public class ItemManager {
 	public void setItemsToAdd(ArrayList<Item> itemsToAdd) {
 		this.itemsToAdd = itemsToAdd;
 	}
-
-	public Item[] getItemList() {
-		return itemList;
-	}
-
-	public void setItemList(Item[] itemList) {
-		this.itemList = itemList;
-	}
+	
+	
 	
 	
 	

@@ -16,7 +16,6 @@ public class CraftingMenu {
 	public CraftingMenu(Handler handler, Recipe recipes[]) {
 		this.handler = handler;
 		this.recipes = recipes;
-		this.recipes = recipes;
 		System.out.println(recipes);
 	}
 	
