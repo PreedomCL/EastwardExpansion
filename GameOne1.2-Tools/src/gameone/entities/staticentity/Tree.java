@@ -31,9 +31,9 @@ public class Tree extends StaticEntity{
 	
 	@Override
 	public void onDie() {
-		handler.getWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, 5, x, y));
-		if( Utils.randomNumber(7, 7) == 7) {
-			handler.getWorld().getItemManager().getItemsToAdd().add(new AppleFood(handler, 2, x-16, y-16));
+		handler.getWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, 5, x + 32, y + 128));
+		if( Utils.randomNumber(10,0) == 7) {
+			handler.getWorld().getItemManager().getItemsToAdd().add(new AppleFood(handler, 2, x-16, y + 128));
 		}
 		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Sapling(handler, (int) x + Tile.TILEWIDTH / 2,(int) y + Tile.TILEWIDTH * 3));
 		

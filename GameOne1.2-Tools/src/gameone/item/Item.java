@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import gameone.Handler;
 import gameone.entities.Entity;
 import gameone.gfx.Assets;
+import gameone.tiles.Tile;
 
 public abstract class Item {
 	
@@ -49,6 +50,9 @@ public abstract class Item {
 				handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
 			}
 		}
+		
+		if(handler.getWorld().getTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y + bounds.y) / Tile.TILEHEIGHT).isSolid())
+			pickedUp = true;
 	}
 	
 	public void render(Graphics g) {

@@ -63,8 +63,8 @@ public class Player extends Creature {
 		BufferedImage[] frames;
 		animPlayer = new Animation[4];
 		
-		animPlayer[0] = new Animation(500, frames = new BufferedImage[]{Assets.player[1], Assets.player[2]});
-		animPlayer[1] = new Animation(500, frames = new BufferedImage[]{Assets.player[4], Assets.player[5]});
+		animPlayer[0] = new Animation(300, frames = new BufferedImage[]{Assets.player[1], Assets.player[2]});
+		animPlayer[1] = new Animation(300, frames = new BufferedImage[]{Assets.player[4], Assets.player[5]});
 		animPlayer[2] = new Animation(300, frames = new BufferedImage[]{Assets.player[7],Assets.player[6], Assets.player[8],Assets.player[6]});
 		animPlayer[3] = new Animation(300, frames = new BufferedImage[]{Assets.player[10],Assets.player[9], Assets.player[11],Assets.player[9]});
 		
@@ -85,6 +85,10 @@ public class Player extends Creature {
 	@Override
 	public void tick() {
 		getInput();
+		
+		if(checkEntityCollisions(0f,0f))
+			x += speed;
+		
 		move();
 		handler.getGameCamera().centerOnEntity(this);
 		
@@ -130,6 +134,12 @@ public class Player extends Creature {
 			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DefaultStation(handler, 200, 200));
 		}
 		
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)) {
+			handler.setWorld(handler.getWorld2());
+		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
+			handler.setWorld(handler.getTown());
+		}
 		//Actions
 		
 		if(handler.getMouseManager().isRightPressed() && inventoryItems[inventory.getSelectedItem()] != null) {

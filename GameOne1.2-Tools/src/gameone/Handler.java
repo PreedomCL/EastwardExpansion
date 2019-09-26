@@ -7,7 +7,7 @@ import gameone.worlds.World;
 
 public class Handler {
 	private Game game;
-	private World world;
+	private World world, town, world2;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -49,4 +49,21 @@ public class Handler {
 	public void setWorld(World world) {
 		this.world = world;
 	}
+
+	public World getTown() {
+		return town;
+	}
+
+	public void setTown(World town) {
+		this.town = town;
+	}
+
+	public World getWorld2() {
+		return world2;
+	}
+
+	public void setWorld2(World world2) {
+		this.world2 = world2;
+	}
+	
 }

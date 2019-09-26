@@ -44,10 +44,12 @@ public class RockbugCreature extends Creature{
 
 	@Override
 	public void onDie() {
-		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
-		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
-		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
-		handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,5, x, y));
+		if(health > -10) {
+			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
+			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
+			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
+			handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,5, x, y));
+		}
 	}
 	
 	public void movement() {

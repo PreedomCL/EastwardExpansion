@@ -58,7 +58,9 @@ public abstract class Entity {
 		return false;
 	}
 	
-	
+	protected boolean collisionWithTile(int x, int y) {
+		return handler.getWorld().getTile(x, y).isSolid();
+	}
 	//GETTERS SETTERS
 	
 	public int getHealth() {

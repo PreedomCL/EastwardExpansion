@@ -38,6 +38,7 @@ public class World {
 	private int[][] tiles;
 	//Entities
 	private EntityManager entityManager;
+	private EntityLoader entityLoader;
 	ArrayList<Entity> entitiesToAdd;
 	ArrayList<Item> itemsToAdd;
 	
@@ -47,8 +48,8 @@ public class World {
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
-		
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
+		loadWorld(path);
 		
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entitiesToAdd = new ArrayList<Entity>();
@@ -56,21 +57,17 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-			entityManager.addEntity(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-		}
-		for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
-			entityManager.addEntity(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-		}
-		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
-		}
+//		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+//			entityManager.addEntity(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+//		}
+//		for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
+//			entityManager.addEntity(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+//		}
+//		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+//			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
+//		}
 		String[] speech;
 		entityManager.addEntity(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, 150, 300  , 32, 48));
-		
-		
-		
-		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -145,6 +142,11 @@ public class World {
 			return Tile.dirtTile;
 		return t;
 	}
+	
+	public void loadEntities() {
+		entityLoader.loadEntities();
+	}
+	
 	private void loadWorld(String path) {
 		
 		String file = Utils.loadFileAsString(path);
@@ -160,6 +162,7 @@ public class World {
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
 		}
+		
 	}
 
 	
@@ -195,6 +198,10 @@ public class World {
 	
 	public EntityManager getEntityManager() {
 		return entityManager;
+	}
+
+	public void setEntityLoader(EntityLoader entityLoader) {
+		this.entityLoader = entityLoader;
 	}
 	
 }

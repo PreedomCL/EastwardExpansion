@@ -23,6 +23,8 @@ public abstract class Creature extends Entity {
 	}
 	
 	public void move() {
+		if(collisionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y+bounds.y) / Tile.TILEHEIGHT))
+			hurt(20);
 		if(!checkEntityCollisions(xMove, 0f))
 			moveX();
 		if(!checkEntityCollisions(0f, yMove))
@@ -78,7 +80,6 @@ public abstract class Creature extends Entity {
 	
 	protected boolean collisionWithTile(int x, int y) {
 		return handler.getWorld().getTile(x, y).isSolid();
-		
 	}
 	
 	

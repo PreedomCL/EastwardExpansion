@@ -49,14 +49,14 @@ public class NPC extends Creature{
 			isTalking = true;
 			phrase= 0;
 			speechTimer.stop();
-			speechTimer.start(1000);
+			speechTimer.start(3000);
 		}
 		if(isTalking) {
 			if(speechTimer.run () && phrase < speech.length - 1) {
 				
 				phrase ++;
 				speechTimer.stop();
-				speechTimer.start(1000);
+				speechTimer.start(3000);
 				System.out.println(phrase);
 			}
 			
