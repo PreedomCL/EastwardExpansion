@@ -1,5 +1,7 @@
 package gameone;
 
+import gameone.entities.Entity;
+import gameone.entities.creature.Player;
 import gameone.gfx.GameCamera;
 import gameone.input.KeyManager;
 import gameone.input.MouseManager;
@@ -8,6 +10,7 @@ import gameone.worlds.World;
 public class Handler {
 	private Game game;
 	private World world, town, world2;
+	private Player player;
 	
 	public Handler(Game game) {
 		this.game = game;
@@ -65,5 +68,15 @@ public class Handler {
 	public void setWorld2(World world2) {
 		this.world2 = world2;
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	
 	
 }

@@ -51,23 +51,13 @@ public class World {
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 		loadWorld(path);
 		
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager = new EntityManager(handler, handler.getPlayer());
 		entitiesToAdd = new ArrayList<Entity>();
 		
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-//		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-//			entityManager.addEntity(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-//		}
-//		for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
-//			entityManager.addEntity(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-//		}
-//		for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-//			entityManager.addEntity(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
-//		}
-		String[] speech;
-		entityManager.addEntity(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, 150, 300  , 32, 48));
+
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
