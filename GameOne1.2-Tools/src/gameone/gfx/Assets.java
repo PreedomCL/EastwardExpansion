@@ -12,7 +12,8 @@ public class Assets {
 	  
 	public static Font font28, font14,font20;
 	
-	public static BufferedImage grass, dirt, rock, barrier,water, sapling, log, rockbug, stones, unknown, craftingStation, spear, axe, pickaxe, apple;
+	public static BufferedImage grass, dirt, rock, barrier,water, sapling, log, rockbug, stones, unknown, craftingStation,
+	spear, axe, pickaxe, apple, blacksmith;
 	public static BufferedImage[] start, tree, player; 
 	public static BufferedImage inventoryScreen;
 
@@ -23,6 +24,7 @@ public class Assets {
 		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
 		
 		SpriteSheet PlayerSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/PlayerSheet.png"));
+		SpriteSheet BuildingSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/BuildingSheet.png"));
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/SpriteSheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/InventoryScreen.png");
@@ -66,5 +68,10 @@ public class Assets {
 		apple = sheet.crop(width * 5, height * 4, height, width);
 		//row 6
 		rockbug = sheet.crop(0, height * 5, height, width);
+		
+		
+		
+		//buildings
+		blacksmith = BuildingSheet.crop(0 , 0, 128, 220);
 	}
 }

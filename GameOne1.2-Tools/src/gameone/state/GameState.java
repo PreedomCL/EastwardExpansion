@@ -7,6 +7,7 @@ import gameone.Handler;
 import gameone.entities.creature.NPC;
 import gameone.entities.creature.Player;
 import gameone.entities.creature.RockbugCreature;
+import gameone.entities.staticentity.EnterableBuilding;
 import gameone.entities.staticentity.Stone;
 import gameone.entities.staticentity.Tree;
 import gameone.gfx.Assets;
@@ -34,19 +35,20 @@ public class GameState extends State {
 			public void loadEntities() {
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, 500, 500));
 				String[] speech;
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, 150, 300  , 32, 48));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, 750, 575, 32, 48));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128));
 				
-				
-				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-			}
-			for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-			}
-			for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
-			}
-			}
+//				//Random
+//				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+//					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+//				}
+//				for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
+//					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+//				}
+//				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+//					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
+//				}
+				}
 		});
 		handler.getWorld().loadEntities();
 		
