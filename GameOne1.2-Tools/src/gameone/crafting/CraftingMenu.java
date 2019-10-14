@@ -12,11 +12,11 @@ public class CraftingMenu {
 	
 	private Handler handler;
 	private Recipe recipes[];
+	public boolean active = false;
 	
 	public CraftingMenu(Handler handler, Recipe recipes[]) {
 		this.handler = handler;
 		this.recipes = recipes;
-		System.out.println(recipes);
 	}
 	
 	public void tick() {
@@ -24,17 +24,19 @@ public class CraftingMenu {
 	}
 	
 	public void loadMenu() {
+		
 		handler.getGame().setUiManager(new UIManager(handler));
-		for(int r = 0; r < recipes.length; r++) {
-			
-			handler.getGame().getUiManager().addObject(new UIRecipeButton(handler, 32, r * 33 + 33, recipes[r]));
-			
-		}
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
+		for(int r = 0; r < recipes.length; r++) {
+			handler.getGame().getUiManager().addObject(new UIRecipeButton(handler, 32, r * 33 + 33, recipes[r]));
+		}
+		active = true;
+		
 	}
 	
 	public void closeMenu() {
 		handler.getGame().setUiManager(new UIManager(handler));
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
+		active = false;
 	}
 }

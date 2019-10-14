@@ -14,17 +14,16 @@ public class UIRecipeButton extends UIObject{
 	public UIRecipeButton(Handler handler, float x, float y, Recipe recipe) {
 		super(handler, x, y, 33, 33);
 		this.recipe = recipe;
-		
 	}
-//
+	
 	@Override
 	public void tick() {
-		
-		
 	}
 
 	@Override
 	public void render(Graphics g) {
+		
+		
 		if(hovering) 
 			g.setColor(Color.gray);
 		else
@@ -32,8 +31,11 @@ public class UIRecipeButton extends UIObject{
 		
 		
 		
-		if(recipe == null)
+		if(recipe == null) {
+			System.out.println("Null");
 			return;
+		}
+			
 		if(recipe.checkCraftable(handler.getWorld().getEntityManager().getPlayer().getInventory())) 
 			g.setColor(Color.GREEN);
 		else 

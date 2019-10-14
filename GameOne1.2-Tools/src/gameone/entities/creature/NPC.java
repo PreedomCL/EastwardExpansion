@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 
 import gameone.Handler;
+import gameone.crafting.CraftingMenu;
+import gameone.crafting.Recipe;
 import gameone.gfx.Assets;
 import gameone.gfx.Text;
 import gameone.utils.Timer;
@@ -16,14 +18,19 @@ import gameone.utils.Timer;
 public class NPC extends Creature{
 	private Rectangle activeBounds;
 	private BufferedImage texture;
-	private Boolean isTalking = false, inRange = false;
-	private String[] speech; 
+	private Boolean isTalking = false, inRange = false, isTrading = false;
+	private String[] speech;
+	private Recipe[] trades;
+	private CraftingMenu tradeMenu;
 	private int phrase = 0;
 	private Timer speechTimer;
-	public NPC(Handler handler, BufferedImage texture, String[] speech, float x, float y, int width, int height) {
+	public NPC(Handler handler, BufferedImage texture, String[] speech, Recipe[] trades, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		this.texture = texture;
 		this.speech = speech;
+		this.trades = trades;
+		tradeMenu = new CraftingMenu(handler, trades);
+		
 		height = 64;
 		speechTimer = new Timer();
 		activeBounds = new Rectangle();
@@ -35,12 +42,17 @@ public class NPC extends Creature{
 
 	@Override
 	public void tick() {
+		tradeMenu.tick();
+		
 		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
 			inRange = true;
-		else {
+		else  {
 			inRange = false;
-			isTalking= false;
-			
+			if(isTalking || isTrading) {
+				isTalking = false;
+				isTrading = false;
+				tradeMenu.closeMenu();
+			}
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && isTalking) {
 			isTalking = false;
@@ -52,29 +64,32 @@ public class NPC extends Creature{
 			speechTimer.start(3000);
 		}
 		if(isTalking) {
-			if(speechTimer.run () && phrase < speech.length - 1) {
-				
-				phrase ++;
-				speechTimer.stop();
-				speechTimer.start(3000);
-				System.out.println(phrase);
+			if(speechTimer.run ()) {
+				if(phrase < speech.length - 1) {
+					phrase ++;
+					speechTimer.stop();
+					speechTimer.start(3000);
+					System.out.println(phrase);
+				}else if(!isTrading) {
+					isTrading = true;
+					tradeMenu.loadMenu();
+					isTalking = false;
+				}
 			}
-			
-			
 		}
+		
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(texture,(int)(x-handler.getGameCamera().getxOffset()),(int) (y-handler.getGameCamera().getyOffset()), null);
-		if(inRange && !isTalking) {
+		if(inRange && !isTalking && !isTrading) {
 			g.setColor(Color.lightGray);
 			g.fillRect((int) (x + 40 - handler.getGameCamera().getxOffset()),(int) (y - 13 - handler.getGameCamera().getyOffset()), 100, 17);
 			Text.drawString(g, "Press 'E' to Talk",(int) (x + 40 - handler.getGameCamera().getxOffset()) ,(int) (y - handler.getGameCamera().getyOffset()), false, Color.BLACK, Assets.font14);
 		}
 		
 		if(isTalking) {
-			
 			g.setColor(Color.lightGray);
 			g.fillRect(0,0, 600, 26);	
 			Text.drawString(g, speech [phrase], 0, 20, false, Color.black, Assets.font20);

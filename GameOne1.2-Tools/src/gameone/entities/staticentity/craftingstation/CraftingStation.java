@@ -27,8 +27,7 @@ public abstract class CraftingStation extends StaticEntity{
 		this.recipes = recipes;
 		this.texture = texture;
 		craftingMenu = new CraftingMenu(handler, recipes);
-		//
-		//System.out.println(handler.getWorld());
+		
 		activeBounds = new Rectangle();
 		activeBounds.x = (int) (-16 + x);
 		activeBounds.y = (int) (-16 + y);
@@ -46,8 +45,10 @@ public abstract class CraftingStation extends StaticEntity{
 			inRange = true;
 		else {
 			inRange = false;
-			open = false;
-			craftingMenu.closeMenu();
+			if(open) {
+				open = false;
+				craftingMenu.closeMenu();
+			}
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && open) {
 			open = false;

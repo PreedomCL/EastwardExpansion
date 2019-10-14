@@ -42,8 +42,8 @@ public class Game implements Runnable {
 	//Handler
 	private Handler handler;
 	
-	//Crafting
-	private RecipeManager recipeManager;
+	//Crafting & Trading
+	private RecipeManager recipeManager, tradingManager;
 	
 	//UIManager
 	private UIManager uiManager;
@@ -70,11 +70,13 @@ public class Game implements Runnable {
 		
 		handler = new Handler(this);
 		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
+		tradingManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
 		uiManager = new UIManager(handler);
 		gameCamera = new GameCamera(handler, 0, 0);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		handler.getGame().getRecipeManager().init();
+		handler.getGame().getTradingManager().init();
 		
 		
 		State.setState(menuState);
@@ -185,6 +187,14 @@ public class Game implements Runnable {
 
 	public void setRecipeManager(RecipeManager recipeManager) {
 		this.recipeManager = recipeManager;
+	}
+	
+	public RecipeManager getTradingManager() {
+		return tradingManager;
+	}
+
+	public void setTradingManager(RecipeManager tradingManager) {
+		this.tradingManager = tradingManager;
 	}
 
 	public UIManager getUiManager() {

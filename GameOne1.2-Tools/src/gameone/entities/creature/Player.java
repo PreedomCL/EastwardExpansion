@@ -70,8 +70,6 @@ public class Player extends Creature {
 		
 		inventory = new Inventory(handler);
 		inventoryItems = new Item[10];
-		inventory.addItem(new AxeTool(handler, 1, 0, 0));
-		inventory.addItem(new PickaxeTool(handler, 1, 0, 0));
 		
 		
 //		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};
@@ -171,6 +169,10 @@ public class Player extends Creature {
 			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&
 				mouseY >= e.getCollisionBounds(0, 0).y && mouseY <= e.getCollisionBounds(0, 0).y + e.getCollisionBounds(0, 0).height) {
 				
+				
+				if(Math.hypot(Math.abs(e.getCollisionBounds(0f,0f).getCenterX() - this.getCollisionBounds(0f,0f).getCenterX()),
+				Math.abs(e.getCollisionBounds(0f,0f).getCenterY() - this.getCollisionBounds(0f,0f).getCenterY())) > 50)
+					return;
 				isAttacking = true;
 				if(inventoryItems[inventory.getSelectedItem()] != null)
 					inventoryItems[inventory.getSelectedItem()].attack(e);
@@ -202,6 +204,10 @@ public class Player extends Creature {
 				continue;
 			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&
 				mouseY >= e.getCollisionBounds(0, 0).y && mouseY <= e.getCollisionBounds(0, 0).y + e.getCollisionBounds(0, 0).height) {
+				
+				if(Math.hypot(Math.abs(e.getCollisionBounds(0f,0f).getCenterX() - this.getCollisionBounds(0f,0f).getCenterX()),
+						Math.abs(e.getCollisionBounds(0f,0f).getCenterY() - this.getCollisionBounds(0f,0f).getCenterY())) > 50)
+							return;
 				
 				isAttacking = true;
 				
