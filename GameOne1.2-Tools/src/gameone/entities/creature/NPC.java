@@ -31,11 +31,15 @@ public class NPC extends Creature{
 		this.trades = trades;
 		tradeMenu = new CraftingMenu(handler, trades);
 		
-		height = 64;
+		
+		bounds.x = 16;
+		bounds.y = 48;
+		bounds.height = 16;
 		speechTimer = new Timer();
+		
 		activeBounds = new Rectangle();
-		activeBounds.x =(int) (-16 + x);
-		activeBounds.y =(int) (-16 + y);
+		activeBounds.x =(int) (x);
+		activeBounds.y =(int) (y-16);
 		activeBounds.width = width + 32;
 		activeBounds.height = height + 32;
 	}

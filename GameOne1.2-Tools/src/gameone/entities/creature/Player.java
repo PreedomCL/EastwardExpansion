@@ -112,7 +112,7 @@ public class Player extends Creature {
 		
 		
 		//Hunger
-		if (Utils.randomNumber (1000, 1 ) == 5)
+		if (Utils.randomNumber (2000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
 			starvationTimer.start(1000);
@@ -127,7 +127,7 @@ public class Player extends Creature {
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
 		
-		//Crafting Test Code
+		//Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
 			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DefaultStation(handler, 200, 200));
 		}
@@ -138,10 +138,13 @@ public class Player extends Creature {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
 			handler.setWorld(handler.getTown());
 		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H))
+			handler.getWorld().setShowHitBoxes(!handler.getWorld().isShowHitBoxes());
+		
 		//Actions
 		
-		if(handler.getMouseManager().isRightPressed() && inventoryItems[inventory.getSelectedItem()] != null) {
-			inventoryItems[inventory.getSelectedItem()].use(this);
+		if(handler.getMouseManager().isRightPressed()) {
+			checkUse();
 		}else if(handler.getMouseManager().isLeftPressed()){
 			checkAttacks();
 			checkDestroy();
@@ -227,6 +230,28 @@ public class Player extends Creature {
 		
 	}
 	
+	private void checkUse() {
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+			if(e.equals(this))
+				continue;
+			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&
+				mouseY >= e.getCollisionBounds(0, 0).y && mouseY <= e.getCollisionBounds(0, 0).y + e.getCollisionBounds(0, 0).height) {
+//				if(Math.hypot(Math.abs(e.getCollisionBounds(0f,0f).getCenterX() - this.getCollisionBounds(0f,0f).getCenterX()),
+//				Math.abs(e.getCollisionBounds(0f,0f).getCenterY() - this.getCollisionBounds(0f,0f).getCenterY())) > 50)
+//					return;
+				
+				if(inventoryItems[inventory.getSelectedItem()] != null) {
+					inventoryItems[inventory.getSelectedItem()].use(e);
+				}else {
+					System.out.println("Useing");
+					e.use();
+				}
+				return;
+				
+			}
+		}
+				
+	}
 	@Override
 	public void onDie() {
 		System.out.println("You Lose");

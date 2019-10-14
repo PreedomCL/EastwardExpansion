@@ -16,11 +16,11 @@ public class Tree extends StaticEntity{
 	public Tree(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4);
 		
-		bounds.x = 10;
+		bounds.x = 19;
 		bounds.y = height - Tile.TILEHEIGHT;
 		
-		bounds.width = width - 20;
-		bounds.height = Tile.TILEHEIGHT;
+		bounds.width = width - 31;
+		bounds.height = Tile.TILEHEIGHT - 7;
 		tool = 6;
 	}
 
@@ -39,6 +39,10 @@ public class Tree extends StaticEntity{
 		
 	}
 	
+	@Override
+	public void use() {
+		handler.getWorld().getItemManager().getItemsToAdd().add(new AppleFood(handler, 2, x - Utils.randomNumber(16, -16), y + 128 - Utils.randomNumber(16, -16)));
+	}
 	@Override
 	public void render(Graphics g) {
 		

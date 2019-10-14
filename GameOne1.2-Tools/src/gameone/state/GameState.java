@@ -9,6 +9,7 @@ import gameone.entities.creature.NPC;
 import gameone.entities.creature.Player;
 import gameone.entities.creature.RockbugCreature;
 import gameone.entities.staticentity.EnterableBuilding;
+import gameone.entities.staticentity.MapChanger;
 import gameone.entities.staticentity.Stone;
 import gameone.entities.staticentity.Tree;
 import gameone.gfx.Assets;
@@ -37,8 +38,10 @@ public class GameState extends State {
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, 500, 500));
 				String[] speech;
 				Recipe[] trades;
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0]}, 750, 575, 32, 48));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0]}, 750, 580, 32, 64));
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 500, 1000, 100, 10,550,516, handler.getWorld2()));
+				
 				
 				//Random
 				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 

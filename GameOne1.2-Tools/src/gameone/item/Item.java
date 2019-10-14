@@ -66,7 +66,7 @@ public abstract class Item {
 	}
 	
 	public void use(Entity e) {
-		
+		e.use();
 	}
 	public void attack(Entity e) {
 		e.hurt(1);

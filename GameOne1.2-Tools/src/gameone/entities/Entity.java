@@ -31,6 +31,11 @@ public abstract class Entity {
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	public abstract void onDie();
+	public void use() {}
+	
+	public void showHitBoxes(Graphics g) {
+		g.drawRect((int) (bounds.x - handler.getGameCamera().getxOffset() + x),(int) (bounds.y - handler.getGameCamera().getyOffset() + y), bounds.width, bounds.height);
+	}
 	
 	public int getInstance() {
 		return (Integer) null;
@@ -61,6 +66,8 @@ public abstract class Entity {
 	protected boolean collisionWithTile(int x, int y) {
 		return handler.getWorld().getTile(x, y).isSolid();
 	}
+	
+	
 	//GETTERS SETTERS
 	
 	public int getHealth() {

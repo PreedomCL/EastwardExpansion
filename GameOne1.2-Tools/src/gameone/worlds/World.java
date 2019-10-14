@@ -36,9 +36,11 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
+	private boolean debugMode = false;
 	//Entities
 	private EntityManager entityManager;
 	private EntityLoader entityLoader;
+	private float playerX, playerY;
 	ArrayList<Entity> entitiesToAdd;
 	ArrayList<Item> itemsToAdd;
 	
@@ -62,6 +64,9 @@ public class World {
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
 		
+		playerX = entityManager.getPlayer().getX();
+		playerY = entityManager.getPlayer().getY();
+		
 		
 	}	
 	
@@ -69,9 +74,16 @@ public class World {
 		
 		handler.getGame().getUiManager().tick();
 		itemManager.tick();
+		
+		
+		
+		entityManager.getPlayer().setX(playerX);
+		entityManager.getPlayer().setY(playerY);
+		
 		entityManager.tick();
 		
-		
+		playerX = entityManager.getPlayer().getX();
+		playerY = entityManager.getPlayer().getY();
 		//Adding Entities & Items
 		
 		entitiesToAdd = handler.getWorld().getEntityManager().getEntitiesToAdd();
@@ -116,11 +128,14 @@ public class World {
 		//Entities
 		entityManager.render(g);
 		
+		
 		handler.getGame().getUiManager().render(g);
 		
 		if (!getEntityManager().getPlayer().isActive()) {
 			Text.drawString(g, "Game Over", 562, 315, true, Color.BLACK, Assets.font28);
-		}	
+		}
+		
+		
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -192,6 +207,14 @@ public class World {
 
 	public void setEntityLoader(EntityLoader entityLoader) {
 		this.entityLoader = entityLoader;
+	}
+
+	public boolean isShowHitBoxes() {
+		return debugMode;
+	}
+
+	public void setShowHitBoxes(boolean showHitBoxes) {
+		this.debugMode = showHitBoxes;
 	}
 	
 }

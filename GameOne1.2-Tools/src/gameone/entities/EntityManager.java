@@ -48,8 +48,12 @@ public class EntityManager {
 	public void render(Graphics g) {
 		for(Entity e: entities) {
 			e.render(g);
+			if(handler.getWorld().isShowHitBoxes()) {
+				e.showHitBoxes(g);
+			}
 		}
 		player.postRender(g);
+		
 	}
 	
 	public void addEntity(Entity e) {
