@@ -134,6 +134,14 @@ public abstract class Entity {
 		this.height = height;
 	}
 
+	public boolean isSolid() {
+		return solid;
+	}
+
+	public void setSolid(boolean solid) {
+		this.solid = solid;
+	}
+
 	
 	
 	

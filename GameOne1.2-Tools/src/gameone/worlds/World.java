@@ -84,9 +84,10 @@ public class World {
 		
 		playerX = entityManager.getPlayer().getX();
 		playerY = entityManager.getPlayer().getY();
+		
 		//Adding Entities & Items
 		
-		entitiesToAdd = handler.getWorld().getEntityManager().getEntitiesToAdd();
+		entitiesToAdd = entityManager.getEntitiesToAdd();
 		
 		Iterator<Entity> it = entitiesToAdd.iterator();
 		while(it.hasNext()) {
@@ -135,7 +136,9 @@ public class World {
 			Text.drawString(g, "Game Over", 562, 315, true, Color.BLACK, Assets.font28);
 		}
 		
-		
+		if(debugMode) {
+			Text.drawString(g,Integer.toString((int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())) + "," + Integer.toString((int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset())), handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), false, Color.BLACK, Assets.font20);
+		}
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -150,6 +153,7 @@ public class World {
 	
 	public void loadEntities() {
 		entityLoader.loadEntities();
+		System.out.println(this + " 's entites loaded:" + entityManager.getEntitiesToAdd());
 	}
 	
 	private void loadWorld(String path) {

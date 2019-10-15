@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import gameone.Handler;
 import gameone.crafting.Recipe;
+import gameone.entities.creature.DonkeyCreature;
 import gameone.entities.creature.NPC;
 import gameone.entities.creature.Player;
 import gameone.entities.creature.RockbugCreature;
@@ -40,7 +41,8 @@ public class GameState extends State {
 				Recipe[] trades;
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0]}, 750, 580, 32, 64));
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128));
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 500, 1000, 100, 10,550,516, handler.getWorld2()));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 992, 1216, 63, 32,992,1150, 2));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DonkeyCreature(handler, 200, 200));
 				
 				
 				//Random
@@ -57,12 +59,12 @@ public class GameState extends State {
 		});
 		handler.getWorld().loadEntities();
 		
-		
+//World 2 **** *** *** *** *** *** *** ****
 		handler.setWorld2(new World(handler, System.getProperty("user.dir") + "/res/world/world2.txt"));
 		handler.getWorld2().setEntityLoader(new EntityLoader() {
 			@Override
 			public void loadEntities() {
-				
+				handler.getWorld2().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 64,32, 63, 32,64,64, 1));
 			}
 		});
 		handler.getWorld2().loadEntities();

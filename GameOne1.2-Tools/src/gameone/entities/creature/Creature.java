@@ -12,6 +12,7 @@ public abstract class Creature extends Entity {
 							DEFAULT_CREATURE_HEIGHT = 64;
 	protected float speed;
 	protected float xMove, yMove;
+	protected Vehicle vehicle;
 	
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
@@ -23,12 +24,18 @@ public abstract class Creature extends Entity {
 	}
 	
 	public void move() {
-		if(collisionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y+bounds.y) / Tile.TILEHEIGHT))
-			hurt(20);
-		if(!checkEntityCollisions(xMove, 0f))
-			moveX();
-		if(!checkEntityCollisions(0f, yMove))
-			moveY();
+		if(vehicle != null) {
+			vehicle.setxMove((xMove / speed) * vehicle.getSpeed());
+			vehicle.setyMove((yMove / speed) * vehicle.getSpeed());
+			vehicle.move();
+			x = vehicle.x + vehicle.getxRide();
+			y = vehicle.y + vehicle.getyRide();
+		}else {
+			if(!checkEntityCollisions(xMove, 0f))
+				moveX();
+			if(!checkEntityCollisions(0f, yMove))
+				moveY();
+		}
 	}
 	
 	public void moveX() {
@@ -119,6 +126,14 @@ public abstract class Creature extends Entity {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	
 }

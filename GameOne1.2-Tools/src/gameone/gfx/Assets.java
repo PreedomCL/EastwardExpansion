@@ -13,7 +13,7 @@ public class Assets {
 	public static Font font28, font14,font20;
 	
 	public static BufferedImage grass, dirt, rock, barrier,water, sapling, log, rockbug, stones, unknown, craftingStation,
-	spear, axe, pickaxe, apple, blacksmith;
+	spear, axe, pickaxe, apple, blacksmith, donkey;
 	public static BufferedImage[] start, tree, player; 
 	public static BufferedImage inventoryScreen;
 
@@ -69,7 +69,7 @@ public class Assets {
 		//row 6
 		rockbug = sheet.crop(0, height * 5, height, width);
 		
-		
+		donkey = sheet.crop(185, 202, 64, 80);
 		
 		//buildings
 		blacksmith = BuildingSheet.crop(0 , 0, 128, 220);
