@@ -11,7 +11,7 @@ public class MapChanger extends StaticEntity{
 	private int returnX, returnY;
 	private Handler handler;
 	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, int index) {
-		super(handler, x, y, width, height);
+		super(handler, x, y, width, height, true);
 		this.index = index;
 		this.returnX = returnX;
 		this.returnY = returnY;

@@ -10,8 +10,8 @@ public class DonkeyCreature extends Vehicle{
 	
 	private Rectangle activeBounds;
 	
-	public DonkeyCreature(Handler handler, float x, float y) {
-		super(handler, x, y, 80, 64, 0, -20);
+	public DonkeyCreature(Handler handler, float x, float y, boolean excused) {
+		super(handler, x, y, 80, 64, 0, -20, excused);
 		speed = 6;
 	}
 	@Override

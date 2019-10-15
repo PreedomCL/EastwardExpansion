@@ -23,7 +23,7 @@ public abstract class CraftingStation extends StaticEntity{
 	protected Rectangle activeBounds;
 	
 	public CraftingStation(Handler handler, BufferedImage texture, float x, float y, Recipe recipes[]) {
-		super(handler, x, y, 32, 32);
+		super(handler, x, y, 32, 32, false);
 		this.recipes = recipes;
 		this.texture = texture;
 		craftingMenu = new CraftingMenu(handler, recipes);

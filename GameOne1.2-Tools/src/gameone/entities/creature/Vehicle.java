@@ -13,8 +13,8 @@ public abstract class Vehicle extends Creature{
 	protected int xRide, yRide;
 	protected Rectangle activeBounds;
 	protected boolean inRange = false, active = false;
-	public Vehicle(Handler handler, float x, float y, int width, int height,int xRide,int yRide) {
-		super(handler, x, y, width, height);
+	public Vehicle(Handler handler, float x, float y, int width, int height,int xRide,int yRide,boolean excused) {
+		super(handler, x, y, width, height, excused);
 		this.xRide = xRide;
 		this.yRide= yRide;
 		

@@ -25,7 +25,7 @@ public class NPC extends Creature{
 	private int phrase = 0;
 	private Timer speechTimer;
 	public NPC(Handler handler, BufferedImage texture, String[] speech, Recipe[] trades, float x, float y, int width, int height) {
-		super(handler, x, y, width, height);
+		super(handler, x, y, width, height, true);
 		this.texture = texture;
 		this.speech = speech;
 		this.trades = trades;

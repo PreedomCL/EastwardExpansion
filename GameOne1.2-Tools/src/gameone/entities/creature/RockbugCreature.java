@@ -16,7 +16,7 @@ public class RockbugCreature extends Creature{
 	private int moveDirection, moveLength;
 	private long moveTimer, moveLastTime, attackTimer, lastAttackTime, attackCooldown = 500;
 	public RockbugCreature(Handler handler, float x, float y) {
-		super(handler, x, y, 32, 32);
+		super(handler, x, y, 32, 32, false);
 		rand = new Random();
 		moveDirection = rand.nextInt(10);
 		moveLength = rand.nextInt(100);

@@ -40,6 +40,10 @@ public class Tile {
 		return false;
 	}
 	
+	public boolean isValidSpawn() {
+		return true;
+	}
+	
 	public int getId() {
 		return id;	
 	}

@@ -31,18 +31,16 @@ public class GameState extends State {
 		handler.setTown(new World(handler, System.getProperty("user.dir") + "/res/world/world1.txt"));
 		handler.setWorld(handler.getTown());
 		world = handler.getWorld();
-		
-		
 		world.setEntityLoader(new EntityLoader() {
 			@Override
 			public void loadEntities() {
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, 500, 500));
 				String[] speech;
 				Recipe[] trades;
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 992, 1216, 63, 32,992,1150, 2));
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0]}, 750, 580, 32, 64));
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128));
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 992, 1216, 63, 32,992,1150, 2));
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DonkeyCreature(handler, 200, 200));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DonkeyCreature(handler, 200, 200, true));
 				
 				
 				//Random

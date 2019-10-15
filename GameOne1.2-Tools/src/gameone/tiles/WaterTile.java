@@ -14,5 +14,8 @@ public class WaterTile extends Tile{
 		return true;
 	}
 	
-
+	@Override
+	public boolean isValidSpawn() {
+		return false;
+	}
 }

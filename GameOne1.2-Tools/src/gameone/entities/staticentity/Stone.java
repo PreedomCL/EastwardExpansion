@@ -10,7 +10,7 @@ import gameone.tiles.Tile;
 public class Stone extends StaticEntity {
 
 	public Stone(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
+		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, false);
 		
 		bounds.x = 0;
 		bounds.y = 0;

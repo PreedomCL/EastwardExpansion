@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import gameone.Handler;
+import gameone.tiles.Tile;
 
 public abstract class Entity {
 	
@@ -17,7 +18,7 @@ public abstract class Entity {
 	
 	
 	
-	public Entity(Handler handler, float x, float y, int width, int height) {
+	public Entity(Handler handler, float x, float y, int width, int height, boolean excused) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -26,6 +27,34 @@ public abstract class Entity {
 		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
+		
+		
+		
+		
+		
+		//Check for valid spawn location
+		if(!excused) {
+			int tx = (int) (x  + bounds.x + bounds.width) / Tile.TILEWIDTH;
+			
+			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
+				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
+				active = false;
+			}
+			int ty = (int) (y + bounds.y) / Tile.TILEHEIGHT;
+			
+			if(!checkVaildSpawnTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !checkVaildSpawnTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
+				active = false;
+			}
+			
+			if(handler.getWorld() != null)
+				for(Entity e: handler.getWorld().getEntityManager().getEntitiesToAdd()) {
+					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
+						System.out.println("	" + this +": Invalid Spawn Location (Collision With Pre-existing Entity)");
+						active = false;
+					}
+				}
+		}
 	}
 	
 	public abstract void tick();
@@ -64,7 +93,15 @@ public abstract class Entity {
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
+		if(handler.getWorld() == null)
+			return false;
 		return handler.getWorld().getTile(x, y).isSolid();
+	}
+	
+	protected boolean checkVaildSpawnTile(int x, int y) {
+		if(handler.getWorld() == null)
+			return true;
+		return handler.getWorld().getTile(x, y).isValidSpawn();
 	}
 	
 	

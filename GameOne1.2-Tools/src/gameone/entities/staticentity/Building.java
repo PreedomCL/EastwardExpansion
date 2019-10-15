@@ -9,7 +9,7 @@ public abstract class Building extends StaticEntity{
 	protected BufferedImage texture;
 	
 	public Building(Handler handler,BufferedImage texture, float x, float y, int width, int height) {
-		super(handler, x, y, width, height);
+		super(handler, x, y, width, height, true);
 		this.texture = texture;
 	}
 	

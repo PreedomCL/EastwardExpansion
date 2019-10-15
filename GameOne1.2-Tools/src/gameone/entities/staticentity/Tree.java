@@ -14,7 +14,7 @@ import gameone.utils.Utils;
 public class Tree extends StaticEntity{
 	public int appleSpawn;
 	public Tree(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4);
+		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4, false);
 		
 		bounds.x = 19;
 		bounds.y = height - Tile.TILEHEIGHT;

@@ -14,8 +14,8 @@ public abstract class Creature extends Entity {
 	protected float xMove, yMove;
 	protected Vehicle vehicle;
 	
-	public Creature(Handler handler, float x, float y, int width, int height) {
-		super(handler, x, y, width, height);
+	public Creature(Handler handler, float x, float y, int width, int height, boolean excused) {
+		super(handler, x, y, width, height, excused);
 		
 		speed = DEFAULT_SPEED;
 		xMove = 0;
@@ -85,9 +85,7 @@ public abstract class Creature extends Entity {
 	}
 	
 	
-	protected boolean collisionWithTile(int x, int y) {
-		return handler.getWorld().getTile(x, y).isSolid();
-	}
+	
 	
 	
 	//G&S
