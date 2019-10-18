@@ -1,9 +1,8 @@
-package gameone.item.items;
+package gameone.item;
 
 import gameone.Handler;
 import gameone.entities.Entity;
 import gameone.gfx.Assets;
-import gameone.item.Item;
 
 public class StoneItem extends Item{
 	

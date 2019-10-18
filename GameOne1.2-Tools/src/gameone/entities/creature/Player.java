@@ -11,7 +11,7 @@ import gameone.crafting.CraftingMenu;
 import gameone.crafting.Recipe;
 import gameone.entities.Entity;
 import gameone.entities.staticentity.craftingstation.CraftingStation;
-import gameone.entities.staticentity.craftingstation.DefaultStation;
+import gameone.entities.staticentity.craftingstation.BasicWorkTable;
 import gameone.gfx.Animation;
 import gameone.gfx.Assets;
 import gameone.gfx.Text;
@@ -49,14 +49,13 @@ public class Player extends Creature {
 		
 		starvationTimer = new Timer();
 		
-		//Entity
-		
+	//Entity
 		bounds.x = 16;
 		bounds.y = 48;
 		bounds.width = 32;
 		bounds.height = 16;
 		
-		//Player
+	//Player
 		isAttacking = false;
 		animAttack = new Animation(500, Assets.player);
 		
@@ -71,13 +70,7 @@ public class Player extends Creature {
 		inventory = new Inventory(handler);
 		inventoryItems = new Item[10];
 		
-		
-//		Recipe[] recipes = {handler.getGame().getRecipeManager().getRecipes()[0]};
-//		playerCrafting = new CraftingMenu(handler, recipes);
-//		playerCrafting.loadMenu();
-		
 		hunger = 10;
-		//
 	}
 
 	@Override
@@ -89,16 +82,15 @@ public class Player extends Creature {
 		
 		move();
 		handler.getGameCamera().centerOnEntity(this);
-		
-		
-		//Animations
+
+	//Animations
 		
 		animAttack.tick();
 		
 		for(Animation a: animPlayer) {
 			a.tick();
 		}
-		//Direction
+	//Direction
 		
 		if(handler.getKeyManager().down)
 			direction = 0;
@@ -111,7 +103,7 @@ public class Player extends Creature {
 		
 		
 		
-		//Hunger
+	//Hunger
 		if (Utils.randomNumber (2000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
@@ -123,13 +115,13 @@ public class Player extends Creature {
 			}
 		}
 		
-		//Inventory
+	//Inventory
 		inventoryItems = inventory.getInventoryItems();
 		inventory.tick();
 		
-		//Test Code
+	//Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new DefaultStation(handler, 200, 200));
+			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, 200, 200));
 		}
 		
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)) {
@@ -138,11 +130,8 @@ public class Player extends Creature {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
 			handler.setWorld(handler.getTown());
 		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H))
-			handler.getWorld().setShowHitBoxes(!handler.getWorld().isShowHitBoxes());
 		
-		//Actions
-		
+	//Actions
 		if(handler.getMouseManager().isRightPressed()) {
 			checkUse();
 		}else if(handler.getMouseManager().isLeftPressed()){
@@ -250,7 +239,8 @@ public class Player extends Creature {
 				
 			}
 		}
-				
+		if(inventoryItems[inventory.getSelectedItem()] != null)
+			inventoryItems[inventory.getSelectedItem()].use(null);		
 	}
 	@Override
 	public void onDie() {

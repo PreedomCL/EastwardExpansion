@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import gameone.Handler;
 import gameone.gfx.Assets;
 import gameone.item.Item;
-import gameone.item.items.WoodItem;
+import gameone.item.WoodItem;
 import gameone.item.food.*;
 import gameone.tiles.Tile;
 import gameone.utils.Utils;

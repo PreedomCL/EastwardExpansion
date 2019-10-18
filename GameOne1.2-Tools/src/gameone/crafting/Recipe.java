@@ -3,7 +3,7 @@ package gameone.crafting;
 import gameone.Handler;
 import gameone.inventory.Inventory;
 import gameone.item.Item;
-import gameone.item.items.WoodItem;
+import gameone.item.WoodItem;
 
 public class Recipe {
 	

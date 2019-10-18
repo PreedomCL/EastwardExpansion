@@ -6,8 +6,8 @@ import java.util.Random;
 import gameone.Handler;
 import gameone.gfx.Assets;
 import gameone.item.Item;
-import gameone.item.items.StoneItem;
-import gameone.item.items.WoodItem;
+import gameone.item.StoneItem;
+import gameone.item.WoodItem;
 
 
 public class RockbugCreature extends Creature{

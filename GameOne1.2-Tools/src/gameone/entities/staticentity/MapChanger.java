@@ -22,20 +22,21 @@ public class MapChanger extends StaticEntity{
 
 	@Override
 	public void tick() {
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(getCollisionBounds(0f,0f))) {
-			handler.getWorld().getEntityManager().getPlayer().setX(returnX);
-			handler.getWorld().getEntityManager().getPlayer().setY(returnY);
-			
-			switch(index) {
-			case 1:
-				handler.setWorld(handler.getTown());
-				break;
-			case 2:
-				handler.setWorld(handler.getWorld2());
-				break;
+		if(handler.getWorld().getEntityManager().getPlayer().getVehicle() == null) {
+			if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(getCollisionBounds(0f,0f))) {
+				handler.getWorld().getEntityManager().getPlayer().setX(returnX);
+				handler.getWorld().getEntityManager().getPlayer().setY(returnY);
+				
+				switch(index) {
+				case 1:
+					handler.setWorld(handler.getTown());
+					break;
+				case 2:
+					handler.setWorld(handler.getWorld2());
+					break;
+				}
+			}
 		}
-		}
-		
 			
 	}
 	

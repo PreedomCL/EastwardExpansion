@@ -5,8 +5,7 @@ import java.util.Iterator;
 
 import gameone.Handler;
 import gameone.item.food.AppleFood;
-import gameone.item.items.StoneItem;
-import gameone.item.items.WoodItem;
+import gameone.item.placeable.BasicWorkTableItem;
 import gameone.item.tools.AxeTool;
 import gameone.item.tools.PickaxeTool;
 import gameone.item.tools.SpearTool;
@@ -24,9 +23,6 @@ public class ItemManager {
 		this.handler = handler;
 		items = new ArrayList<Item>();
 		itemsToAdd = new ArrayList<Item>();
-		
-		
-		//Handler Stuff
 		
 	}
 	
@@ -65,6 +61,10 @@ public class ItemManager {
 				return new AxeTool(handler, count, 0, 0);
 			case 7:
 				return new PickaxeTool(handler, count, 0, 0);
+			case 8:
+				return new BasicWorkTableItem(handler, count, 0, 0);
+			case 9:
+				return new CoinItem(handler, count, 0, 0);
 		}
 		return null;
 	}

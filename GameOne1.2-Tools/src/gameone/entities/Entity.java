@@ -13,7 +13,7 @@ public abstract class Entity {
 	protected Rectangle bounds;
 	protected int health;
 	protected int type, tool;
-	protected boolean active = true, solid = true;
+	protected boolean active = true, solid = true, excused;
 	public static final int DEFAULT_HEALTH = 10;
 	
 	
@@ -29,31 +29,30 @@ public abstract class Entity {
 		bounds = new Rectangle(0, 0, width, height);
 		
 		
-		
-		
-		
 		//Check for valid spawn location
+		this.excused = excused;
 		if(!excused) {
 			int tx = (int) (x  + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			
-			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
+			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) || !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
 				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
 				active = false;
 			}
 			int ty = (int) (y + bounds.y) / Tile.TILEHEIGHT;
 			
-			if(!checkVaildSpawnTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !checkVaildSpawnTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+			if(!checkVaildSpawnTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) || !checkVaildSpawnTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
 				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
 				active = false;
 			}
 			
-			if(handler.getWorld() != null)
+			if(handler.getWorld() != null) {
 				for(Entity e: handler.getWorld().getEntityManager().getEntitiesToAdd()) {
 					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
 						System.out.println("	" + this +": Invalid Spawn Location (Collision With Pre-existing Entity)");
 						active = false;
 					}
 				}
+			}
 		}
 	}
 	

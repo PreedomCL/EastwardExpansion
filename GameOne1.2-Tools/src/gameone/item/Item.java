@@ -14,7 +14,7 @@ import gameone.tiles.Tile;
 public abstract class Item {
 	
 	//Class
-	public static final int ITEMWIDTH = 32, ITEMHEIGHT = 32;
+	public static final int ITEMWIDTH = 28, ITEMHEIGHT = 28;
 	
 	protected Handler handler;
 	protected String name;
@@ -66,6 +66,8 @@ public abstract class Item {
 	}
 	
 	public void use(Entity e) {
+		if(e == null)
+			return;
 		e.use();
 	}
 	public void attack(Entity e) {

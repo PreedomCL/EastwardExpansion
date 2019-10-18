@@ -1,6 +1,7 @@
 package gameone;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -24,9 +25,12 @@ public class Game implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
+	private int fps;
 	
 	private BufferStrategy bs;
 	private Graphics g;
+	
+	private boolean debugMode = false;
 	
 	//States
 	public State gameState;
@@ -70,7 +74,7 @@ public class Game implements Runnable {
 		
 		handler = new Handler(this);
 		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
-		tradingManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
+		tradingManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/trades.recipe");
 		uiManager = new UIManager(handler);
 		gameCamera = new GameCamera(handler, 0, 0);
 		gameState = new GameState(handler);
@@ -89,6 +93,8 @@ public class Game implements Runnable {
 		keyManager.tick();
 		if(State.getState() != null)
 			State.getState().tick();
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H))
+			debugMode = !debugMode;
 		
 	}
 	private void render() {
@@ -111,12 +117,13 @@ public class Game implements Runnable {
 		bs.show();
 		g.dispose();
 		
+		
 	}
 	public void run() {
 		
 		init();
 		
-		int fps = 60;
+		fps = 60;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;
 		long now;
@@ -203,6 +210,22 @@ public class Game implements Runnable {
 
 	public void setUiManager(UIManager uiManager) {
 		this.uiManager = uiManager;
+	}
+
+	public boolean isDebugMode() {
+		return debugMode;
+	}
+
+	public void setDebugMode(boolean debugMode) {
+		this.debugMode = debugMode;
+	}
+
+	public int getFps() {
+		return fps;
+	}
+
+	public void setFps(int fps) {
+		this.fps = fps;
 	}
 
 	

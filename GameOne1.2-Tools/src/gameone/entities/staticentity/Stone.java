@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import gameone.Handler;
 import gameone.gfx.Assets;
 import gameone.item.Item;
-import gameone.item.items.StoneItem;
+import gameone.item.StoneItem;
 import gameone.tiles.Tile;
 
 public class Stone extends StaticEntity {

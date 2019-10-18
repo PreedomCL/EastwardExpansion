@@ -18,9 +18,10 @@ import gameone.entities.creature.RockbugCreature;
 import gameone.entities.staticentity.Sapling;
 import gameone.entities.staticentity.Stone;
 import gameone.entities.staticentity.Tree;
-import gameone.entities.staticentity.craftingstation.DefaultStation;
+import gameone.entities.staticentity.craftingstation.BasicWorkTable;
 import gameone.gfx.Assets;
 import gameone.gfx.Text;
+import gameone.gfx.lighting.LightManager;
 import gameone.item.Item;
 import gameone.item.ItemManager;
 import gameone.tiles.Tile;
@@ -43,7 +44,8 @@ public class World {
 	private float playerX, playerY;
 	ArrayList<Entity> entitiesToAdd;
 	ArrayList<Item> itemsToAdd;
-	
+	//Lighting
+	private LightManager lightManager;
 	//Items
 	private ItemManager itemManager;
 	
@@ -59,7 +61,7 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-
+		lightManager = new LightManager(handler);
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -75,16 +77,15 @@ public class World {
 		handler.getGame().getUiManager().tick();
 		itemManager.tick();
 		
-		
-		
 		entityManager.getPlayer().setX(playerX);
 		entityManager.getPlayer().setY(playerY);
-		
 		entityManager.tick();
-		
 		playerX = entityManager.getPlayer().getX();
 		playerY = entityManager.getPlayer().getY();
 		
+		lightManager.tick();
+		
+		debugMode = handler.getGame().isDebugMode();
 		//Adding Entities & Items
 		
 		entitiesToAdd = entityManager.getEntitiesToAdd();
@@ -107,6 +108,8 @@ public class World {
 		}
 		itemsToAdd.clear();
 		
+		
+		
 	}
 	
 	public void render(Graphics g) {
@@ -128,7 +131,8 @@ public class World {
 		itemManager.render(g);
 		//Entities
 		entityManager.render(g);
-		
+		//Lighting
+		lightManager.render(g);
 		
 		handler.getGame().getUiManager().render(g);
 		
@@ -138,6 +142,8 @@ public class World {
 		
 		if(debugMode) {
 			Text.drawString(g,Integer.toString((int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())) + "," + Integer.toString((int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset())), handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), false, Color.BLACK, Assets.font20);
+			Text.drawString(g,"FPS:" + Integer.toString(handler.getGame().getFps()), 0, 16, false, Color.BLACK, Assets.font20);
+			
 		}
 	}
 	
@@ -213,11 +219,11 @@ public class World {
 		this.entityLoader = entityLoader;
 	}
 
-	public boolean isShowHitBoxes() {
+	public boolean isDebugMode() {
 		return debugMode;
 	}
 
-	public void setShowHitBoxes(boolean showHitBoxes) {
+	public void setDebugMode(boolean showHitBoxes) {
 		this.debugMode = showHitBoxes;
 	}
 	

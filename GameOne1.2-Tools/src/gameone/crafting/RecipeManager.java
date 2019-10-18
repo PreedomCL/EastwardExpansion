@@ -2,8 +2,8 @@ package gameone.crafting;
 
 import gameone.Handler;
 import gameone.item.Item;
-import gameone.item.items.StoneItem;
-import gameone.item.items.WoodItem;
+import gameone.item.StoneItem;
+import gameone.item.WoodItem;
 import gameone.item.tools.SpearTool;
 import gameone.utils.Utils;
 
