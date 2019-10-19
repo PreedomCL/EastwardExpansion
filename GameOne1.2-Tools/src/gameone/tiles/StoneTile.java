@@ -2,9 +2,9 @@ package gameone.tiles;
 
 import gameone.gfx.Assets;
 
-public class RockTile extends Tile {
+public class StoneTile extends Tile {
 
-	public RockTile( int id) {
+	public StoneTile( int id) {
 		super(Assets.rock, id);
 	}
 	@Override

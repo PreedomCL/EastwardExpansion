@@ -25,14 +25,14 @@ public class UIRecipeButton extends UIObject{
 		
 		
 		if(hovering) 
-			g.setColor(Color.gray);
+			g.setColor(new Color(1f, 1f, 1f, .75f));
 		else
-			g.setColor(Color.WHITE);
+			g.setColor(new Color(1f,1f,1f,.5f));
 		
-		
+		g.fillRect((int)x, (int)y, width, height);
 		
 		if(recipe == null) {
-			System.out.println("Null");
+			System.out.println("Recipe is Null");
 			return;
 		}
 			
@@ -43,6 +43,7 @@ public class UIRecipeButton extends UIObject{
 		
 		g.drawRect((int)x, (int)y, width, height);
 		g.drawImage(recipe.getYield().getTexture(), (int) x + 1, (int) y + 1, null);
+		Text.drawString(g, Integer.toString(recipe.getYield().getCount()), (int) x + 16, (int) y + 16 , true, Color.WHITE, Assets.font28);
 		
 		if(hovering) {
 			for(int r = 0;r < recipe.getItems().length; r++ ) {

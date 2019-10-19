@@ -130,7 +130,7 @@ public class Inventory {
 		}
 		for (Item i : inventoryItems) {
 			if(i == null)
-				return;
+				continue;
 			if(i.getId() == item.getId()) {
 				i.setCount(i.getCount() - count);
 				return;

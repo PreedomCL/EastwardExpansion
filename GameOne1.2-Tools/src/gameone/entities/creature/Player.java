@@ -103,7 +103,7 @@ public class Player extends Creature {
 		
 		
 		
-	//Hunger
+	//Hunger & Health Regen
 		if (Utils.randomNumber (2000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
@@ -114,6 +114,11 @@ public class Player extends Creature {
 				starvationTimer.stop();
 			}
 		}
+		
+		if(hunger > 8 && health <10 && Utils.randomNumber(700, 1) == 5)
+			health++;
+		else if(hunger > 6 && health <10 && Utils.randomNumber(1500, 1) == 5)
+			health++;
 		
 	//Inventory
 		inventoryItems = inventory.getInventoryItems();
@@ -163,7 +168,7 @@ public class Player extends Creature {
 				
 				
 				if(Math.hypot(Math.abs(e.getCollisionBounds(0f,0f).getCenterX() - this.getCollisionBounds(0f,0f).getCenterX()),
-				Math.abs(e.getCollisionBounds(0f,0f).getCenterY() - this.getCollisionBounds(0f,0f).getCenterY())) > 50)
+				Math.abs(e.getCollisionBounds(0f,0f).getCenterY() - this.getCollisionBounds(0f,0f).getCenterY())) > 100)
 					return;
 				isAttacking = true;
 				if(inventoryItems[inventory.getSelectedItem()] != null)
