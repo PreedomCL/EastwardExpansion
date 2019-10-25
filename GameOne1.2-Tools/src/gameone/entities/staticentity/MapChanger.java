@@ -1,5 +1,6 @@
 package gameone.entities.staticentity;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gameone.Handler;
@@ -10,6 +11,8 @@ public class MapChanger extends StaticEntity{
 	private int index;
 	private int returnX, returnY;
 	private Handler handler;
+	
+	
 	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, int index) {
 		super(handler, x, y, width, height, true);
 		this.index = index;
@@ -37,13 +40,11 @@ public class MapChanger extends StaticEntity{
 				}
 			}
 		}
-			
 	}
 	
 
 	@Override
 	public void render(Graphics g) {
-		
 		
 	}
 
