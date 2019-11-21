@@ -7,6 +7,7 @@ import game.entities.creature.DonkeyCreature;
 import game.entities.creature.NPC;
 import game.entities.creature.Player;
 import game.entities.creature.RockbugCreature;
+import game.entities.staticentity.Bridge;
 import game.entities.staticentity.EnterableBuilding;
 import game.entities.staticentity.MapChanger;
 import game.entities.staticentity.Stone;
@@ -67,7 +68,7 @@ public class GameState extends State {
 			@Override
 			public void loadEntities() {
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 64,32, 63, 32,64,64, 1));
-				
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Bridge(handler, 640, 320, 64, 64));
 				//Random
 				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));

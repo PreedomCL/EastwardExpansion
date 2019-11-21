@@ -10,10 +10,11 @@ public abstract class Entity {
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
-	protected Rectangle bounds;
+	protected Rectangle bounds, activeBounds;
 	protected int health;
 	protected int type, tool;
 	protected boolean active = true, solid = true, excused;
+	protected boolean inRange = false;
 	public static final int DEFAULT_HEALTH = 10;
 	
 	
@@ -27,6 +28,7 @@ public abstract class Entity {
 		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
+		activeBounds = new Rectangle(-16, -16, width + 32, width + 32);
 		
 		
 		//Check for valid spawn location
@@ -61,6 +63,12 @@ public abstract class Entity {
 	public abstract void onDie();
 	public void use() {}
 	
+	protected boolean checkActiveBounds() {
+		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+			return true;
+		else 
+			return false;
+	}
 	public void showHitBoxes(Graphics g) {
 		g.drawRect((int) (bounds.x - handler.getGameCamera().getxOffset() + x),(int) (bounds.y - handler.getGameCamera().getyOffset() + y), bounds.width, bounds.height);
 	}
