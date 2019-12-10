@@ -65,6 +65,8 @@ public class ItemManager {
 				return new BasicWorkTableItem(handler, count, 0, 0);
 			case 9:
 				return new CoinItem(handler, count, 0, 0);
+			case 10:
+				return new IronItem(handler, count, 0, 0);
 		}
 		return null;
 	}

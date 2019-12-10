@@ -18,7 +18,7 @@ import game.entities.staticentity.Tree;
 import game.entities.staticentity.craftingstation.BasicWorkTable;
 import game.gfx.Assets;
 import game.gfx.Text;
-import game.gfx.lighting.LightManager;
+import game.gfx.lighting.LightingManager;
 import game.item.Item;
 import game.item.ItemManager;
 import game.tiles.Tile;
@@ -45,7 +45,7 @@ public class World {
 	ArrayList<Entity> entitiesToAdd;
 	ArrayList<Item> itemsToAdd;
 	//Lighting
-	private LightManager lightManager;
+	private LightingManager lightManager;
 	//Items
 	private ItemManager itemManager;
 	
@@ -61,7 +61,7 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-		lightManager = new LightManager(handler);
+		lightManager = new LightingManager();
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -83,7 +83,7 @@ public class World {
 		playerX = entityManager.getPlayer().getX();
 		playerY = entityManager.getPlayer().getY();
 		
-		lightManager.tick();
+		
 		
 		debugMode = handler.getGame().isDebugMode();
 		//Adding Entities & Items
@@ -132,7 +132,6 @@ public class World {
 		//Entities
 		entityManager.render(g);
 		//Lighting
-		lightManager.render(g);
 		
 		handler.getGame().getUiManager().render(g);
 		

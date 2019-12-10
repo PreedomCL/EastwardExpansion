@@ -3,9 +3,9 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.gfx.Assets;
-import game.item.Item;
-import game.item.StoneItem;
+import game.item.*;
 import game.tiles.Tile;
+import game.utils.Utils;
 
 public class Stone extends StaticEntity {
 
@@ -32,7 +32,14 @@ public class Stone extends StaticEntity {
 
 	@Override
 	public void onDie() {
-		handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, 3, x, y));
+		handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, 3, x - 10, y));
+		if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()] == null)
+			return;
+		if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()].getId() == 7) {
+			if(Utils.randomNumber(5, 1) == 1) {
+				handler.getWorld().getItemManager().getItemsToAdd().add(new IronItem(handler, 3, x + 10, y));
+			}
+		}
 	}
 
 }
