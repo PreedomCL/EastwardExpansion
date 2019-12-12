@@ -86,7 +86,7 @@ public class Inventory {
 			}
 		}
 		
-		//Text.drawString(g, "Heyyyo", 200, 200, false, Color.WHITE, Assets.font28);
+		
 		
 	}
 	

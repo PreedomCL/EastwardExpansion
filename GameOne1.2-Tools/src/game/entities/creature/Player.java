@@ -16,6 +16,7 @@ import game.gfx.Animation;
 import game.gfx.Assets;
 import game.gfx.Text;
 import game.inventory.Inventory;
+import game.item.BridgeBuilder;
 import game.item.Item;
 import game.item.tools.AxeTool;
 import game.item.tools.PickaxeTool;
@@ -71,6 +72,8 @@ public class Player extends Creature {
 		inventoryItems = new Item[10];
 		
 		hunger = 10;
+		
+		inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
 	}
 
 	@Override

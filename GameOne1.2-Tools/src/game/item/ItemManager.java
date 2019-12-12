@@ -67,6 +67,8 @@ public class ItemManager {
 				return new CoinItem(handler, count, 0, 0);
 			case 10:
 				return new IronItem(handler, count, 0, 0);
+			case 11:
+				return new BridgeBuilder(handler, count, 0, 0);
 		}
 		return null;
 	}
