@@ -68,7 +68,7 @@ public class GameState extends State {
 			@Override
 			public void loadEntities() {
 				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 64,32, 63, 32,64,64, 1));
-				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Bridge(handler, 640, 320, 64, 64, handler.getGame().getTradingManager().getRecipes()[3]));
+				handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Bridge(handler, 640, 320, 64, 64, 400, 64, handler.getGame().getTradingManager().getRecipes()[3]));
 				//Random
 				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
@@ -76,7 +76,7 @@ public class GameState extends State {
 				for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
 					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
 				}
-				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+				for(int i=0; i < Utils.randomNumber(20, 5); i++) {
 					handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 				}
 			}

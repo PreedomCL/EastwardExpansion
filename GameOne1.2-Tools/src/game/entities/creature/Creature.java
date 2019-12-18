@@ -42,7 +42,7 @@ public abstract class Creature extends Entity {
 		if(xMove > 0) { //Right
 			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			
-			if(!collisionWithTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
+			if(!collisionWithTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT) || checkEntityWalkable(xMove + bounds.width, 0f)) {
 				x += xMove;
 			}else {
 				x = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1;
@@ -51,7 +51,7 @@ public abstract class Creature extends Entity {
 		}else if(xMove < 0){ //Left
 			int tx = (int) (x + xMove + bounds.x) / Tile.TILEWIDTH;
 			
-			if(!collisionWithTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
+			if(!collisionWithTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) && !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT) || checkEntityWalkable(0f, yMove)) {
 				x += xMove;
 			}else {
 				x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
@@ -65,19 +65,28 @@ public abstract class Creature extends Entity {
 		if(yMove < 0) { //Up
 			int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
 			
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+			if(checkEntityWalkable(0f, yMove)) {
 				y += yMove;
-			}else{
-				y = ty* Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
+				System.out.println("EntityWalkable at 0f, yMove");
+			}else if(!checkEntityWalkable(0f,0f)) {
+				if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+					y += yMove;
+				}else{
+					y = ty* Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
+				}
 			}
 			
 		}else if(yMove > 0) { //Down
 			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
 			
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+			if(checkEntityWalkable(0f,yMove + bounds.height)) {
 				y += yMove;
-			}else {
-				y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
+			}else if(!checkEntityWalkable(0f,0f)) {
+				if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
+					y += yMove;
+				}else {
+					y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
+				}
 			}
 			
 		}

@@ -16,19 +16,25 @@ import game.item.Item;
 
 public class Bridge extends StaticEntity{
 	
+	private int targetWidth, targetHeight;
 	private Boolean inRange = false, open = false, built = false;
 	private CraftingMenu craftingMenu;
 	private Rectangle activeBounds;
 	private Handler handler;
 	
-	public Bridge(Handler handler, float x, float y, int width, int height, Recipe recipe) {
+	public Bridge(Handler handler, float x, float y, int width, int height, int targetWidth, int targetHeight, Recipe recipe) {
 		super(handler, x, y, width, height, true);
 		this.handler = handler;
+		this.targetWidth = targetWidth;
+		this.targetHeight = targetHeight;
 		
 		Recipe[] recipes = {recipe};
 		
 		craftingMenu = new CraftingMenu(handler,recipes);
+		renderY = -64;
 		health = 1000;
+		solid = false;
+		walkable = true;
 		activeBounds = new Rectangle((int)x - 16, (int)y - 16, width + 32, height + 32);
 	}
 
@@ -60,6 +66,8 @@ public class Bridge extends StaticEntity{
 				if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i].getId() == 11) {
 					handler.getWorld().getEntityManager().getPlayer().getInventory().removeItem(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i], 1);
 					built = true;
+					bounds.width = targetWidth;
+					bounds.height = targetHeight;
 				}
 			}
 		}
@@ -68,9 +76,14 @@ public class Bridge extends StaticEntity{
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.GRAY);
-		g.fillRect((int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), width, height);
-		if(built)
-			g.fillRect((int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), width + 150, height);
+		if(built) {
+			for(int x = 0; x < targetWidth; x += 32) {
+				for(int y = 0; y < targetHeight; y += 32) {
+					g.drawImage(Assets.bridge,(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (y + this.y - handler.getGameCamera().getyOffset()), null);
+				}
+			}
+		}else
+			g.fillRect((int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), width, height);
 		
 		if(inRange && !open && !built) {
 			g.setColor(Color.lightGray);

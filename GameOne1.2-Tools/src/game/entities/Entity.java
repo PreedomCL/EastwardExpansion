@@ -1,4 +1,5 @@
 package game.entities;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -8,12 +9,12 @@ import game.tiles.Tile;
 public abstract class Entity {
 	
 	protected Handler handler;
-	protected float x, y;
+	protected float x, y, renderY;
 	protected int width, height;
 	protected Rectangle bounds, activeBounds;
 	protected int health;
 	protected int type, tool;
-	protected boolean active = true, solid = true, excused;
+	protected boolean active = true, solid = true, walkable = false, excused;
 	protected boolean inRange = false;
 	public static final int DEFAULT_HEALTH = 10;
 	
@@ -25,6 +26,7 @@ public abstract class Entity {
 		this.width = width;
 		this.height = height;
 		this.handler = handler;
+		renderY = 0;
 		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
@@ -70,11 +72,8 @@ public abstract class Entity {
 			return false;
 	}
 	public void showHitBoxes(Graphics g) {
+		g.setColor(Color.YELLOW);
 		g.drawRect((int) (bounds.x - handler.getGameCamera().getxOffset() + x),(int) (bounds.y - handler.getGameCamera().getyOffset() + y), bounds.width, bounds.height);
-	}
-	
-	public int getInstance() {
-		return (Integer) null;
 	}
 	
 	public void hurt(int damage) {
@@ -94,6 +93,16 @@ public abstract class Entity {
 			if(e.equals(this))
 				continue;
 			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)) && e.solid)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean checkEntityWalkable(float xOffset, float yOffset) {
+		for(Entity e: handler.getWorld().getEntityManager().getEntities()) {
+			if(e.equals(this))
+				continue;
+			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)) && e.walkable)
 				return true;
 		}
 		return false;
@@ -152,6 +161,14 @@ public abstract class Entity {
 
 	public void setY(float y) {
 		this.y = y;
+	}
+	
+	public float getRenderY() {
+		return renderY;
+	}
+
+	public void setRenderY(float renderY) {
+		this.renderY = renderY;
 	}
 
 	public int getWidth() {
