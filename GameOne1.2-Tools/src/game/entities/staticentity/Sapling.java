@@ -46,7 +46,7 @@ public class Sapling extends StaticEntity{
 	
 	public void grow() {
 			active = false;
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, (int) x - Tile.TILEWIDTH / 2,(int) y - Tile.TILEWIDTH * 3));
+			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, (int) x - Tile.TILEWIDTH / 2,(int) y - Tile.TILEWIDTH * 3));
 	}
 		
 

@@ -36,7 +36,7 @@ public class UIRecipeButton extends UIObject{
 			return;
 		}
 			
-		if(recipe.checkCraftable(handler.getWorld().getEntityManager().getPlayer().getInventory())) 
+		if(recipe.checkCraftable(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory())) 
 			g.setColor(Color.GREEN);
 		else 
 			g.setColor(Color.RED);
@@ -65,8 +65,8 @@ public class UIRecipeButton extends UIObject{
 	public void onClick() {
 		if(recipe == null)
 			return;
-		if(recipe.checkCraftable(handler.getWorld().getEntityManager().getPlayer().getInventory()))
-			recipe.craft(handler.getWorld().getEntityManager().getPlayer().getInventory());
+		if(recipe.checkCraftable(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory()))
+			recipe.craft(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory());
 	}
 
 }

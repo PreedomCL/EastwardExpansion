@@ -30,7 +30,7 @@ public abstract class Vehicle extends Creature{
 		activeBounds.x =(int) (x-16);
 		activeBounds.y =(int) (y-16);
 		
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
 			inRange = true;
 		else  {
 			inRange = false;
@@ -40,11 +40,11 @@ public abstract class Vehicle extends Creature{
 		}
 		
 		if(active) {
-			handler.getWorld().getEntityManager().getPlayer().setVehicle(this);
-			handler.getWorld().getEntityManager().getPlayer().setSolid(false);
+			handler.getCurrentWorld().getEntityManager().getPlayer().setVehicle(this);
+			handler.getCurrentWorld().getEntityManager().getPlayer().setSolid(false);
 		}else {
-			handler.getWorld().getEntityManager().getPlayer().setVehicle(null);
-			handler.getWorld().getEntityManager().getPlayer().setSolid(true);
+			handler.getCurrentWorld().getEntityManager().getPlayer().setVehicle(null);
+			handler.getCurrentWorld().getEntityManager().getPlayer().setSolid(true);
 		}
 	}
 	

@@ -48,7 +48,7 @@ public class EntityManager {
 	public void render(Graphics g) {
 		for(Entity e: entities) {
 			e.render(g);
-			if(handler.getWorld().isDebugMode()) {
+			if(handler.getCurrentWorld().isDebugMode()) {
 				e.showHitBoxes(g);
 			}
 		}

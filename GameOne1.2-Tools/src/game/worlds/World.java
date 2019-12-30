@@ -98,7 +98,7 @@ public class World {
 		}
 		entitiesToAdd.clear();
 		
-		itemsToAdd = handler.getWorld().getItemManager().getItemsToAdd();
+		itemsToAdd = handler.getCurrentWorld().getItemManager().getItemsToAdd();
 		
 		Iterator<Item> it1 = itemsToAdd.iterator();
 		while(it1.hasNext()) {

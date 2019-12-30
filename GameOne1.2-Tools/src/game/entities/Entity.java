@@ -49,8 +49,8 @@ public abstract class Entity {
 				active = false;
 			}
 			
-			if(handler.getWorld() != null) {
-				for(Entity e: handler.getWorld().getEntityManager().getEntitiesToAdd()) {
+			if(handler.getCurrentWorld() != null) {
+				for(Entity e: handler.getCurrentWorld().getEntityManager().getEntitiesToAdd()) {
 					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
 						System.out.println("	" + this +": Invalid Spawn Location (Collision With Pre-existing Entity)");
 						active = false;
@@ -66,7 +66,7 @@ public abstract class Entity {
 	public void use() {}
 	
 	protected boolean checkActiveBounds() {
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
 			return true;
 		else 
 			return false;
@@ -89,7 +89,7 @@ public abstract class Entity {
 	}
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
-		for(Entity e: handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e: handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this))
 				continue;
 			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)) && e.solid)
@@ -99,7 +99,7 @@ public abstract class Entity {
 	}
 	
 	public boolean checkEntityWalkable(float xOffset, float yOffset) {
-		for(Entity e: handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e: handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this))
 				continue;
 			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)) && e.walkable)
@@ -109,15 +109,15 @@ public abstract class Entity {
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		if(handler.getWorld() == null)
+		if(handler.getCurrentWorld() == null)
 			return false;
-		return handler.getWorld().getTile(x, y).isSolid();
+		return handler.getCurrentWorld().getTile(x, y).isSolid();
 	}
 	
 	protected boolean checkVaildSpawnTile(int x, int y) {
-		if(handler.getWorld() == null)
+		if(handler.getCurrentWorld() == null)
 			return true;
-		return handler.getWorld().getTile(x, y).isValidSpawn();
+		return handler.getCurrentWorld().getTile(x, y).isValidSpawn();
 	}
 	
 	

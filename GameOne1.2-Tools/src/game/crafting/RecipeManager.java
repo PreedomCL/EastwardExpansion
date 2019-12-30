@@ -40,10 +40,10 @@ public class RecipeManager {
 			
 			id = Utils.parseInt(tokens[0 + start]);
 			length = Utils.parseInt(tokens[1 + start]);
-			yield = handler.getWorld().getItemManager().getItem(Utils.parseInt(tokens[2 + start]), Utils.parseInt(tokens[3 + start]));
+			yield = handler.getCurrentWorld().getItemManager().getItem(Utils.parseInt(tokens[2 + start]), Utils.parseInt(tokens[3 + start]));
 		
 			for(int i = 0; i < length; i++) {
-				items[id][i] = handler.getWorld().getItemManager().getItem(Utils.parseInt(tokens[start + (i * 2) + 4]), Utils.parseInt(tokens[start + (i * 2) + 5]));
+				items[id][i] = handler.getCurrentWorld().getItemManager().getItem(Utils.parseInt(tokens[start + (i * 2) + 4]), Utils.parseInt(tokens[start + (i * 2) + 5]));
 			}
 			recipes[id] = new Recipe(handler, id, length, yield, items[id]);
 			j = start + 4 + (length * 2);

@@ -42,7 +42,7 @@ public class Bridge extends StaticEntity{
 	public void tick() {
 		
 		//Conditionals for open? and inRange?
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
 			inRange = true;
 		else 
 			inRange = false;
@@ -61,10 +61,10 @@ public class Bridge extends StaticEntity{
 		
 		if(open) {
 			for(int i = 0; i < 10; i++) {
-				if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i] == null)
+				if(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i] == null)
 					continue;
-				if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i].getId() == 11) {
-					handler.getWorld().getEntityManager().getPlayer().getInventory().removeItem(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i], 1);
+				if(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i].getId() == 11) {
+					handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().removeItem(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[i], 1);
 					built = true;
 					bounds.width = targetWidth;
 					bounds.height = targetHeight;

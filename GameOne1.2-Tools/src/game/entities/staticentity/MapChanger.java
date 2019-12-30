@@ -8,14 +8,14 @@ import game.worlds.World;
 
 public class MapChanger extends StaticEntity{
 	
-	private int index;
+	private int worldIndex;
 	private int returnX, returnY;
 	private Handler handler;
 	
 	
-	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, int index) {
+	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, int worldIndex) {
 		super(handler, x, y, width, height, true);
-		this.index = index;
+		this.worldIndex = worldIndex;
 		this.returnX = returnX;
 		this.returnY = returnY;
 		health = 1000000000;
@@ -25,17 +25,20 @@ public class MapChanger extends StaticEntity{
 
 	@Override
 	public void tick() {
-		if(handler.getWorld().getEntityManager().getPlayer().getVehicle() == null) {
-			if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(getCollisionBounds(0f,0f))) {
-				handler.getWorld().getEntityManager().getPlayer().setX(returnX);
-				handler.getWorld().getEntityManager().getPlayer().setY(returnY);
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getVehicle() == null) {
+			if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(getCollisionBounds(0f,0f))) {
+				handler.getCurrentWorld().getEntityManager().getPlayer().setX(returnX);
+				handler.getCurrentWorld().getEntityManager().getPlayer().setY(returnY);
 				
-				switch(index) {
+				switch(worldIndex) {
 				case 1:
-					handler.setWorld(handler.getTown());
+					handler.setCurrentWorld(handler.getTown());
 					break;
 				case 2:
-					handler.setWorld(handler.getWorld2());
+					handler.setCurrentWorld(handler.getWorld2());
+					break;
+				case 3:
+					handler.setCurrentWorld(handler.getWorld3());
 					break;
 				}
 			}

@@ -32,12 +32,12 @@ public class Stone extends StaticEntity {
 
 	@Override
 	public void onDie() {
-		handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, 3, x - 10, y));
-		if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()] == null)
+		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, 3, x - 10, y));
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()] == null)
 			return;
-		if(handler.getWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()].getId() == 7) {
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getInventoryItems()[handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().getSelectedItem()].getId() == 7) {
 			if(Utils.randomNumber(5, 1) == 1) {
-				handler.getWorld().getItemManager().getItemsToAdd().add(new IronItem(handler, 3, x + 10, y));
+				handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new IronItem(handler, 3, x + 10, y));
 			}
 		}
 	}

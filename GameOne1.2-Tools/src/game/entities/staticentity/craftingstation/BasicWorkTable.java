@@ -16,7 +16,7 @@ public class BasicWorkTable extends CraftingStation{
 
 	@Override
 	public void onDie() {
-		handler.getWorld().getItemManager().getItemsToAdd().add(new BasicWorkTableItem(handler, 1, x, y));
+		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new BasicWorkTableItem(handler, 1, x, y));
 	}
 
 }

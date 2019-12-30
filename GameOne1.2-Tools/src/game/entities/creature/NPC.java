@@ -46,7 +46,7 @@ public class NPC extends Creature{
 	public void tick() {
 		tradeMenu.tick();
 		
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
 			inRange = true;
 		else  {
 			inRange = false;

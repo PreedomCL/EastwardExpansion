@@ -20,12 +20,12 @@ public abstract class Food extends Item{
 	public void use(Entity e){
 		eatTime --;
 		if(eatTime <= 0) {
-			handler.getWorld().getEntityManager().getPlayer().setHunger(handler.getWorld().getEntityManager().getPlayer().getHunger() + foodValue);
+			handler.getCurrentWorld().getEntityManager().getPlayer().setHunger(handler.getCurrentWorld().getEntityManager().getPlayer().getHunger() + foodValue);
 			
-			if(handler.getWorld().getEntityManager().getPlayer().getHunger() > 10){
-				handler.getWorld().getEntityManager().getPlayer().setHunger(10);
+			if(handler.getCurrentWorld().getEntityManager().getPlayer().getHunger() > 10){
+				handler.getCurrentWorld().getEntityManager().getPlayer().setHunger(10);
 			}
-			handler.getWorld().getEntityManager().getPlayer().getInventory().removeItem(this, 1);
+			handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().removeItem(this, 1);
 			eatTime = 50;
 		}
 	}

@@ -18,9 +18,9 @@ public class BasicWorkTableItem extends PlaceableItem{
 		System.out.println("Place");
 		int _x = (int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset());
 		int _y = (int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset());
-		handler.getWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, _x, _y));
+		handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, _x, _y));
 		
-		handler.getWorld().getEntityManager().getPlayer().getInventory().removeItem(this, 1);
+		handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().removeItem(this, 1);
 	}
 
 }

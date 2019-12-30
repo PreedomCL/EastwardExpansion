@@ -106,7 +106,7 @@ public class Player extends Creature {
 		
 		
 		
-	//Hunger & Health Regen
+		//Hunger & Health Regen
 		if (Utils.randomNumber (2000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
@@ -129,14 +129,14 @@ public class Player extends Creature {
 		
 	//Test Code
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, 200, 200));
+			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, 200, 200));
 		}
 		
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)) {
-			handler.setWorld(handler.getWorld2());
+			handler.setCurrentWorld(handler.getWorld3());
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
-			handler.setWorld(handler.getTown());
+			handler.setCurrentWorld(handler.getTown());
 		}
 		
 	//Actions
@@ -163,7 +163,7 @@ public class Player extends Creature {
 		mouseY = handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset();
 		
 		
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e : handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this) || e.getType() == 0)
 				continue;
 			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&
@@ -199,7 +199,7 @@ public class Player extends Creature {
 		
 		destroyTimer = 0;
 		
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e : handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this) || e.getType() == 1)
 				continue;
 			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&
@@ -228,7 +228,7 @@ public class Player extends Creature {
 	}
 	
 	private void checkUse() {
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+		for(Entity e : handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this))
 				continue;
 			if(mouseX >= e.getCollisionBounds(0, 0).x && mouseX <= e.getCollisionBounds(0, 0).x + e.getCollisionBounds(0, 0).width &&

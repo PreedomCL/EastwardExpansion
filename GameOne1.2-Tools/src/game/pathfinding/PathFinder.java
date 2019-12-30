@@ -15,7 +15,7 @@ public class PathFinder {
 	public PathFinder(Handler handler) {
 		this.handler = handler;
 		
-		nodes = new PathNode[handler.getWorld().getWidth()][handler.getWorld().getHeight()];
+		nodes = new PathNode[handler.getCurrentWorld().getWidth()][handler.getCurrentWorld().getHeight()];
 		for(int x = 0; x < nodes.length; x++) {
 			for(int y = 0; y < nodes[x].length; y++) {
 				nodes[x][y] = new PathNode(this, x * 16, y *16);

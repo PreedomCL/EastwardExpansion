@@ -45,10 +45,10 @@ public class RockbugCreature extends Creature{
 	@Override
 	public void onDie() {
 		if(health > -10) {
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
-			handler.getWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
-			handler.getWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,5, x, y));
+			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
+			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
+			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
+			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,5, x, y));
 		}
 	}
 	
@@ -101,8 +101,8 @@ public class RockbugCreature extends Creature{
 		
 		attackTimer = 0;
 		
-		if(ar.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f))) {
-			handler.getWorld().getEntityManager().getPlayer().hurt(1);
+		if(ar.intersects(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f))) {
+			handler.getCurrentWorld().getEntityManager().getPlayer().hurt(1);
 		}
 	}
 

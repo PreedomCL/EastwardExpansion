@@ -42,14 +42,14 @@ public abstract class Item {
 	}
 	
 	public void tick() {
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(bounds) && handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)) {
-			if(handler.getWorld().getEntityManager().getPlayer().getInventory().acceptItem(this)) {
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(bounds) && handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)) {
+			if(handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().acceptItem(this)) {
 				pickedUp= true;
-				handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
+				handler.getCurrentWorld().getEntityManager().getPlayer().getInventory().addItem(this);
 			}
 		}
 		
-		if(handler.getWorld().getTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y + bounds.y) / Tile.TILEHEIGHT).isSolid())
+		if(handler.getCurrentWorld().getTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y + bounds.y) / Tile.TILEHEIGHT).isSolid())
 			pickedUp = true;
 	}
 	
