@@ -36,6 +36,7 @@ public class World {
 	private Handler handler;
 	private int width, height;
 	private int spawnX, spawnY;
+	private float index;
 	private int[][] tiles;
 	private boolean debugMode = false;
 	//Entities

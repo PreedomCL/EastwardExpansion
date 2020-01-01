@@ -69,6 +69,8 @@ public class ItemManager {
 				return new IronItem(handler, count, 0, 0);
 			case 11:
 				return new BridgeBuilder(handler, count, 0, 0);
+			case 13:
+				return new IronOreItem(handler, count, 0, 0);
 		}
 		return null;
 	}

@@ -79,7 +79,7 @@ public class Bridge extends StaticEntity{
 		if(built) {
 			for(int x = 0; x < targetWidth; x += 32) {
 				for(int y = 0; y < targetHeight; y += 32) {
-					g.drawImage(Assets.bridge,(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (y + this.y - handler.getGameCamera().getyOffset()), null);
+					g.drawImage(Assets.woodenPlanks,(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (y + this.y - handler.getGameCamera().getyOffset()), null);
 				}
 			}
 		}else

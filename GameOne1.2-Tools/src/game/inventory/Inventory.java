@@ -82,7 +82,6 @@ public class Inventory {
 				
 			}else {
 				Text.drawString(g, Integer.toString(inventoryItems[i].getCount()), invX + (invSpacing * i) + 24, invY + 24, true, Color.WHITE, Assets.font28);
-				Text.drawString(g, inventoryItems[i].getName(), invX + (invSpacing * i) + 24, invY - 14, true, Color.WHITE, Assets.font14);
 			}
 		}
 		

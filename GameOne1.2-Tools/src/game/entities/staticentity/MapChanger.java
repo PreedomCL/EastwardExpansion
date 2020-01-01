@@ -8,14 +8,14 @@ import game.worlds.World;
 
 public class MapChanger extends StaticEntity{
 	
-	private int worldIndex;
+	private World destination;
 	private int returnX, returnY;
 	private Handler handler;
 	
 	
-	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, int worldIndex) {
+	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, World destination) {
 		super(handler, x, y, width, height, true);
-		this.worldIndex = worldIndex;
+		this.destination = destination;
 		this.returnX = returnX;
 		this.returnY = returnY;
 		health = 1000000000;
@@ -30,17 +30,7 @@ public class MapChanger extends StaticEntity{
 				handler.getCurrentWorld().getEntityManager().getPlayer().setX(returnX);
 				handler.getCurrentWorld().getEntityManager().getPlayer().setY(returnY);
 				
-				switch(worldIndex) {
-				case 1:
-					handler.setCurrentWorld(handler.getTown());
-					break;
-				case 2:
-					handler.setCurrentWorld(handler.getWorld2());
-					break;
-				case 3:
-					handler.setCurrentWorld(handler.getWorld3());
-					break;
-				}
+				handler.setCurrentWorld(destination);
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import game.entities.creature.RockbugCreature;
 import game.entities.staticentity.Bridge;
 import game.entities.staticentity.EnterableBuilding;
 import game.entities.staticentity.MapChanger;
+import game.entities.staticentity.MineralRock;
 import game.entities.staticentity.Stone;
 import game.entities.staticentity.Tree;
 import game.gfx.Assets;
@@ -38,35 +39,39 @@ public class GameState extends State {
 			public void loadEntities() {
 				String[] speech;
 				Recipe[] trades;
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 992, 1216, 63, 32,992,1150, 2));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 992, 1216, 63, 32,992,1150, handler.getWorld2()));
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty blacksmith.", "Would you like to trade or smelt some ore?"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0], handler.getGame().getTradingManager().getRecipes()[1],  handler.getGame().getTradingManager().getRecipes()[2]}, 750, 580, 32, 64));
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128, handler.getWorld3(), 705, 628, 42, 16, 708, 600));
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new DonkeyCreature(handler, 200, 200, true));
 				
 				
 				//Random
-				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+				for(int i=0; i < Utils.randomNumber(20, 15); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+				}
+				for(int i=0; i < Utils.randomNumber(20, 15); i++) { 
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MineralRock(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
 				}
 				for(int i=0; i <Utils.randomNumber(10, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
 				}
-				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
+				for(int i=0; i < Utils.randomNumber(10, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
 				}
 			}
 		});
 		
+		handler.getCurrentWorld().loadEntities();
 		handler.setTown(handler.getCurrentWorld());
-		handler.getTown().loadEntities();
+		
 		
 //World 2 **** *** *** *** *** *** *** ****
 		handler.setCurrentWorld(handler.getWorld2());
 		handler.getCurrentWorld().setEntityLoader(new EntityLoader() {
 			@Override
 			public void loadEntities() {
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 64,32, 63, 32,64,32, 1));
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 1216, 320, 32, 64, 1200, 336, 3));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 64,32, 63, 32,64,32, handler.getTown()));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 1216, 320, 32, 64, 1200, 336, handler.getWorld3()));
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Bridge(handler, 640, 320, 64, 64, 400, 64, handler.getGame().getTradingManager().getRecipes()[3]));
 				//Random
 				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
@@ -81,14 +86,15 @@ public class GameState extends State {
 			}
 		});
 		
+		handler.getCurrentWorld().loadEntities();
 		handler.setWorld2(handler.getCurrentWorld());
-		handler.getWorld2().loadEntities();
+		
 //World 3 **** *** *** *** *** *** *** ****
 		handler.setCurrentWorld(handler.getWorld3());
 		handler.getCurrentWorld().setEntityLoader(new EntityLoader() {
 			@Override
 			public void loadEntities() {
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 32,608, 32, 64,64,616, 2));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 32,608, 32, 64,64,616, handler.getWorld2()));
 				//Random
 				for(int i=0; i < Utils.randomNumber(20, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
@@ -102,8 +108,8 @@ public class GameState extends State {
 			}
 		});
 		
+		handler.getCurrentWorld().loadEntities();
 		handler.setWorld3(handler.getCurrentWorld());
-		handler.getWorld3().loadEntities();
 //Set Initial World **** *** *** *** *** ****
 		handler.setCurrentWorld(handler.getTown());
 	}
