@@ -36,7 +36,7 @@ public class World {
 	private Handler handler;
 	private int width, height;
 	private int spawnX, spawnY;
-	private float index;
+	private int index;
 	private int[][] tiles;
 	private boolean debugMode = false;
 	//Entities
@@ -51,7 +51,7 @@ public class World {
 	private ItemManager itemManager;
 	
 	
-	public World(Handler handler, String path) {
+	public World(Handler handler, String path, int index) {
 		this.handler = handler;
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 		loadWorld(path);
@@ -70,7 +70,7 @@ public class World {
 		playerX = entityManager.getPlayer().getX();
 		playerY = entityManager.getPlayer().getY();
 		
-		
+		this.index = index;
 	}	
 	
 	public void tick() {
@@ -226,5 +226,15 @@ public class World {
 	public void setDebugMode(boolean showHitBoxes) {
 		this.debugMode = showHitBoxes;
 	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
+	
 	
 }

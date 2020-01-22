@@ -8,6 +8,7 @@ import game.gfx.Assets;
 import game.item.Item;
 import game.item.StoneItem;
 import game.item.WoodItem;
+import game.utils.Utils;
 
 
 public class RockbugCreature extends Creature{
@@ -48,7 +49,7 @@ public class RockbugCreature extends Creature{
 			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
 			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
 			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
-			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,5, x, y));
+			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,Utils.randomNumber(4, 2), x, y));
 		}
 	}
 	

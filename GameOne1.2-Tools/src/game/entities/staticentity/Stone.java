@@ -33,7 +33,7 @@ public class Stone extends StaticEntity {
 
 	@Override
 	public void onDie() {
-		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, 3, x - 10, y));		
+		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler, Utils.randomNumber(3, 1), x - 10, y));		
 	}
 
 }

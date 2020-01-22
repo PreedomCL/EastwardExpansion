@@ -22,7 +22,9 @@ import game.item.tools.AxeTool;
 import game.item.tools.PickaxeTool;
 import game.item.tools.SpearTool;
 import game.item.tools.StaffTool;
+import game.state.EndState;
 import game.state.MenuState;
+import game.state.State;
 import game.ui.UIRecipeButton;
 import game.utils.Timer;
 import game.utils.Utils;
@@ -73,7 +75,7 @@ public class Player extends Creature {
 		
 		hunger = 10;
 		
-		inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
+		//inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
 	}
 
 	@Override
@@ -106,7 +108,7 @@ public class Player extends Creature {
 		
 		
 		
-		//Hunger & Health Regen
+	//Hunger & Health Regen
 		if (Utils.randomNumber (2000, 1 ) == 5)
 			hunger --;
 		if (hunger <= 0){
@@ -128,16 +130,16 @@ public class Player extends Creature {
 		inventory.tick();
 		
 	//Test Code
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
-			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, 200, 200));
-		}
-		
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)) {
-			handler.setCurrentWorld(handler.getWorld3());
-		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
-			handler.setCurrentWorld(handler.getTown());
-		}
+//		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) {
+//			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new BasicWorkTable(handler, 200, 200));
+//		}
+//		
+//		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)) {
+//			handler.setCurrentWorld(handler.getWorld3());
+//		}
+//		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)) {
+//			handler.setCurrentWorld(handler.getTown());
+//		}
 		
 	//Actions
 		if(handler.getMouseManager().isRightPressed()) {
@@ -148,6 +150,10 @@ public class Player extends Creature {
 		}
 		if(!handler.getMouseManager().isLeftPressed())
 			isAttacking = false;
+		
+		
+		if(handler.getCurrentWorld().getIndex() == 3)
+			State.setState(new EndState(handler));
 	}
 	
 	private void checkAttacks() {

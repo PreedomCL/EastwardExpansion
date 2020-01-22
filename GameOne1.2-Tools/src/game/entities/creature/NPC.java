@@ -58,9 +58,13 @@ public class NPC extends Creature{
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && isTalking) {
 			isTalking = false;
+			isTrading = true;
+			tradeMenu.loadMenu();
 			
 		}else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E) && inRange && !isTalking) {
 			isTalking = true;
+			isTrading = false;
+			tradeMenu.closeMenu();
 			phrase= 0;
 			speechTimer.stop();
 			speechTimer.start(3000);
