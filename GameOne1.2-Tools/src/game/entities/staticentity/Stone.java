@@ -9,9 +9,9 @@ import game.tiles.Tile;
 import game.utils.Utils;
 
 public class Stone extends StaticEntity {
-
+	private static final int[] NST = {1,2,4};
 	public Stone(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, false);
+		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, NST);
 		
 		bounds.x = 0;
 		bounds.y = 0;

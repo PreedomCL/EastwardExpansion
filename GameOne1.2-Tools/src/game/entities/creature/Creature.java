@@ -14,8 +14,8 @@ public abstract class Creature extends Entity {
 	protected float xMove, yMove;
 	protected Vehicle vehicle;
 	
-	public Creature(Handler handler, float x, float y, int width, int height, boolean excused) {
-		super(handler, x, y, width, height, excused);
+	public Creature(Handler handler, float x, float y, int width, int height, int[] nonSpawnableTiles) {
+		super(handler, x, y, width, height, nonSpawnableTiles);
 		
 		speed = DEFAULT_SPEED;
 		xMove = 0;

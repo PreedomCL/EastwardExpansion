@@ -3,8 +3,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.sun.glass.events.KeyEvent;
-
 import game.Handler;
 import game.crafting.Recipe;
 import game.entities.Entity;

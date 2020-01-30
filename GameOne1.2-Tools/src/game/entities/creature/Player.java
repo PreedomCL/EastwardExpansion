@@ -18,6 +18,7 @@ import game.gfx.Text;
 import game.inventory.Inventory;
 import game.item.BridgeBuilder;
 import game.item.Item;
+import game.item.placeable.BasicWorkTableItem;
 import game.item.tools.AxeTool;
 import game.item.tools.PickaxeTool;
 import game.item.tools.SpearTool;
@@ -46,9 +47,11 @@ public class Player extends Creature {
 	private Timer starvationTimer;
 	private int hunger;
 	
+	private static final int[] NST = {2,4};
+	
 	
 	public Player(Handler handler, float x, float y) {
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, true);
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, NST);
 		
 		starvationTimer = new Timer();
 		
@@ -75,7 +78,7 @@ public class Player extends Creature {
 		
 		hunger = 10;
 		
-		//inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
+		inventory.addItem(new SpearTool(handler, 1, 0, 0));
 	}
 
 	@Override

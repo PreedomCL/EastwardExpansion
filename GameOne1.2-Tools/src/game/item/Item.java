@@ -49,8 +49,10 @@ public abstract class Item {
 			}
 		}
 		
-		if(handler.getCurrentWorld().getTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y + bounds.y) / Tile.TILEHEIGHT).isSolid())
+		if(handler.getCurrentWorld().getTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, (int) (y + bounds.y) / Tile.TILEHEIGHT).isSolid()) {
+			System.out.println("Item removed: Invaid Spawn Tile");
 			pickedUp = true;
+		}
 	}
 	
 	public void render(Graphics g) {

@@ -8,8 +8,9 @@ import game.Handler;
 public abstract class Building extends StaticEntity{
 	protected BufferedImage texture;
 	
-	public Building(Handler handler,BufferedImage texture, float x, float y, int width, int height) {
-		super(handler, x, y, width, height, true);
+	
+	public Building(Handler handler,BufferedImage texture, float x, float y, int width, int height, int[] NST) {
+		super(handler, x, y, width, height, NST);
 		this.texture = texture;
 	}
 	

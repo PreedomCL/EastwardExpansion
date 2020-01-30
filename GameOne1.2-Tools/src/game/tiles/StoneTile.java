@@ -11,9 +11,5 @@ public class StoneTile extends Tile {
 	public boolean isSolid() {
 		return true;
 	}
-	@Override
-	public boolean isValidSpawn() {
-		return false;
-	}
-
+	
 }

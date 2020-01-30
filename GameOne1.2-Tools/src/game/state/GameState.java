@@ -44,11 +44,11 @@ public class GameState extends State {
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128, null, 705, 628, 42, 16, 708, 600));
 				
 				//Random
+				for(int i=0; i <Utils.randomNumber(15, 9); i++) { 
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1000, 0)));
+				}
 				for(int i=0; i < Utils.randomNumber(20, 15); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
-				}
-				for(int i=0; i <Utils.randomNumber(15, 5); i++) { 
-					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1000, 0)));
 				}
 				for(int i=0; i < Utils.randomNumber(10, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));

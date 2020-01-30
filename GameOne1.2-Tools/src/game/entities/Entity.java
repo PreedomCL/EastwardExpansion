@@ -16,11 +16,12 @@ public abstract class Entity {
 	protected int type, tool;
 	protected boolean active = true, solid = true, walkable = false, excused;
 	protected boolean inRange = false;
+	protected int[] nonSpawnableTiles;
 	public static final int DEFAULT_HEALTH = 10;
 	
 	
 	
-	public Entity(Handler handler, float x, float y, int width, int height, boolean excused) {
+	public Entity(Handler handler, float x, float y, int width, int height, int[] nonSpawnableTiles) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -34,8 +35,8 @@ public abstract class Entity {
 		
 		
 		//Check for valid spawn location
-		this.excused = excused;
-		if(!excused) {
+		this.nonSpawnableTiles = nonSpawnableTiles;
+		if(this != handler.getPlayer()) {
 			int tx = (int) (x  + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			
 			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) || !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
@@ -117,7 +118,11 @@ public abstract class Entity {
 	protected boolean checkVaildSpawnTile(int x, int y) {
 		if(handler.getCurrentWorld() == null)
 			return true;
-		return handler.getCurrentWorld().getTile(x, y).isValidSpawn();
+		for(int i = 0; i < nonSpawnableTiles.length; i++) {
+			if(handler.getCurrentWorld().getTile(x, y).getId() == nonSpawnableTiles[i])
+				return false;
+		}
+		return true;
 	}
 	
 	

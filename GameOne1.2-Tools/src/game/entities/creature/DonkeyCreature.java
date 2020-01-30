@@ -9,9 +9,10 @@ import game.gfx.Assets;
 public class DonkeyCreature extends Vehicle{
 	
 	private Rectangle activeBounds;
+	private static final int[] NST = {0};
 	
-	public DonkeyCreature(Handler handler, float x, float y, boolean excused) {
-		super(handler, x, y, 80, 64, 0, -20, excused);
+	public DonkeyCreature(Handler handler, float x, float y) {
+		super(handler, x, y, 80, 64, 0, -20,NST);
 		speed = 6;
 	}
 	@Override

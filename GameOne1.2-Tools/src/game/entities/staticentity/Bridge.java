@@ -21,9 +21,10 @@ public class Bridge extends StaticEntity{
 	private CraftingMenu craftingMenu;
 	private Rectangle activeBounds;
 	private Handler handler;
+	private static final int[] NST = {-1};
 	
 	public Bridge(Handler handler, float x, float y, int width, int height, int targetWidth, int targetHeight, Recipe recipe) {
-		super(handler, x, y, width, height, true);
+		super(handler, x, y, width, height, NST);
 		this.handler = handler;
 		this.targetWidth = targetWidth;
 		this.targetHeight = targetHeight;

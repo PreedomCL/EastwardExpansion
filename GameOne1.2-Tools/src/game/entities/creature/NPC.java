@@ -19,11 +19,12 @@ public class NPC extends Creature{
 	private Boolean isTalking = false, inRange = false, isTrading = false;
 	private String[] speech;
 	private Recipe[] trades;
+	private static final int[] NST = {1};
 	private CraftingMenu tradeMenu;
 	private int phrase = 0;
 	private Timer speechTimer;
 	public NPC(Handler handler, BufferedImage texture, String[] speech, Recipe[] trades, float x, float y, int width, int height) {
-		super(handler, x, y, width, height, true);
+		super(handler, x, y, width, height, NST);
 		this.texture = texture;
 		this.speech = speech;
 		this.trades = trades;

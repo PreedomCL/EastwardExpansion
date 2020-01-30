@@ -16,8 +16,10 @@ public class RockbugCreature extends Creature{
 	Random rand;
 	private int moveDirection, moveLength;
 	private long moveTimer, moveLastTime, attackTimer, lastAttackTime, attackCooldown = 500;
+	private static final int[] NST = {2, 4};
+	
 	public RockbugCreature(Handler handler, float x, float y) {
-		super(handler, x, y, 32, 32, false);
+		super(handler, x, y, 32, 32, NST);
 		rand = new Random();
 		moveDirection = rand.nextInt(10);
 		moveLength = rand.nextInt(100);
@@ -45,12 +47,8 @@ public class RockbugCreature extends Creature{
 
 	@Override
 	public void onDie() {
-		if(health > -10) {
-			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x + 64, y - 64));
-			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y + 64));
-			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, x - 64, y - 64));
+			System.out.println("Rockbug OnDie");
 			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,Utils.randomNumber(4, 2), x, y));
-		}
 	}
 	
 	public void movement() {

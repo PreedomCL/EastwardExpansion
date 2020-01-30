@@ -11,9 +11,9 @@ import game.tiles.Tile;
 import game.utils.Utils;
 
 public class MineralRock extends StaticEntity{
-
+	private static final int[] NST = {1,2,4,5};
 	public MineralRock(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, false);
+		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, NST);
 		tool = 7;
 	}
 

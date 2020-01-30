@@ -9,8 +9,9 @@ public class Sapling extends StaticEntity{
 	
 	private long startTime, currentTime;
 	private int growthTime;
+	private static final int[] NST = {1,2,4,5};
 	public Sapling(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, false);
+		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT, NST);
 		
 		bounds.x = 0;
 		bounds.y = 0;
@@ -19,7 +20,7 @@ public class Sapling extends StaticEntity{
 		
 		startTime = System.currentTimeMillis();
 		currentTime = System.currentTimeMillis();
-		growthTime = 10000; //120000;
+		growthTime = 60000; //120000;
 		health = 2;
 		solid = false;
 		

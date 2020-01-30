@@ -9,8 +9,9 @@ public class EnterableBuilding extends Building{
 	
 	private World interior;
 	private Handler handler;
+	private static final int[] NST = {2,4};
 	public EnterableBuilding(Handler handler, BufferedImage texture, float x, float y, int width, int height, World interior, int entX, int entY, int entWidth, int entHeight, int entReturnX, int entReturnY) {
-		super(handler, texture, x, y, width, height);
+		super(handler, texture, x, y, width, height, NST);
 		this.interior = interior;
 		this.handler = handler;
 		

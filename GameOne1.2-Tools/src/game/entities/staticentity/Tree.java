@@ -13,8 +13,9 @@ import game.utils.Utils;
 //the hting is so cool that I thin th
 public class Tree extends StaticEntity{
 	public int appleSpawn;
+	private static final int[] NST = {1,2,4};
 	public Tree(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4, false);
+		super(handler, x, y, Tile.TILEWIDTH * 2, Tile.TILEHEIGHT * 4, NST);
 		
 		bounds.x = 19;
 		bounds.y = height - Tile.TILEHEIGHT;
@@ -32,7 +33,7 @@ public class Tree extends StaticEntity{
 	@Override
 	public void onDie() {
 		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new WoodItem(handler, Utils.randomNumber(3, 1), x + 32, y + 128));
-		if( Utils.randomNumber(5,0) == 1) {
+		if(Utils.randomNumber(4,0) == 1) {
 			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new AppleFood(handler, 2, x-16, y + 128));
 		}
 		handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Sapling(handler, (int) x + Tile.TILEWIDTH / 2,(int) y + Tile.TILEWIDTH * 3));

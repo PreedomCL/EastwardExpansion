@@ -9,8 +9,9 @@ import game.item.placeable.BasicWorkTableItem;
 
 public class BasicWorkTable extends CraftingStation{
 	private static Recipe[] recipe;
+	private static final int[] NST = {4};
 	public BasicWorkTable(Handler handler, float x, float y) {
-		super(handler,Assets.craftingStation, x, y, recipe = new Recipe[] {handler.getGame().getRecipeManager().getRecipes()[0], handler.getGame().getRecipeManager().getRecipes()[1], handler.getGame().getRecipeManager().getRecipes()[2]});
+		super(handler,Assets.craftingStation, x, y, recipe = new Recipe[] {handler.getGame().getRecipeManager().getRecipes()[0], handler.getGame().getRecipeManager().getRecipes()[1], handler.getGame().getRecipeManager().getRecipes()[2]}, NST);
 		
 	}
 
