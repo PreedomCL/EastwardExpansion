@@ -1,12 +1,13 @@
 package game.tiles;
 import java.awt.image.BufferedImage;
 
+import game.Handler;
 import game.gfx.Assets;
 
 public class BarrierTile extends Tile{
 
-	public BarrierTile(int id) {
-		super(Assets.barrier, id);	
+	public BarrierTile(Handler handler, int x, int y) {
+		super(handler, x, y, Assets.barrier, 3);
 	}
 	
 	@Override

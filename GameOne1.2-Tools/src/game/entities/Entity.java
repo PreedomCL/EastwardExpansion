@@ -40,20 +40,17 @@ public abstract class Entity {
 			int tx = (int) (x  + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			
 			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) || !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
-				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
 				active = false;
 			}
 			int ty = (int) (y + bounds.y) / Tile.TILEHEIGHT;
 			
 			if(!checkVaildSpawnTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) || !checkVaildSpawnTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
-				System.out.println("	" + this + ": Invalid Spawn Location (Tile)");
 				active = false;
 			}
 			
 			if(handler.getCurrentWorld() != null) {
 				for(Entity e: handler.getCurrentWorld().getEntityManager().getEntitiesToAdd()) {
 					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
-						System.out.println("	" + this +": Invalid Spawn Location (Collision With Pre-existing Entity)");
 						active = false;
 					}
 				}

@@ -13,8 +13,8 @@ public class Assets {
 	public static Font font28, font14,font20;
 	
 	public static BufferedImage grass, dirt, stone, rock, barrier, water, sand, sapling, log, rockbug, stones, coin, unknown, craftingStation,
-	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre;
-	public static BufferedImage[] start, tree, player; 
+	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre, bridgeBuilder;
+	public static BufferedImage[] start, tree, player, grassBorder; 
 	public static BufferedImage inventoryScreen;
 
 	
@@ -32,6 +32,7 @@ public class Assets {
 		start = new BufferedImage[2];
 		tree = new BufferedImage[4];
 		player = new BufferedImage[12];
+		grassBorder = new BufferedImage[4];
 		
 		//Player
 		for(int p = 0; p < player.length; p++) {
@@ -49,6 +50,12 @@ public class Assets {
 		sand = sheet.crop(width * 5, 0, height, width);
 		stone = sheet.crop(width * 6, 0, height, width);
 		woodenPlanks = sheet.crop(width * 7, 0, height, width);
+		grassBorder[0] = sheet.crop(width * 8, 0, height, width);
+		grassBorder[1] = sheet.crop(width * 9, 0, height, width);
+		grassBorder[2] = sheet.crop(width * 10, 0, height, width);
+		grassBorder[3] = sheet.crop(width * 11, 0, height, width);
+		bridgeBuilder = sheet.crop(width * 12, 0, height, width);
+		
 		//row 2 row 3
 		tree[0] = sheet.crop(0, height, height*2, width);
 		tree[1] = sheet.crop(width, height, height*2, width);

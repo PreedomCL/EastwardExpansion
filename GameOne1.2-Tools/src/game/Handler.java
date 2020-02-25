@@ -9,7 +9,7 @@ import game.worlds.World;
 
 public class Handler {
 	private Game game;
-	private World currentWorld, town, world2, world3;
+	private World currentWorld, town, world2, world3, beach;
 	private Player player;
 	
 	public Handler(Game game) {
@@ -76,6 +76,14 @@ public class Handler {
 
 	public void setWorld3(World world3) {
 		this.world3 = world3;
+	}
+	
+	public World getBeach() {
+		return beach;
+	}
+
+	public void setBeach(World beach) {
+		this.beach = beach;
 	}
 
 	public Player getPlayer() {

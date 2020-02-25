@@ -11,7 +11,7 @@ public class MapChanger extends StaticEntity{
 	private World destination;
 	private int returnX, returnY;
 	private Handler handler;
-	private static final int[] NST = {2,4};
+	private static final int[] NST = {3};
 	
 	public MapChanger(Handler handler, float x, float y, int width, int height, int returnX, int returnY, World destination) {
 		super(handler, x, y, width, height, NST);

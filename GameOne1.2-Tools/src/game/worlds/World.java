@@ -35,7 +35,7 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int index;
-	private int[][] tiles;
+	private Tile[][] tiles;
 	private boolean debugMode = false;
 	//Entities
 	private EntityManager entityManager;
@@ -120,8 +120,7 @@ public class World {
 		
 		for(int y = yStart; y < yEnd; y++) {
 			for(int x = xStart; x < xEnd; x++) {
-				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
-						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
+				tiles[x][y].render(g);
 			}
 			
 		}
@@ -146,18 +145,21 @@ public class World {
 	}
 	
 	public Tile getTile(int x, int y) {
-		if(x < 0 || y < 0 || x >= width || y >= height)
-			return Tile.grassTile;
+		if(x < 0 || y < 0 || x >= width || y >= height) {
+			return Tile.newTile(handler, x, y, 0);
+		}
 		
-		Tile t = Tile.tiles[tiles[x][y]];
-		if(t == null)
-			return Tile.dirtTile;
+		Tile t = tiles[x][y];
+		if(t == null) {
+			System.out.println("Tile is Null at " + x + "," + y);
+			return Tile.newTile(handler, x, y, 1);
+		}
 		return t;
 	}
 	
 	public void loadEntities() {
 		entityLoader.loadEntities();
-		System.out.println(this + " 's entites loaded:" + entityManager.getEntitiesToAdd());
+		System.out.println(this + "'s entites loaded:" + entityManager.getEntitiesToAdd());
 	}
 	
 	private void loadWorld(String path) {
@@ -169,10 +171,10 @@ public class World {
 		spawnX = Utils.parseInt(tokens[2]);
 		spawnY = Utils.parseInt(tokens[3]);
 		
-		tiles = new int[width][height];
+		tiles = new Tile[width][height];
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+				tiles[x][y] = Tile.newTile(handler, x, y, Utils.parseInt(tokens[(x + y * width) + 4]));
 			}
 		}
 		
