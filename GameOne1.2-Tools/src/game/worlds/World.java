@@ -16,9 +16,11 @@ import game.entities.staticentity.Tree;
 import game.entities.staticentity.craftingstation.BasicWorkTable;
 import game.gfx.Assets;
 import game.gfx.Text;
-import game.gfx.lighting.LightingManager;
+import game.gfx.lighting.LightManager;
+import game.gfx.lighting.LightSource;
 import game.item.Item;
 import game.item.ItemManager;
+import game.pathfinding.PathFinder;
 import game.tiles.Tile;
 import game.ui.UIManager;
 import game.utils.Utils;
@@ -37,17 +39,20 @@ public class World {
 	private int index;
 	private Tile[][] tiles;
 	private boolean debugMode = false;
+	
+	
 	//Entities
 	private EntityManager entityManager;
 	private EntityLoader entityLoader;
 	private float playerX, playerY;
 	ArrayList<Entity> entitiesToAdd;
 	ArrayList<Item> itemsToAdd;
-	//Lighting
-	private LightingManager lightManager;
+	
+	private LightManager lightManager;
 	//Items
 	private ItemManager itemManager;
 	
+	private PathFinder pathFinder;
 	
 	public World(Handler handler, String path, int index) {
 		this.handler = handler;
@@ -60,7 +65,9 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-		lightManager = new LightingManager();
+		lightManager = new LightManager();
+		
+		pathFinder = new PathFinder(handler, width, height);
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -107,7 +114,7 @@ public class World {
 		}
 		itemsToAdd.clear();
 		
-		
+		//pathFinder.findPath(pathFinder.getNode((int) entityManager.getPlayer().getcX(), (int) entityManager.getPlayer().getcY()), pathFinder.getNode(32, 32));
 		
 	}
 	
@@ -129,7 +136,8 @@ public class World {
 		itemManager.render(g);
 		//Entities
 		entityManager.render(g);
-		//Lighting
+		
+		lightManager.render(g);
 		
 		handler.getGame().getUiManager().render(g);
 		
@@ -140,7 +148,7 @@ public class World {
 		if(debugMode) {
 			Text.drawString(g,Integer.toString((int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())) + "," + Integer.toString((int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset())), handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), false, Color.BLACK, Assets.font20);
 			Text.drawString(g,"FPS:" + Integer.toString(handler.getGame().getFps()), 0, 16, false, Color.BLACK, Assets.font20);
-			
+			pathFinder.render(g);
 		}
 	}
 	
@@ -151,7 +159,7 @@ public class World {
 		
 		Tile t = tiles[x][y];
 		if(t == null) {
-			System.out.println("Tile is Null at " + x + "," + y);
+			System.out.println("Tile is Null at " + x + "," + y + "|@ World.getTile");
 			return Tile.newTile(handler, x, y, 1);
 		}
 		return t;
@@ -159,7 +167,6 @@ public class World {
 	
 	public void loadEntities() {
 		entityLoader.loadEntities();
-		System.out.println(this + "'s entites loaded:" + entityManager.getEntitiesToAdd());
 	}
 	
 	private void loadWorld(String path) {
@@ -233,6 +240,14 @@ public class World {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public PathFinder getPathFinder() {
+		return pathFinder;
+	}
+
+	public void setPathFinder(PathFinder pathFinder) {
+		this.pathFinder = pathFinder;
 	}
 	
 	

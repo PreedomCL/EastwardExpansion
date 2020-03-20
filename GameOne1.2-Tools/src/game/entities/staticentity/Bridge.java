@@ -76,16 +76,20 @@ public class Bridge extends StaticEntity{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.GRAY);
 		if(built) {
 			for(int x = 0; x < targetWidth; x += 32) {
 				for(int y = 0; y < targetHeight; y += 32) {
 					g.drawImage(Assets.woodenPlanks,(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (y + this.y - handler.getGameCamera().getyOffset()), null);
 				}
 			}
-		}else
-			g.fillRect((int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), width, height);
-		
+		}else {
+			for(int x = 0; x < 64; x += 32) {
+				for(int y = 0; y < 64; y += 32) {
+					g.drawImage(Assets.woodenPlanks,(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (y + this.y - handler.getGameCamera().getyOffset()), null);
+				}
+			}
+		}
+			
 		if(inRange && !open && !built) {
 			g.setColor(Color.lightGray);
 			g.fillRect((int) (x - handler.getGameCamera().getxOffset()),(int) (y - 29 - handler.getGameCamera().getyOffset()), 100, 17);

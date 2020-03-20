@@ -9,7 +9,7 @@ import game.tiles.Tile;
 public abstract class Entity {
 	
 	protected Handler handler;
-	protected float x, y, renderY;
+	protected float x, y, renderY, cX, cY;
 	protected int width, height;
 	protected Rectangle bounds, activeBounds;
 	protected int health;
@@ -27,11 +27,14 @@ public abstract class Entity {
 		this.width = width;
 		this.height = height;
 		this.handler = handler;
+		
+		
 		renderY = 0;
 		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
 		activeBounds = new Rectangle(-16, -16, width + 32, width + 32);
+		
 		
 		
 		//Check for valid spawn location
@@ -86,11 +89,11 @@ public abstract class Entity {
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
 	}
 	
-	public boolean checkEntityCollisions(float xOffset, float yOffset) {
+	public boolean checkEntityCollisions(Rectangle collisionBounds) {
 		for(Entity e: handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.equals(this))
 				continue;
-			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)) && e.solid)
+			if(e.getCollisionBounds(0f, 0f).intersects(collisionBounds) && e.solid)
 				return true;
 		}
 		return false;
@@ -165,6 +168,14 @@ public abstract class Entity {
 		this.y = y;
 	}
 	
+	public float getcX() {
+		return bounds.x + (bounds.width / 2) + x;
+	}		
+
+	public float getcY() {
+		return bounds.y + (bounds.height / 2) + y;
+	}
+
 	public float getRenderY() {
 		return renderY;
 	}

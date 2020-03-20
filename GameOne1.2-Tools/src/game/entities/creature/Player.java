@@ -60,6 +60,7 @@ public class Player extends Creature {
 		bounds.y = 48;
 		bounds.width = 32;
 		bounds.height = 16;
+		solid = false;
 		
 	//Player
 		isAttacking = false;
@@ -85,7 +86,7 @@ public class Player extends Creature {
 	public void tick() {
 		getInput();
 		
-		if(checkEntityCollisions(0f,0f))
+		if(checkEntityCollisions(getCollisionBounds(0f,0f)))
 			x += speed;
 		
 		move();

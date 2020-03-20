@@ -131,7 +131,8 @@ public class GameState extends State {
 		world.tick();
 	}
 	public void render(Graphics g) {
-		world.render(g);
+		if(world != null)
+			world.render(g);
 	}
 
 	

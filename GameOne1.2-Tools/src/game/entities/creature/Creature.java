@@ -31,9 +31,9 @@ public abstract class Creature extends Entity {
 			x = vehicle.x + vehicle.getxRide();
 			y = vehicle.y + vehicle.getyRide();
 		}else {
-			if(!checkEntityCollisions(xMove, 0f))
+			if(!checkEntityCollisions(getCollisionBounds(xMove,0f)))
 				moveX();
-			if(!checkEntityCollisions(0f, yMove))
+			if(!checkEntityCollisions(getCollisionBounds(0f, yMove)))
 				moveY();
 		}
 	}
