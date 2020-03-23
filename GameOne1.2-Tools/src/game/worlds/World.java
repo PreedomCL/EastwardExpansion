@@ -147,7 +147,7 @@ public class World {
 		
 		if(debugMode) {
 			Text.drawString(g,Integer.toString((int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())) + "," + Integer.toString((int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset())), handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), false, Color.BLACK, Assets.font20);
-			Text.drawString(g,"FPS:" + Integer.toString(handler.getGame().getFps()), 0, 16, false, Color.BLACK, Assets.font20);
+			//Text.drawString(g,"FPS:" + Integer.toString(handler.getGame().getFps()), 0, 16, false, Color.BLACK, Assets.font20);
 			pathFinder.render(g);
 		}
 	}

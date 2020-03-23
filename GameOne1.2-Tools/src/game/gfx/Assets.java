@@ -12,9 +12,9 @@ public class Assets {
 	  
 	public static Font font28, font14,font20;
 	
-	public static BufferedImage grass, dirt, stone, rock, barrier, water, sand, sapling, log, rockbug, stones, coin, unknown, craftingStation,
-	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre, bridgeBuilder;
-	public static BufferedImage[] start, tree, player, grassBorder; 
+	public static BufferedImage grass, dirt, stone, rock, barrier, water, sand, sapling, log, stones, coin, unknown, craftingStation,
+	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre, bridgeBuilder, boulder, tallGrass;
+	public static BufferedImage[] start, tree, player, grassBorder, bridge, rockbug; 
 	public static BufferedImage inventoryScreen;
 
 	
@@ -33,6 +33,8 @@ public class Assets {
 		tree = new BufferedImage[4];
 		player = new BufferedImage[12];
 		grassBorder = new BufferedImage[4];
+		bridge = new BufferedImage[3];
+		rockbug = new BufferedImage[5];
 		
 		//Player
 		for(int p = 0; p < player.length; p++) {
@@ -55,6 +57,7 @@ public class Assets {
 		grassBorder[2] = sheet.crop(width * 10, 0, height, width);
 		grassBorder[3] = sheet.crop(width * 11, 0, height, width);
 		bridgeBuilder = sheet.crop(width * 12, 0, height, width);
+		tallGrass = sheet.crop(width * 6, height, height * 2, width);
 		
 		//row 2 row 3
 		tree[0] = sheet.crop(0, height, height*2, width);
@@ -64,7 +67,11 @@ public class Assets {
 		rock = sheet.crop(width * 4, height, height, width);
 		craftingStation = sheet.crop(width * 4,height * 2, height, width);
 		sapling = sheet.crop(width * 5, height, height, width);
-		mineralRock = sheet.crop(width*5, height * 2, height, width);
+		mineralRock = sheet.crop(width * 5, height * 2, height, width);
+		bridge[0] = sheet.crop(width * 8, height, 64, 86);
+		bridge[1] = sheet.crop(width * 8 + 86, height, 58, 45);
+		bridge[2] = sheet.crop(width * 8 + 131, height, 64, 68);
+		boulder = sheet.crop(width * 15, height, height * 2, width * 2);
 		
 		//row 4
 		start[0] = sheet.crop(0, height * 3, height/2, width);
@@ -80,7 +87,11 @@ public class Assets {
 		coin = sheet.crop(width * 6, height * 4, height, width);
 		ironOre = sheet.crop(width * 7, height * 4, height, width);
 		//row 6
-		rockbug = sheet.crop(0, height * 5, height, width);
+		rockbug[0] = sheet.crop(0, height * 5, height, width);
+		rockbug[1] = sheet.crop(width, height * 5, height, width);
+		rockbug[2] = sheet.crop(width * 2, height * 5, height, width);
+		rockbug[3] = sheet.crop(width * 3, height * 5, height, width);
+		rockbug[4] = sheet.crop(width * 4, height * 5, height, width);
 		
 		donkey = sheet.crop(185, 202, 64, 80);
 		

@@ -19,6 +19,7 @@ public class RockbugCreature extends Creature{
 	private int moveDirection, moveLength;
 	private long moveTimer, moveLastTime, attackTimer, lastAttackTime, attackCooldown = 2000;
 	private static final int[] NST = {2, 4};
+	private boolean angered = false;
 	
 	public RockbugCreature(Handler handler, float x, float y) {
 		super(handler, x, y, 32, 32, NST);
@@ -29,10 +30,16 @@ public class RockbugCreature extends Creature{
 		speed = 1;
 		health = 5;
 		solid = false;
+		
+		activeBounds = new Rectangle(-64, -64, width + 128, height + 128);
 	}
 
 	@Override
 	public void tick() {
+		if(checkActiveBounds()) {
+			angered = true;
+		}
+		
 		movement();
 		move();
 		checkAttacks();
@@ -41,10 +48,15 @@ public class RockbugCreature extends Creature{
 	@Override
 	public void render(Graphics g) {
 		if(xMove == 0 && yMove == 0) {
-			g.drawImage(Assets.rock, (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else {
-			g.drawImage(Assets.rockbug, (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-			
+			g.drawImage(Assets.rockbug[4], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(yMove < 0){
+			g.drawImage(Assets.rockbug[3], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(yMove > 0){
+			g.drawImage(Assets.rockbug[2], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(xMove > 0){
+			g.drawImage(Assets.rockbug[1], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(xMove < 0){
+			g.drawImage(Assets.rockbug[0], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 		}
 	}
 
@@ -56,12 +68,11 @@ public class RockbugCreature extends Creature{
 	public void movement() {
 		
 		if(bounds.intersects(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f))) {
-			System.out.println("Attack!");
 			return;
 		}
 		
-		if(Math.abs(Math.hypot(x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX())) < 300) {
-			ArrayList<PathNode>path = handler.getCurrentWorld().getPathFinder().findPath(handler.getCurrentWorld().getPathFinder().getNode((int) x,(int) y), handler.getCurrentWorld().getPathFinder().getNode((int) handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),(int) handler.getCurrentWorld().getEntityManager().getPlayer().getcY()));
+		if(Math.hypot(Math.abs(x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX()), Math.abs(y-handler.getCurrentWorld().getEntityManager().getPlayer().getcY())) < 400 && angered) {
+			ArrayList<PathNode>path = handler.getCurrentWorld().getPathFinder().findPath(handler.getCurrentWorld().getPathFinder().getNode((int) getcX(),(int) getcY()), handler.getCurrentWorld().getPathFinder().getNode((int) handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),(int) handler.getCurrentWorld().getEntityManager().getPlayer().getcY()), 2);
 			PathNode destination;
 			
 			if(!path.isEmpty()) {
@@ -69,10 +80,11 @@ public class RockbugCreature extends Creature{
 					destination = path.get(path.size()-1);
 				else
 					destination = path.get(0);
-				xMove = (destination.getcX() - x) / 16;
-				yMove = (destination.getcY() - y) / 16;
+				xMove = (destination.getcX() - getcX()) / 16;
+				yMove = (destination.getcY() - getcY()) / 16;
 			}
 		}else {
+			angered = false;
 			moveTimer += System.currentTimeMillis() - moveLastTime;
 			moveLastTime = System.currentTimeMillis();
 			if(moveLength < moveTimer) {

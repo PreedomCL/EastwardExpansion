@@ -10,7 +10,7 @@ import game.entities.Entity;
 
 public class PathNode {
 	private Handler handler;
-	private int x, y, h, g;
+	private int x, y, h, g, buffer;
 	private float  cX, cY;
 	private Rectangle bounds = new Rectangle();
 	private PathNode parent;
@@ -34,9 +34,10 @@ public class PathNode {
 		
 	}
 	
-	public void tick() {
+	public void tick(int bf) {
 		parent = null;
 		walkable = true;
+		buffer = 0;
 		
 		//neighbors[0] = pathFinder.getNode(x - 16, y - 16);
 		neighbors[1] = pathFinder.getNode(x, y - 16);
@@ -47,18 +48,38 @@ public class PathNode {
 		neighbors[6] = pathFinder.getNode(x, y + 16);//_+
 		//neighbors[7] = pathFinder.getNode(x + 16, y + 16);//++
 		
-		checkWalkable();
+		checkWalkable(bf);
 	}
 	
-	public void checkWalkable() {
+	public void checkWalkable(int bf) {
 		for(Entity e: handler.getCurrentWorld().getEntityManager().getEntities()) {
 			if(e.getCollisionBounds(0f, 0f).intersects(bounds) && e.isSolid()) {
+				buffer = bf;
 				walkable = false;
 			}
 		}
-		if(handler.getCurrentWorld().getTile(x/32, y/32).isSolid())
+		
+		if(handler.getCurrentWorld().getTile(x/32, y/32).isSolid()) {
+			buffer = bf;
 			walkable = false;
-		//System.out.println(handler.getCurrentWorld().getTile(x/32, y/32).isSolid() + " :Is Tile Solid at " + x + "," + y + "? @ PathNode.checkWalkable");
+		}
+		
+		for(PathNode n: neighbors) {
+			if(n == null)
+				continue;
+			if(n.getBuffer() > 0 && n.getBuffer() > buffer) {
+				buffer = n.getBuffer() - 1;
+			}
+		}
+		
+		if(buffer > 0) {
+			walkable = false;
+			for(PathNode n: neighbors) {
+				if(n == null || n.getBuffer() >= buffer)
+					continue;
+				n.tick(bf);
+			}
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -130,6 +151,14 @@ public class PathNode {
 
 	public void setcY(float cY) {
 		this.cY = cY;
+	}
+
+	public int getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(int buffer) {
+		this.buffer = buffer;
 	}
 	
 	

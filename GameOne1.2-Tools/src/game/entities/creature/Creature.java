@@ -67,7 +67,6 @@ public abstract class Creature extends Entity {
 			
 			if(checkEntityWalkable(0f, yMove)) {
 				y += yMove;
-				System.out.println("EntityWalkable at 0f, yMove");
 			}else if(!checkEntityWalkable(0f,0f)) {
 				if(!collisionWithTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) && !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
 					y += yMove;

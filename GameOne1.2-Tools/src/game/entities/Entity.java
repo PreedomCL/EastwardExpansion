@@ -14,7 +14,7 @@ public abstract class Entity {
 	protected Rectangle bounds, activeBounds;
 	protected int health;
 	protected int type, tool;
-	protected boolean active = true, solid = true, walkable = false, excused;
+	protected boolean active = true, solid = true, walkable = false, excused, useActiveBounds = false;
 	protected boolean inRange = false;
 	protected int[] nonSpawnableTiles;
 	public static final int DEFAULT_HEALTH = 10;
@@ -33,7 +33,7 @@ public abstract class Entity {
 		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
-		activeBounds = new Rectangle(-16, -16, width + 32, width + 32);
+		activeBounds = new Rectangle(-16, -16, width + 32, height + 32);
 		
 		
 		
@@ -51,9 +51,9 @@ public abstract class Entity {
 				active = false;
 			}
 			
-			if(handler.getCurrentWorld() != null) {
+			if(handler.getCurrentWorld() != null && this != handler.getPlayer()) {
 				for(Entity e: handler.getCurrentWorld().getEntityManager().getEntitiesToAdd()) {
-					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
+					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f)) && e.isSolid()){
 						active = false;
 					}
 				}
@@ -67,7 +67,7 @@ public abstract class Entity {
 	public void use() {}
 	
 	protected boolean checkActiveBounds() {
-		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(-x, -y).intersects(activeBounds))
 			return true;
 		else 
 			return false;
@@ -75,6 +75,10 @@ public abstract class Entity {
 	public void showHitBoxes(Graphics g) {
 		g.setColor(Color.YELLOW);
 		g.drawRect((int) (bounds.x - handler.getGameCamera().getxOffset() + x),(int) (bounds.y - handler.getGameCamera().getyOffset() + y), bounds.width, bounds.height);
+		if(useActiveBounds) {
+			g.setColor(Color.ORANGE);
+			g.drawRect((int) (activeBounds.x - handler.getGameCamera().getxOffset() + x),(int) (activeBounds.y - handler.getGameCamera().getyOffset() + y), activeBounds.width, activeBounds.height);
+		}
 	}
 	
 	public void hurt(int damage) {
@@ -169,11 +173,11 @@ public abstract class Entity {
 	}
 	
 	public float getcX() {
-		return bounds.x + (bounds.width / 2) + x;
+		return (float) (x + width/2);
 	}		
 
 	public float getcY() {
-		return bounds.y + (bounds.height / 2) + y;
+		return (float) (y + height/2);
 	}
 
 	public float getRenderY() {

@@ -12,6 +12,7 @@ import game.entities.staticentity.EnterableBuilding;
 import game.entities.staticentity.MapChanger;
 import game.entities.staticentity.MineralRock;
 import game.entities.staticentity.Stone;
+import game.entities.staticentity.TallGrass;
 import game.entities.staticentity.Tree;
 import game.gfx.Assets;
 import game.ui.UIManager;
@@ -54,6 +55,9 @@ public class GameState extends State {
 				}
 				for(int i=0; i < Utils.randomNumber(10, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
+				}
+				for(int i=0; i < Utils.randomNumber(30, 20); i++) { 
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new TallGrass(handler, Utils.randomNumber(1500, 800),Utils.randomNumber(400, 200)));
 				}
 			}
 		});

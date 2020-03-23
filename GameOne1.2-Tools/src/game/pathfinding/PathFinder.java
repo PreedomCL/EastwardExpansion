@@ -10,6 +10,7 @@ import game.Handler;
 public class PathFinder {
 	
 	private Handler handler;
+	private int buffer;
 	private ArrayList<PathNode> open, closed;
 	private PathNode[][] nodes;
 	ArrayList<PathNode> path;
@@ -20,21 +21,25 @@ public class PathFinder {
 		nodes = new PathNode[width * 2][height * 2];
 		for(int x = 0; x < nodes.length; x++) {
 			for(int y = 0; y < nodes[x].length; y++) {
-				nodes[x][y] = new PathNode(handler, this, x * 16, y *16);
+				nodes[x][y] = new PathNode(handler, this, x * 16, y * 16);
 			}
 		}
 	}
 	
-	public ArrayList<PathNode> findPath(PathNode start, PathNode end) {
+	public ArrayList<PathNode> findPath(PathNode start, PathNode end, int buffer) {
+		int timeOut = 0;
 		open = new ArrayList<PathNode>();
 		closed = new ArrayList<PathNode>();
 		path = new ArrayList<PathNode>();
+		this.buffer = buffer;
 		
 		tickNodes();
-		start.tick();
-		end.tick();
+		start.tick(buffer);
+		end.tick(buffer);
 		open.add(start);
-		while(1 > 0) {
+		
+		while(timeOut < 200) {
+			timeOut++;
 			PathNode current = getCurrentNode();
 			open.remove(current);
 			closed.add(current);
@@ -79,12 +84,15 @@ public class PathFinder {
 				return path;
 			}
 		}
+		
+		path.add(start);
+		return path;
 	}
 	
 	public void tickNodes() {
 		for(PathNode[] ns : nodes) {
 			for(PathNode node : ns) {
-				node.tick();
+				node.tick(buffer);
 			}
 		}
 	}

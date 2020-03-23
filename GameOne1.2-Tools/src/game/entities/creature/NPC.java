@@ -14,7 +14,6 @@ import game.gfx.Text;
 import game.utils.Timer;
 
 public class NPC extends Creature{
-	private Rectangle activeBounds;
 	private BufferedImage texture;
 	private Boolean isTalking = false, inRange = false, isTrading = false;
 	private String[] speech;
@@ -37,17 +36,17 @@ public class NPC extends Creature{
 		speechTimer = new Timer();
 		
 		activeBounds = new Rectangle();
-		activeBounds.x =(int) (x);
-		activeBounds.y =(int) (y-16);
-		activeBounds.width = width + 32;
-		activeBounds.height = height + 32;
+		activeBounds.x = 0;
+		activeBounds.y = bounds.y -16;
+		activeBounds.width = bounds.width + 32;
+		activeBounds.height = bounds.height + 32;
 	}
 
 	@Override
 	public void tick() {
 		tradeMenu.tick();
 		
-		if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(activeBounds))
+		if(checkActiveBounds())
 			inRange = true;
 		else  {
 			inRange = false;

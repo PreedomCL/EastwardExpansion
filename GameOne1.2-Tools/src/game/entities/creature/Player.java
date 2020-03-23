@@ -59,7 +59,7 @@ public class Player extends Creature {
 		bounds.x = 16;
 		bounds.y = 48;
 		bounds.width = 32;
-		bounds.height = 16;
+		bounds.height = 20;
 		solid = false;
 		
 	//Player
@@ -80,6 +80,7 @@ public class Player extends Creature {
 		hunger = 10;
 		
 		inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
 	}
 
 	@Override
