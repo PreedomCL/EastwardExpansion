@@ -125,6 +125,14 @@ public abstract class Entity {
 		for(int i = 0; i < nonSpawnableTiles.length; i++) {
 			if(handler.getCurrentWorld().getTile(x, y).getId() == nonSpawnableTiles[i])
 				return false;
+			if(handler.getCurrentWorld().getTile(x - 1, y).getId() == nonSpawnableTiles[i])
+				return false;
+			if(handler.getCurrentWorld().getTile(x + 1, y).getId() == nonSpawnableTiles[i])
+				return false;
+			if(handler.getCurrentWorld().getTile(x, y - 1).getId() == nonSpawnableTiles[i])
+				return false;
+			if(handler.getCurrentWorld().getTile(x, y + 1).getId() == nonSpawnableTiles[i])
+				return false;
 		}
 		return true;
 	}

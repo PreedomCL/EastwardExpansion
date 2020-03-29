@@ -2,9 +2,9 @@ package game.item;
 
 import java.awt.Graphics;
 
+import game.Assets;
 import game.Handler;
 import game.entities.Entity;
-import game.gfx.Assets;
 
 public class WoodItem extends Item {
 

@@ -12,7 +12,7 @@ public class EntityManager {
 	
 	private Handler handler;
 	private Player player;
-	private ArrayList<Entity> entities, entitiesToAdd;
+	private ArrayList<Entity> entities, entitiesToAdd, solidEntities;
 	
 	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
 
@@ -30,11 +30,18 @@ public class EntityManager {
 		this.player = player;
 		entities = new ArrayList<Entity>();
 		entitiesToAdd = new ArrayList<Entity>();
+		solidEntities = new ArrayList<Entity>();
 		addEntity(player);
 	}
 	
 	public void tick() {
 		Iterator<Entity> it = entities.iterator();
+		solidEntities.clear();
+		for(Entity e:entities) {
+			if(e.isSolid())
+				solidEntities.add(e);
+		}
+		
 		while(it.hasNext()) {
 			Entity e = it.next();
 			if(!e.isActive())
@@ -48,7 +55,7 @@ public class EntityManager {
 	public void render(Graphics g) {
 		for(Entity e: entities) {
 			e.render(g);
-			if(handler.getCurrentWorld().isDebugMode()) {
+			if(handler.getCurrentWorld().isHitBoxes() && handler.getCurrentWorld().isDebugMode()) {
 				e.showHitBoxes(g);
 			}
 		}
@@ -95,6 +102,14 @@ public class EntityManager {
 
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
+	}
+
+	public ArrayList<Entity> getSolidEntities() {
+		return solidEntities;
+	}
+
+	public void setSolidEntities(ArrayList<Entity> solidEntities) {
+		this.solidEntities = solidEntities;
 	}
 
 	

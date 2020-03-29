@@ -4,8 +4,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 import game.item.Item;
 import game.item.StoneItem;
 import game.item.WoodItem;
@@ -30,7 +30,7 @@ public class RockbugCreature extends Creature{
 		speed = 1;
 		health = 5;
 		solid = false;
-		
+		useActiveBounds = true;
 		activeBounds = new Rectangle(-64, -64, width + 128, height + 128);
 	}
 
@@ -49,9 +49,9 @@ public class RockbugCreature extends Creature{
 	public void render(Graphics g) {
 		if(xMove == 0 && yMove == 0) {
 			g.drawImage(Assets.rockbug[4], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(yMove < 0){
+		}else if(yMove < -.5){
 			g.drawImage(Assets.rockbug[3], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(yMove > 0){
+		}else if(yMove > .5){
 			g.drawImage(Assets.rockbug[2], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 		}else if(xMove > 0){
 			g.drawImage(Assets.rockbug[1], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
@@ -67,16 +67,18 @@ public class RockbugCreature extends Creature{
 	
 	public void movement() {
 		
-		if(bounds.intersects(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f))) {
+		if(getCollisionBounds(0f,0f).intersects(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f))) {
+			xMove = 0;
+			yMove = 0;
 			return;
 		}
 		
 		if(Math.hypot(Math.abs(x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX()), Math.abs(y-handler.getCurrentWorld().getEntityManager().getPlayer().getcY())) < 400 && angered) {
-			ArrayList<PathNode>path = handler.getCurrentWorld().getPathFinder().findPath(handler.getCurrentWorld().getPathFinder().getNode((int) getcX(),(int) getcY()), handler.getCurrentWorld().getPathFinder().getNode((int) handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),(int) handler.getCurrentWorld().getEntityManager().getPlayer().getcY()), 2);
+			ArrayList<PathNode>path = handler.getCurrentWorld().getPathFinder().findPath(handler.getCurrentWorld().getPathFinder().getNode((int) getcX(),(int) getcY()), handler.getCurrentWorld().getPathFinder().getNode((int) handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),(int) handler.getCurrentWorld().getEntityManager().getPlayer().getcY() + 16), 2);
 			PathNode destination;
 			
 			if(!path.isEmpty()) {
-				if(path.size() > 2)
+				if(path.size() > 1)
 					destination = path.get(path.size()-1);
 				else
 					destination = path.get(0);

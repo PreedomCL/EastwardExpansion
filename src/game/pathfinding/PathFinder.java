@@ -10,7 +10,7 @@ import game.Handler;
 public class PathFinder {
 	
 	private Handler handler;
-	private int buffer;
+	private int buffer = 1;
 	private ArrayList<PathNode> open, closed;
 	private PathNode[][] nodes;
 	ArrayList<PathNode> path;
@@ -47,6 +47,7 @@ public class PathFinder {
 				for(PathNode neighbor : current.getNeighbors()) {
 					if(neighbor == null)
 						continue;
+					
 					if(!neighbor.walkable || closed.contains(neighbor))
 						continue;
 					

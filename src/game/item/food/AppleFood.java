@@ -2,8 +2,8 @@ package game.item.food;
 
 import java.awt.image.BufferedImage;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 
 public class AppleFood extends Food{
 

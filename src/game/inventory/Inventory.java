@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 import game.gfx.Text;
 import game.item.Item;
 import game.ui.UIManager;

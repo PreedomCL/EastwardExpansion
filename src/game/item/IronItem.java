@@ -2,8 +2,8 @@ package game.item;
 
 import java.awt.image.BufferedImage;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 
 public class IronItem extends Item{
 

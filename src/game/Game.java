@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 import game.crafting.Recipe;
 import game.crafting.RecipeManager;
 import game.display.Display;
-import game.gfx.Assets;
 import game.gfx.GameCamera;
+import game.gfx.Text;
 import game.input.KeyManager;
 import game.input.MouseManager;
 import game.state.GameState;
@@ -97,7 +97,7 @@ public class Game implements Runnable {
 			debugMode = !debugMode;
 		
 	}
-	private void render() {
+	private void render(double delta) {
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {
 			display.getCanvas().createBufferStrategy(3);
@@ -111,7 +111,10 @@ public class Game implements Runnable {
 		
 		if(State.getState() != null)
 			State.getState().render(g);
-		
+		if(debugMode) {
+			Text.drawString(g,"Delta: " + Float.toString((int) ((delta - 1) * -100)) + "%", 31, 31, false, Color.LIGHT_GRAY, Assets.font14);
+			Text.drawString(g,"Delta: " + Float.toString((int) ((delta - 1) * -100)) + "%", 32, 32, false, Color.BLACK, Assets.font14);
+		}
 		//End Code
 		
 		bs.show();
@@ -135,8 +138,8 @@ public class Game implements Runnable {
 			lastTime = now;
 			if(delta >= 1) {
 				tick();
-				render();
-				delta--;
+				render(delta);
+				delta = 0;
 			}
 		}
 		

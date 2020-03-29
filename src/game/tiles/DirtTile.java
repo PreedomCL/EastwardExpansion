@@ -2,8 +2,8 @@ package game.tiles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 
 public class DirtTile extends Tile {
 

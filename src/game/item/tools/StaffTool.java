@@ -3,9 +3,9 @@ package game.item.tools;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import game.Assets;
 import game.Handler;
 import game.entities.Entity;
-import game.gfx.Assets;
 import game.item.Item;
 
 public class StaffTool extends Tool{

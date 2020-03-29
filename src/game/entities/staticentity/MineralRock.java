@@ -2,8 +2,8 @@ package game.entities.staticentity;
 
 import java.awt.Graphics;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 import game.inventory.Inventory;
 import game.item.IronOreItem;
 import game.item.StoneItem;

@@ -1,9 +1,13 @@
-package game.gfx;
+package game;
 
 
 
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+
+import game.gfx.FontLoader;
+import game.gfx.ImageLoader;
+import game.gfx.SpriteSheet;
 
 
 public class Assets {

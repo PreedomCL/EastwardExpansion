@@ -1,8 +1,10 @@
 package game.worlds;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import game.Assets;
 import game.Handler;
 import game.crafting.Recipe;
 import game.entities.Entity;
@@ -14,7 +16,6 @@ import game.entities.staticentity.Sapling;
 import game.entities.staticentity.Stone;
 import game.entities.staticentity.Tree;
 import game.entities.staticentity.craftingstation.BasicWorkTable;
-import game.gfx.Assets;
 import game.gfx.Text;
 import game.gfx.lighting.LightManager;
 import game.gfx.lighting.LightSource;
@@ -38,7 +39,7 @@ public class World {
 	private int spawnX, spawnY;
 	private int index;
 	private Tile[][] tiles;
-	private boolean debugMode = false;
+	private boolean debugMode = false, pathMode = false, hitBoxes = false;
 	
 	
 	//Entities
@@ -92,6 +93,10 @@ public class World {
 		
 		
 		debugMode = handler.getGame().isDebugMode();
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P) && debugMode)
+			pathMode = !pathMode;
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_B) && debugMode)
+			hitBoxes = !hitBoxes;
 		//Adding Entities & Items
 		
 		entitiesToAdd = entityManager.getEntitiesToAdd();
@@ -148,7 +153,9 @@ public class World {
 		if(debugMode) {
 			Text.drawString(g,Integer.toString((int) (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())) + "," + Integer.toString((int) (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset())), handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), false, Color.BLACK, Assets.font20);
 			//Text.drawString(g,"FPS:" + Integer.toString(handler.getGame().getFps()), 0, 16, false, Color.BLACK, Assets.font20);
-			pathFinder.render(g);
+			if(pathMode) {
+				pathFinder.render(g);
+			}
 		}
 	}
 	
@@ -167,6 +174,7 @@ public class World {
 	
 	public void loadEntities() {
 		entityLoader.loadEntities();
+		entityManager.getPlayer().setActive(true);
 	}
 	
 	private void loadWorld(String path) {
@@ -248,6 +256,14 @@ public class World {
 
 	public void setPathFinder(PathFinder pathFinder) {
 		this.pathFinder = pathFinder;
+	}
+
+	public boolean isHitBoxes() {
+		return hitBoxes;
+	}
+
+	public void setHitBoxes(boolean hitBoxes) {
+		this.hitBoxes = hitBoxes;
 	}
 	
 	

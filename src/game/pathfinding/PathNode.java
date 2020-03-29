@@ -10,7 +10,7 @@ import game.entities.Entity;
 
 public class PathNode {
 	private Handler handler;
-	private int x, y, h, g, buffer;
+	private int x, y, h, g, buffer, cost;
 	private float  cX, cY;
 	private Rectangle bounds = new Rectangle();
 	private PathNode parent;
@@ -31,7 +31,7 @@ public class PathNode {
 		cX = (float) bounds.getCenterX();
 		cY = (float) bounds.getCenterY();
 		
-		
+		cost = 1;
 	}
 	
 	public void tick(int bf) {
@@ -39,21 +39,21 @@ public class PathNode {
 		walkable = true;
 		buffer = 0;
 		
-		//neighbors[0] = pathFinder.getNode(x - 16, y - 16);
+		neighbors[0] = pathFinder.getNode(x - 16, y - 16);
 		neighbors[1] = pathFinder.getNode(x, y - 16);
-		//neighbors[2] = pathFinder.getNode(x + 16, y - 16);//+-
+		neighbors[2] = pathFinder.getNode(x + 16, y - 16);//+-
 		neighbors[3] = pathFinder.getNode(x - 16, y);
 		neighbors[4] = pathFinder.getNode(x + 16, y);//+_
-		//neighbors[5] = pathFinder.getNode(x - 16, y + 16);
+		neighbors[5] = pathFinder.getNode(x - 16, y + 16);
 		neighbors[6] = pathFinder.getNode(x, y + 16);//_+
-		//neighbors[7] = pathFinder.getNode(x + 16, y + 16);//++
+		neighbors[7] = pathFinder.getNode(x + 16, y + 16);//++
 		
 		checkWalkable(bf);
 	}
 	
 	public void checkWalkable(int bf) {
-		for(Entity e: handler.getCurrentWorld().getEntityManager().getEntities()) {
-			if(e.getCollisionBounds(0f, 0f).intersects(bounds) && e.isSolid()) {
+		for(Entity e: handler.getCurrentWorld().getEntityManager().getSolidEntities()) {
+			if(e.getCollisionBounds(0f, 0f).intersects(bounds)) {
 				buffer = bf;
 				walkable = false;
 			}
@@ -73,7 +73,7 @@ public class PathNode {
 		}
 		
 		if(buffer > 0) {
-			walkable = false;
+			cost = 2;
 			for(PathNode n: neighbors) {
 				if(n == null || n.getBuffer() >= buffer)
 					continue;
@@ -98,7 +98,7 @@ public class PathNode {
 	
 //G&S
 	public int getF() {
-		return h + g;
+		return (h + g) * cost;
 	}
 	
 	public void setH(int h) {

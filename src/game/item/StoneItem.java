@@ -1,8 +1,8 @@
 package game.item;
 
+import game.Assets;
 import game.Handler;
 import game.entities.Entity;
-import game.gfx.Assets;
 
 public class StoneItem extends Item{
 	

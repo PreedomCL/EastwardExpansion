@@ -3,8 +3,8 @@ package game.state;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import game.Assets;
 import game.Handler;
-import game.gfx.Assets;
 import game.gfx.Text;
 
 public class EndState extends State{
