@@ -4,6 +4,7 @@ package game;
 
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import game.gfx.FontLoader;
 import game.gfx.ImageLoader;
@@ -16,6 +17,8 @@ public class Assets {
 	  
 	public static Font font28, font14,font20;
 	
+	public static File treeHit;
+	
 	public static BufferedImage grass, dirt, stone, rock, barrier, water, sand, sapling, log, stones, coin, unknown, craftingStation,
 	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre, bridgeBuilder, boulder, tallGrass;
 	public static BufferedImage[] start, tree, player, grassBorder, bridge, rockbug; 
@@ -26,6 +29,8 @@ public class Assets {
 		font28 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 28);
 		font20 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 20);
 		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
+		
+		treeHit = new File(System.getProperty("user.dir") + "/res/sounds/TreeHit.wav");
 		
 		SpriteSheet PlayerSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/PlayerSheet.png"));
 		SpriteSheet BuildingSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/BuildingSheet.png"));

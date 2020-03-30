@@ -22,6 +22,7 @@ import game.gfx.lighting.LightSource;
 import game.item.Item;
 import game.item.ItemManager;
 import game.pathfinding.PathFinder;
+import game.sfx.SoundPlayer;
 import game.tiles.Tile;
 import game.ui.UIManager;
 import game.utils.Utils;

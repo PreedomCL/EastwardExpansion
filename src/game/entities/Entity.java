@@ -3,7 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import game.Assets;
 import game.Handler;
+import game.sfx.SoundPlayer;
 import game.tiles.Tile;
 
 public abstract class Entity {
@@ -83,6 +85,7 @@ public abstract class Entity {
 	
 	public void hurt(int damage) {
 		health -= damage;
+		SoundPlayer.playSound(Assets.treeHit);
 		if(health <= 0) {
 			active = false;
 			onDie();

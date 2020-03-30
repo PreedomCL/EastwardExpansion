@@ -35,7 +35,7 @@ public class Player extends Creature {
 	private Animation animAttack;
 	private Animation[] animPlayer;
 	
-	private long lastAttackTime, attackCooldown = 500, attackTimer = attackCooldown,lastDestroyTime, destroyCooldown = 500, destroyTimer = destroyCooldown;
+	private long lastAttackTime, attackCooldown = 500, attackTimer = attackCooldown,lastDestroyTime, destroyCooldown = 1000, destroyTimer = destroyCooldown;
 	private float mouseX, mouseY;
 	private boolean isAttacking;
 	private int direction;
@@ -157,8 +157,7 @@ public class Player extends Creature {
 			isAttacking = false;
 		
 		
-		if(handler.getCurrentWorld().getIndex() == 3)
-			State.setState(new EndState(handler));
+		
 	}
 	
 	private void checkAttacks() {

@@ -10,6 +10,7 @@ public class TallGrass extends StaticEntity{
 	public TallGrass(Handler handler, float x, float y) {
 		super(handler, x, y, 32, 64, new int[]{1, 2, 3, 4, 5});
 		solid = false;
+		health = 1;
 	}
 
 	@Override
