@@ -8,6 +8,7 @@ import game.entities.creature.DonkeyCreature;
 import game.entities.creature.NPC;
 import game.entities.creature.Player;
 import game.entities.creature.RockbugCreature;
+import game.entities.staticentity.Boulder;
 import game.entities.staticentity.Bridge;
 import game.entities.staticentity.EnterableBuilding;
 import game.entities.staticentity.MapChanger;
@@ -47,17 +48,17 @@ public class GameState extends State {
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128, null, 705, 628, 42, 16, 708, 600));
 				
 				//Random
-				for(int i=0; i <Utils.randomNumber(15, 9); i++) { 
-					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(1300, 50), Utils.randomNumber(1000, 0)));
+				for(int i=0; i < Utils.randomNumber(50, 30); i++) { 
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Tree(handler, Utils.randomNumber(handler.getCurrentWorld().getWidth(), 0) * 32, Utils.randomNumber(handler.getCurrentWorld().getHeight(), 0) * 32));
 				}
 				for(int i=0; i < Utils.randomNumber(20, 15); i++) { 
-					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1300, 0), Utils.randomNumber(1300, 0)));
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Boulder(handler, Utils.randomNumber(handler.getCurrentWorld().getWidth(), 0) * 32, Utils.randomNumber(handler.getCurrentWorld().getHeight(), 0) * 32));
 				}
 				for(int i=0; i < Utils.randomNumber(10, 5); i++) { 
-					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(1300, 0),Utils.randomNumber(1300, 0)));
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new RockbugCreature(handler, Utils.randomNumber(handler.getCurrentWorld().getWidth(), 0) * 32, Utils.randomNumber(handler.getCurrentWorld().getHeight(), 0) * 32));
 				}
 				for(int i=0; i < Utils.randomNumber(3000, 1500); i++) { 
-					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new TallGrass(handler, (Utils.randomNumber(80, 0) * 16) ,(Utils.randomNumber(80, 0) * 16)));
+					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new TallGrass(handler, Utils.randomNumber(handler.getCurrentWorld().getWidth(), 0) * 32, Utils.randomNumber(handler.getCurrentWorld().getHeight(), 0) * 32));
 				}
 			}
 		});
@@ -116,7 +117,7 @@ public class GameState extends State {
 		handler.getCurrentWorld().setEntityLoader(new EntityLoader() {
 			@Override
 			public void loadEntities() {
-				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 544, 640, 64, 32,544,576, handler.getTown()));
+				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 544, 640, 64, 32,544,570, handler.getTown()));
 				//Random
 				for(int i=0; i < Utils.randomNumber(10, 5); i++) { 
 					handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new Stone(handler, Utils.randomNumber(1216, 0), Utils.randomNumber(640, 540)));

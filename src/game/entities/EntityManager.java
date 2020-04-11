@@ -48,8 +48,11 @@ public class EntityManager {
 				it.remove();
 			e.tick();
 		}
+		try {
 		entities.sort(renderSorter);
-		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	public void render(Graphics g) {

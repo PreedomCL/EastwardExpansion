@@ -16,7 +16,7 @@ public abstract class Entity {
 	protected Rectangle bounds, activeBounds;
 	protected int health;
 	protected int type, tool;
-	protected boolean active = true, solid = true, walkable = false, excused, useActiveBounds = false;
+	protected boolean active = true, solid = true, walkable = false, excused = false, useActiveBounds = false;
 	protected boolean inRange = false;
 	protected int[] nonSpawnableTiles;
 	public static final int DEFAULT_HEALTH = 10;
@@ -38,16 +38,18 @@ public abstract class Entity {
 		activeBounds = new Rectangle(-16, -16, width + 32, height + 32);
 		
 		
-		
+		//Move to Exact Location
+		x = x - bounds.x;
+		y = y - bounds.y;
 		//Check for valid spawn location
 		this.nonSpawnableTiles = nonSpawnableTiles;
-		if(this != handler.getPlayer()) {
-			int tx = (int) (x  + bounds.x + bounds.width) / Tile.TILEWIDTH;
+		if(this != handler.getPlayer() || !excused) {
+			int tx = (int) (x  + bounds.x + bounds.width + (bounds.width / 2)) / Tile.TILEWIDTH;
 			
 			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) || !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
 				active = false;
 			}
-			int ty = (int) (y + bounds.y) / Tile.TILEHEIGHT;
+			int ty = (int) (y + bounds.y + (bounds.height / 2)) / Tile.TILEHEIGHT;
 			
 			if(!checkVaildSpawnTile((int) (x + bounds.x) / Tile.TILEHEIGHT, ty) || !checkVaildSpawnTile((int) (x + bounds.x + bounds.width) / Tile.TILEHEIGHT, ty)){
 				active = false;
@@ -55,7 +57,7 @@ public abstract class Entity {
 			
 			if(handler.getCurrentWorld() != null && this != handler.getPlayer()) {
 				for(Entity e: handler.getCurrentWorld().getEntityManager().getEntitiesToAdd()) {
-					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f)) && e.isSolid()){
+					if(e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(0f,0f))){
 						active = false;
 					}
 				}

@@ -35,6 +35,7 @@ public class NPC extends Creature{
 		bounds.height = 16;
 		speechTimer = new Timer();
 		
+		useActiveBounds = true;
 		activeBounds = new Rectangle();
 		activeBounds.x = 0;
 		activeBounds.y = bounds.y -16;

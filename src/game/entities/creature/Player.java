@@ -79,8 +79,8 @@ public class Player extends Creature {
 		
 		hunger = 10;
 		
-		inventory.addItem(new SpearTool(handler, 1, 0, 0));
-		inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
+		//inventory.addItem(new SpearTool(handler, 1, 0, 0));
+		//inventory.addItem(new BridgeBuilder(handler, 1, 0, 0));
 	}
 
 	@Override

@@ -66,7 +66,7 @@ public class Assets {
 		grassBorder[2] = sheet.crop(width * 10, 0, height, width);
 		grassBorder[3] = sheet.crop(width * 11, 0, height, width);
 		bridgeBuilder = sheet.crop(width * 12, 0, height, width);
-		tallGrass = sheet.crop(width * 6, height, height * 2, width);
+		tallGrass = sheet.crop(width * 6, height + 16, 48, 48);
 		
 		//row 2 row 3
 		tree[0] = sheet.crop(0, height, height*2, width);

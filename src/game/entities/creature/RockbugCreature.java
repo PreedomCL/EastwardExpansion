@@ -31,7 +31,7 @@ public class RockbugCreature extends Creature{
 		health = 5;
 		solid = false;
 		useActiveBounds = true;
-		activeBounds = new Rectangle(-64, -64, width + 128, height + 128);
+		activeBounds = new Rectangle(-48, -48, width + 96, height + 96);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class RockbugCreature extends Creature{
 			return;
 		}
 		
-		if(Math.hypot(Math.abs(x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX()), Math.abs(y-handler.getCurrentWorld().getEntityManager().getPlayer().getcY())) < 400 && angered) {
+		if(Math.hypot(Math.abs(x-handler.getCurrentWorld().getEntityManager().getPlayer().getcX()), Math.abs(y-handler.getCurrentWorld().getEntityManager().getPlayer().getcY())) < 250 && angered) {
 			ArrayList<PathNode>path = handler.getCurrentWorld().getPathFinder().findPath(handler.getCurrentWorld().getPathFinder().getNode((int) getcX(),(int) getcY()), handler.getCurrentWorld().getPathFinder().getNode((int) handler.getCurrentWorld().getEntityManager().getPlayer().getcX(),(int) handler.getCurrentWorld().getEntityManager().getPlayer().getcY() + 16), 2);
 			PathNode destination;
 			
