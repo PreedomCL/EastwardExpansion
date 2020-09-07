@@ -3,8 +3,8 @@ package game.entities.creature;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 
 public class DonkeyCreature extends Vehicle{
 	

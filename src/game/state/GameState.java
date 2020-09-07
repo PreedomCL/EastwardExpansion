@@ -1,7 +1,7 @@
 package game.state;
+import java.awt.Color;
 import java.awt.Graphics;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.Recipe;
 import game.entities.creature.DonkeyCreature;
@@ -16,6 +16,8 @@ import game.entities.staticentity.MineralRock;
 import game.entities.staticentity.Stone;
 import game.entities.staticentity.TallGrass;
 import game.entities.staticentity.Tree;
+import game.gfx.Assets;
+import game.gfx.lighting.LightSource;
 import game.ui.UIManager;
 import game.utils.Utils;
 import game.worlds.EntityLoader;
@@ -46,6 +48,7 @@ public class GameState extends State {
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, 480, 32, 63, 32,480, 32, handler.getBeach()));
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new NPC(handler, Assets.player[0],speech = new String[] {"Hello, I am your trusty toolsmith", "I cannot sell you any tools right now, but..", "...I can sell you one of my spare tool stations!"}, trades = new Recipe[] {handler.getGame().getTradingManager().getRecipes()[0], handler.getGame().getTradingManager().getRecipes()[1],  handler.getGame().getTradingManager().getRecipes()[2]}, 750, 580, 32, 64));
 				handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new EnterableBuilding(handler, Assets.blacksmith, 648, 500, 220, 128, null, 705, 628, 42, 16, 708, 600));
+				handler.getCurrentWorld().getLightManager().addLight(new LightSource(770, 574, 100));
 				
 				//Random
 				for(int i=0; i < Utils.randomNumber(50, 30); i++) { 
@@ -132,6 +135,11 @@ public class GameState extends State {
 	}
 	
 	public void tick() {
+		int time = handler.getGame().gameState.getTime();
+		time ++;
+		if(time > 2400)
+			time = 0;
+		handler.getGame().gameState.setTime(time);
 		world = handler.getCurrentWorld();
 		world.tick();
 	}
@@ -139,7 +147,5 @@ public class GameState extends State {
 		if(world != null)
 			world.render(g);
 	}
-
-	
 	
 }

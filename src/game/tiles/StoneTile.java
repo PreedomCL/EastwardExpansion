@@ -1,7 +1,7 @@
 package game.tiles;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 
 public class StoneTile extends Tile {
 

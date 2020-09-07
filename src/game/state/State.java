@@ -7,7 +7,7 @@ import game.ui.UIManager;
 public abstract class State {
 	
 	private static State currentState = null;
-	
+	protected int time = 1000;
 	
 	public static void setState(State state) {
 		currentState = state;
@@ -29,6 +29,14 @@ public abstract class State {
 	public abstract void tick();
 
 	public abstract void render( Graphics g);
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
 
 	
 	

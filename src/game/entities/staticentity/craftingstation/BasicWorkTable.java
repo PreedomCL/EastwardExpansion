@@ -2,9 +2,9 @@ package game.entities.staticentity.craftingstation;
 
 import java.awt.Graphics;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.Recipe;
+import game.gfx.Assets;
 import game.item.placeable.BasicWorkTableItem;
 
 public class BasicWorkTable extends CraftingStation{

@@ -2,8 +2,8 @@ package game.entities.staticentity;
 
 import java.awt.Graphics;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 
 public class Boulder extends StaticEntity{
 

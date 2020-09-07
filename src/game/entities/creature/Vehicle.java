@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 import game.gfx.Text;
 
 public abstract class Vehicle extends Creature{

@@ -6,10 +6,10 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.CraftingMenu;
 import game.crafting.Recipe;
+import game.gfx.Assets;
 import game.gfx.Text;
 import game.utils.Timer;
 

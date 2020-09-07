@@ -4,8 +4,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 import game.item.Item;
 import game.item.StoneItem;
 import game.item.WoodItem;

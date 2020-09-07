@@ -6,11 +6,11 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.CraftingMenu;
 import game.crafting.Recipe;
 import game.entities.staticentity.StaticEntity;
+import game.gfx.Assets;
 import game.gfx.Text;
 
 public abstract class CraftingStation extends StaticEntity{

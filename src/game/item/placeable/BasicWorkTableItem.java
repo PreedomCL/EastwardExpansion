@@ -2,9 +2,9 @@ package game.item.placeable;
 
 import java.awt.image.BufferedImage;
 
-import game.Assets;
 import game.Handler;
 import game.entities.staticentity.craftingstation.BasicWorkTable;
+import game.gfx.Assets;
 
 public class BasicWorkTableItem extends PlaceableItem{
 

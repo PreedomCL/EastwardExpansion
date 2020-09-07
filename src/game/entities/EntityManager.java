@@ -7,6 +7,7 @@ import java.util.Iterator;
 import game.Handler;
 import game.entities.creature.Player;
 import game.entities.staticentity.craftingstation.CraftingStation;
+import game.tiles.Tile;
 
 public class EntityManager {
 	
@@ -46,7 +47,9 @@ public class EntityManager {
 			Entity e = it.next();
 			if(!e.isActive())
 				it.remove();
-			e.tick();
+			if(e.getX() + e.getWidth() > handler.getGameCamera().getxOffset() && e.getX() < handler.getGameCamera().getxOffset() + handler.getWidth() * Tile.TILEWIDTH &&
+			e.getY() + e.getHeight() > handler.getGameCamera().getyOffset() && e.getX() < handler.getGameCamera().getyOffset() + handler.getHeight() * Tile.TILEHEIGHT)
+				e.tick();
 		}
 		try {
 		entities.sort(renderSorter);
@@ -57,9 +60,12 @@ public class EntityManager {
 	}
 	public void render(Graphics g) {
 		for(Entity e: entities) {
-			e.render(g);
-			if(handler.getCurrentWorld().isHitBoxes() && handler.getCurrentWorld().isDebugMode()) {
-				e.showHitBoxes(g);
+			if(e.getX() + e.getWidth() > handler.getGameCamera().getxOffset() && e.getX() < handler.getGameCamera().getxOffset() + handler.getWidth() * Tile.TILEWIDTH &&
+			e.getY() + e.getHeight() > handler.getGameCamera().getyOffset() && e.getX() < handler.getGameCamera().getyOffset() + handler.getHeight() * Tile.TILEHEIGHT) {
+				e.render(g);
+				if(handler.getCurrentWorld().isHitBoxes() && handler.getCurrentWorld().isDebugMode()) {
+					e.showHitBoxes(g);
+				}
 			}
 		}
 		player.postRender(g);

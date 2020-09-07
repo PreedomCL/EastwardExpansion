@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.Recipe;
 import game.entities.Entity;
@@ -16,6 +15,7 @@ import game.entities.staticentity.Sapling;
 import game.entities.staticentity.Stone;
 import game.entities.staticentity.Tree;
 import game.entities.staticentity.craftingstation.BasicWorkTable;
+import game.gfx.Assets;
 import game.gfx.Text;
 import game.gfx.lighting.LightManager;
 import game.gfx.lighting.LightSource;
@@ -51,6 +51,8 @@ public class World {
 	ArrayList<Item> itemsToAdd;
 	
 	private LightManager lightManager;
+	private int sunLight = 255;
+	private int moonLight =50;
 	//Items
 	private ItemManager itemManager;
 	
@@ -58,8 +60,14 @@ public class World {
 	
 	public World(Handler handler, String path, int index) {
 		this.handler = handler;
+		
+		lightManager = new LightManager(handler);
+		
 		handler.getMouseManager().setUIManager(handler.getGame().getUiManager());
 		loadWorld(path);
+		
+		
+		
 		
 		entityManager = new EntityManager(handler, handler.getPlayer());
 		entitiesToAdd = new ArrayList<Entity>();
@@ -67,7 +75,6 @@ public class World {
 		itemManager = new ItemManager(handler);
 		itemsToAdd = new ArrayList<Item>();
 		
-		lightManager = new LightManager();
 		
 		pathFinder = new PathFinder(handler, width, height);
 		
@@ -82,6 +89,7 @@ public class World {
 	
 	public void tick() {
 		
+		lightManager.tick();
 		handler.getGame().getUiManager().tick();
 		itemManager.tick();
 		
@@ -176,6 +184,8 @@ public class World {
 	public void loadEntities() {
 		entityLoader.loadEntities();
 		entityManager.getPlayer().setActive(true);
+		
+		lightManager.updateLights();
 	}
 	
 	private void loadWorld(String path) {
@@ -265,6 +275,22 @@ public class World {
 
 	public void setHitBoxes(boolean hitBoxes) {
 		this.hitBoxes = hitBoxes;
+	}
+
+	public LightManager getLightManager() {
+		return lightManager;
+	}
+
+	public void setLightManager(LightManager lightManager) {
+		this.lightManager = lightManager;
+	}
+
+	public int getSunLight() {
+		return sunLight;
+	}
+
+	public int getMoonLight() {
+		return moonLight;
 	}
 	
 	

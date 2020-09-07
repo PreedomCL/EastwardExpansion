@@ -54,4 +54,5 @@ public class GameCamera {
 		this.yOffset = yOffset;
 	}
 	
+	
 }

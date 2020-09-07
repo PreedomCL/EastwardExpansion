@@ -4,9 +4,9 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import game.Assets;
 import game.Handler;
 import game.entities.Entity;
+import game.gfx.Assets;
 import game.tiles.Tile;
 
 public abstract class Item {

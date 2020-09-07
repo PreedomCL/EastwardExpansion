@@ -3,9 +3,9 @@ package game.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import game.Assets;
 import game.Handler;
 import game.crafting.Recipe;
+import game.gfx.Assets;
 import game.gfx.Text;
 
 public class UIRecipeButton extends UIObject{

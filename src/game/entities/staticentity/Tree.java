@@ -2,8 +2,8 @@ package game.entities.staticentity;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 import game.item.Item;
 import game.item.WoodItem;
 import game.item.food.*;

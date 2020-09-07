@@ -3,8 +3,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import game.Assets;
 import game.Handler;
+import game.gfx.Assets;
 import game.sfx.SoundPlayer;
 import game.tiles.Tile;
 
