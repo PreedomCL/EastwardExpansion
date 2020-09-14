@@ -73,7 +73,11 @@ public class Game implements Runnable {
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
-		Assets.init();
+		try {
+			Assets.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		handler = new Handler(this);
 		recipeManager = new RecipeManager(handler, System.getProperty("user.dir") + "/res/recipes/recipes.recipe");
@@ -108,14 +112,13 @@ public class Game implements Runnable {
 		}
 		//start code
 		g = bs.getDrawGraphics();
-		
+		g.clearRect(0, 0, 10000, 10000);
 		//Draw
 		
 		if(State.getState() != null)
 			State.getState().render(g);
 		if(debugMode) {
-			Text.drawString(g,"Delta: " + Float.toString((int) ((delta - 1) * -100)) + "%", 31, 31, false, Color.LIGHT_GRAY, Assets.font14);
-			Text.drawString(g,"Delta: " + Float.toString((int) ((delta - 1) * -100)) + "%", 32, 32, false, Color.BLACK, Assets.font14);
+			Text.drawString(g,"FPS: " + Integer.toString((int) (1000000000/delta)), 31, 31, false, Color.LIGHT_GRAY, Assets.font14);
 		}
 		//End Code
 		
@@ -136,9 +139,9 @@ public class Game implements Runnable {
 		
 		while(running) {
 			now = System.nanoTime();
-			delta += (now-lastTime) / timePerTick;
+			delta += (now-lastTime) ;
 			lastTime = now;
-			if(delta >= 1) {
+			if(delta/ timePerTick >= 1) {
 				tick();
 				render(delta);
 				delta = 0;

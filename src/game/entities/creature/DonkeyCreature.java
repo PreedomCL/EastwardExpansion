@@ -17,7 +17,7 @@ public class DonkeyCreature extends Vehicle{
 	}
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.donkey,(int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), null);
+		//g.drawImage(Assets.donkey,(int) (x - handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()), null);
 		Message(g);
 	}
 

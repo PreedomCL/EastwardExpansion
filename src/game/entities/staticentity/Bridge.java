@@ -80,7 +80,7 @@ public class Bridge extends StaticEntity{
 			g.drawImage(Assets.bridge[0],(int) (this.x - handler.getGameCamera().getxOffset()),(int) (this.y - handler.getGameCamera().getyOffset()), null);
 			g.drawImage(Assets.bridge[2],(int) (targetWidth + this.x - handler.getGameCamera().getxOffset()),(int) (this.y - handler.getGameCamera().getyOffset()), null);
 			
-			for(int x = 68; x < targetWidth; x += 45) {
+			for(int x = 64; x < targetWidth; x += 32) {
 				g.drawImage(Assets.bridge[1],(int) (x + this.x - handler.getGameCamera().getxOffset()),(int) (this.y - handler.getGameCamera().getyOffset()), null);
 			}
 		}else {

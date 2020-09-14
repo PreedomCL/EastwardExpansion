@@ -23,7 +23,7 @@ public class TallGrass extends StaticEntity{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.tallGrass, (int) (x - handler.getGameCamera().getxOffset() - 6), (int) (y - handler.getGameCamera().getyOffset()), 64, 48, null);
+		g.drawImage(Assets.shrub, (int) (x - handler.getGameCamera().getxOffset() - 6), (int) (y - handler.getGameCamera().getyOffset()), 64, 48, null);
 	}
 
 	@Override

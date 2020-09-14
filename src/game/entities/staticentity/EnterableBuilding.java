@@ -15,7 +15,7 @@ public class EnterableBuilding extends Building{
 		this.interior = interior;
 		this.handler = handler;
 		
-		excused = true;
+		spawnExcused = true;
 		if(interior != null)
 			handler.getCurrentWorld().getEntityManager().getEntitiesToAdd().add(new MapChanger(handler, entX, entY, entWidth, entHeight, entReturnX, entReturnY, interior));
 	}

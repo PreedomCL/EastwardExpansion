@@ -24,6 +24,7 @@ public abstract class Creature extends Entity {
 	}
 	
 	public void move() {
+		
 		if(vehicle != null) {
 			vehicle.setxMove((xMove / speed) * vehicle.getSpeed());
 			vehicle.setyMove((yMove / speed) * vehicle.getSpeed());

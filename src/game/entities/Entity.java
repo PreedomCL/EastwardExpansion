@@ -16,7 +16,7 @@ public abstract class Entity {
 	protected Rectangle bounds, activeBounds;
 	protected int health;
 	protected int type, tool;
-	protected boolean active = true, solid = true, walkable = false, excused = false, useActiveBounds = false;
+	protected boolean active = true, solid = true, walkable = false, spawnExcused = false, useActiveBounds = false, portalCooldown = false;
 	protected boolean inRange = false;
 	protected int[] nonSpawnableTiles;
 	public static final int DEFAULT_HEALTH = 10;
@@ -43,7 +43,7 @@ public abstract class Entity {
 		y = y - bounds.y;
 		//Check for valid spawn location
 		this.nonSpawnableTiles = nonSpawnableTiles;
-		if(this != handler.getPlayer() || !excused) {
+		if(this != handler.getPlayer() || !spawnExcused) {
 			int tx = (int) (x  + bounds.x + bounds.width + (bounds.width / 2)) / Tile.TILEWIDTH;
 			
 			if(!checkVaildSpawnTile(tx, (int) (y+bounds.y) / Tile.TILEHEIGHT) || !checkVaildSpawnTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)) {
@@ -231,6 +231,14 @@ public abstract class Entity {
 
 	public void setSolid(boolean solid) {
 		this.solid = solid;
+	}
+
+	public boolean isPortalCooldown() {
+		return portalCooldown;
+	}
+
+	public void setPortalCooldown(boolean portalCooldown) {
+		this.portalCooldown = portalCooldown;
 	}
 
 	

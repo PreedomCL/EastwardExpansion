@@ -27,18 +27,17 @@ public class MapChanger extends StaticEntity{
 	public void tick() {
 		if(handler.getCurrentWorld().getEntityManager().getPlayer().getVehicle() == null) {
 			if(handler.getCurrentWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(getCollisionBounds(0f,0f))) {
-				handler.getCurrentWorld().getEntityManager().getPlayer().setX(returnX);
-				handler.getCurrentWorld().getEntityManager().getPlayer().setY(returnY);
-				
-				handler.setCurrentWorld(destination);
+				if(!handler.getCurrentWorld().getEntityManager().getPlayer().isPortalCooldown()) {
+					handler.getCurrentWorld().getEntityManager().getPlayer().setX(returnX);
+					handler.getCurrentWorld().getEntityManager().getPlayer().setY(returnY);
+					
+					handler.getCurrentWorld().getEntityManager().getPlayer().setPortalCooldown(true);
+					handler.setCurrentWorld(destination);
+				}
+			}else if(handler.getCurrentWorld().getEntityManager().getPlayer().isPortalCooldown()) {
+				 handler.getCurrentWorld().getEntityManager().getPlayer().setPortalCooldown(false);
 			}
 		}
-	}
-	
-
-	@Override
-	public void render(Graphics g) {
-		
 	}
 
 	@Override
@@ -46,5 +45,8 @@ public class MapChanger extends StaticEntity{
 		
 		
 	}
+
+	@Override
+	public void render(Graphics g) {}
 
 }

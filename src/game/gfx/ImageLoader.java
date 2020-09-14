@@ -13,9 +13,8 @@ public class ImageLoader {
 	public static BufferedImage loadImage(String path) {
 		
 		try {
-			return ImageIO.read(new File(path));
+			return ImageIO.read(new File(System.getProperty("user.dir") + path));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}

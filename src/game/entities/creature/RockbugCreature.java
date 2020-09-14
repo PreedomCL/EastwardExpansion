@@ -47,22 +47,23 @@ public class RockbugCreature extends Creature{
 
 	@Override
 	public void render(Graphics g) {
-		if(xMove == 0 && yMove == 0) {
-			g.drawImage(Assets.rockbug[4], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(yMove < -.5){
-			g.drawImage(Assets.rockbug[3], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(yMove > .5){
-			g.drawImage(Assets.rockbug[2], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(xMove > 0){
-			g.drawImage(Assets.rockbug[1], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		}else if(xMove < 0){
-			g.drawImage(Assets.rockbug[0], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		if(Math.round(yMove) > 0) {
+			g.drawImage(Assets.rockbug.getAnimation("Down").getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		}else if(Math.round(yMove) < 0) {
+			g.drawImage(Assets.rockbug.getAnimation("Up").getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		}else if(xMove < 0) {
+			g.drawImage(Assets.rockbug.getAnimation("Left").getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		}else if(xMove > 0) {
+			g.drawImage(Assets.rockbug.getAnimation("Right").getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		}else {
+			g.drawImage(Assets.rockbug.getAnimation("Idle").getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
 		}
+		
 	}
 
 	@Override
 	public void onDie() {
-			handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,Utils.randomNumber(4, 2), x, y));
+		handler.getCurrentWorld().getItemManager().getItemsToAdd().add(new StoneItem(handler,Utils.randomNumber(4, 2), x, y));
 	}
 	
 	public void movement() {
@@ -82,9 +83,11 @@ public class RockbugCreature extends Creature{
 					destination = path.get(path.size()-1);
 				else
 					destination = path.get(0);
-				xMove = (destination.getcX() - getcX()) / 16;
-				yMove = (destination.getcY() - getcY()) / 16;
+				double magnitude = Math.sqrt(Math.pow(destination.getcX() - getcX(), 2) + Math.pow(destination.getcY() - getcY(), 2));
+				xMove = (float) ((destination.getcX() - getcX()) / magnitude);
+				yMove = (float) ((destination.getcY() - getcY()) / magnitude);
 			}
+				 
 		}else {
 			angered = false;
 			moveTimer += System.currentTimeMillis() - moveLastTime;

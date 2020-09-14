@@ -15,14 +15,14 @@ public class DirtTile extends Tile {
 	public void render(Graphics g) {
 		g.drawImage(texture,(int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), TILEWIDTH, TILEHEIGHT, null);
 		
-		if(handler.getCurrentWorld().getTile(x - 1, y).getId() == 0)
-			g.drawImage(Assets.grassBorder[0], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), TILEWIDTH, TILEHEIGHT, null);
-		if(handler.getCurrentWorld().getTile(x + 1, y).getId() == 0)
-			g.drawImage(Assets.grassBorder[1], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), TILEWIDTH, TILEHEIGHT, null);
 		if(handler.getCurrentWorld().getTile(x, y - 1).getId() == 0)
-			g.drawImage(Assets.grassBorder[2], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), TILEWIDTH, TILEHEIGHT, null);
+			g.drawImage(Assets.grassBorder[0], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), 32, 4, null);
 		if(handler.getCurrentWorld().getTile(x, y + 1).getId() == 0)
-			g.drawImage(Assets.grassBorder[3], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), TILEWIDTH, TILEHEIGHT, null);
+			g.drawImage(Assets.grassBorder[1], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset() + 28), 32, 4, null);
+		if(handler.getCurrentWorld().getTile(x + 1, y).getId() == 0)
+			g.drawImage(Assets.grassBorder[2], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset() + 28),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), 4, 32, null);
+		if(handler.getCurrentWorld().getTile(x - 1, y).getId() == 0)
+			g.drawImage(Assets.grassBorder[3], (int) ((x * TILEWIDTH) - handler.getGameCamera().getxOffset()),(int) ((y * TILEHEIGHT) - handler.getGameCamera().getyOffset()), 4, 32, null);
 	
 	}
 }

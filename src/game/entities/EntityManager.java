@@ -47,12 +47,14 @@ public class EntityManager {
 			Entity e = it.next();
 			if(!e.isActive())
 				it.remove();
-			if(e.getX() + e.getWidth() > handler.getGameCamera().getxOffset() && e.getX() < handler.getGameCamera().getxOffset() + handler.getWidth() * Tile.TILEWIDTH &&
+			if(e == player) {
+				e.tick();
+			}else if(e.getX() + e.getWidth() > handler.getGameCamera().getxOffset() && e.getX() < handler.getGameCamera().getxOffset() + handler.getWidth() * Tile.TILEWIDTH &&
 			e.getY() + e.getHeight() > handler.getGameCamera().getyOffset() && e.getX() < handler.getGameCamera().getyOffset() + handler.getHeight() * Tile.TILEHEIGHT)
 				e.tick();
 		}
 		try {
-		entities.sort(renderSorter);
+			entities.sort(renderSorter);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

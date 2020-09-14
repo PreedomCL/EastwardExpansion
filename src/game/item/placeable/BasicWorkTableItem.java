@@ -9,7 +9,7 @@ import game.gfx.Assets;
 public class BasicWorkTableItem extends PlaceableItem{
 
 	public BasicWorkTableItem(Handler handler, int count, float x, float y) {
-		super(handler, Assets.craftingStation, "Basic Work Table", 8, count, x, y);
+		super(handler, Assets.basicWorkTable, "Basic Work Table", 8, count, x, y);
 		
 	}
 

@@ -1,7 +1,4 @@
 package game.gfx;
-
-
-
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,92 +12,81 @@ public class Assets {
 	
 	public static File treeHit;
 	
-	public static BufferedImage grass, dirt, stone, rock, barrier, water, sand, sapling, log, stones, coin, unknown, craftingStation,
-	spear, axe, pickaxe, apple, blacksmith, donkey, woodenPlanks, mineralRock, ironOre, bridgeBuilder, boulder, tallGrass;
-	public static BufferedImage[] start, tree, player, grassBorder, bridge, rockbug; 
-	public static BufferedImage inventoryScreen;
-
+	public static BufferedImage blacksmith, basicWorkTable, boulder, mineralRock, sapling, shrub,
+	apple, axe, bridgeBuilder, coin, ironOre, log, pickaxe, spear, stones, 
+	unknown,
+	barrier, dirt, grass, sand, stone, water, woodenPlanks,
+	inventory;
+	public static BufferedImage[] bridge, tree, grassBorder, sandBorder, startButton;
+	public static AnimationGroup player, rockbug;
 	
-	public static void init() {
-		font28 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 28);
-		font20 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 20);
-		font14 = FontLoader.loadFont(System.getProperty("user.dir") + "/res/fonts/GermaniaOne-Regular.ttf", 14);
+	public static void init() throws Exception {
+		font28 = FontLoader.loadFont("/res/fonts/GermaniaOne-Regular.ttf", 28);
+		font20 = FontLoader.loadFont("/res/fonts/GermaniaOne-Regular.ttf", 20);
+		font14 = FontLoader.loadFont("/res/fonts/GermaniaOne-Regular.ttf", 14);
 		
-		treeHit = new File(System.getProperty("user.dir") + "/res/sounds/TreeHit.wav");
-		
-		SpriteSheet PlayerSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/PlayerSheet.png"));
-		SpriteSheet BuildingSheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/BuildingSheet.png"));
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/SpriteSheet.png"));
-		
-		inventoryScreen = ImageLoader.loadImage(System.getProperty("user.dir") + "/res/textures/InventoryScreen.png");
-		
-		start = new BufferedImage[2];
-		tree = new BufferedImage[4];
-		player = new BufferedImage[12];
-		grassBorder = new BufferedImage[4];
-		bridge = new BufferedImage[3];
-		rockbug = new BufferedImage[5];
-		
-		//Player
-		for(int p = 0; p < player.length; p++) {
-			player[p] = PlayerSheet.crop(p * 64, 0, 64, 64);
-		}
+		treeHit = new File(System.getProperty("user.dir") + "/res/sounds/treeHit.wav");	
 		
 		//Sheet
 		
-		//row 1
-		grass = sheet.crop(0, 0, height, width);
-		dirt = sheet.crop(width, 0, height, width);
-		barrier = sheet.crop(width * 2, 0, height, width);
-		unknown = sheet.crop(width * 3, 0, height, width);
-		water = sheet.crop(width * 4, 0, height, width);
-		sand = sheet.crop(width * 5, 0, height, width);
-		stone = sheet.crop(width * 6, 0, height, width);
-		woodenPlanks = sheet.crop(width * 7, 0, height, width);
-		grassBorder[0] = sheet.crop(width * 8, 0, height, width);
-		grassBorder[1] = sheet.crop(width * 9, 0, height, width);
-		grassBorder[2] = sheet.crop(width * 10, 0, height, width);
-		grassBorder[3] = sheet.crop(width * 11, 0, height, width);
-		bridgeBuilder = sheet.crop(width * 12, 0, height, width);
-		tallGrass = sheet.crop(width * 6, height + 16, 48, 48);
 		
-		//row 2 row 3
-		tree[0] = sheet.crop(0, height, height*2, width);
-		tree[1] = sheet.crop(width, height, height*2, width);
-		tree[2] = sheet.crop(width * 2, height, height*2, width);
-		tree[3] = sheet.crop(width * 3, height, height*2, width);
-		rock = sheet.crop(width * 4, height, height, width);
-		craftingStation = sheet.crop(width * 4,height * 2, height, width);
-		sapling = sheet.crop(width * 5, height, height, width);
-		mineralRock = sheet.crop(width * 5, height * 2, height, width);
-		bridge[0] = sheet.crop(width * 8, height, 64, 86);
-		bridge[1] = sheet.crop(width * 8 + 86, height, 58, 45);
-		bridge[2] = sheet.crop(width * 8 + 131, height, 64, 68);
-		boulder = sheet.crop(width * 15, height, height * 2, width * 2);
 		
-		//row 4
-		start[0] = sheet.crop(0, height * 3, height/2, width);
-		start[1] = sheet.crop(0, (height * 3) + (height/2), height/2, width);
+		//Entities
+		basicWorkTable = ImageLoader.loadImage("/res/textures/entity_basicWorkTable.png");
+		blacksmith = ImageLoader.loadImage("/res/textures/entity_blacksmith.png");
+		boulder = ImageLoader.loadImage("/res/textures/entity_boulder.png");
+		bridge = loadImageArray(ImageLoader.loadImage("/res/textures/entity_bridge.png"), new int[] {88, 32, 64}, new int[] {64, 64, 64}, 3);
+		mineralRock = ImageLoader.loadImage("/res/textures/entity_mineralRock.png");
+		player = new AnimationGroup("/res/textures/entity_player.json"); 
+		rockbug = new AnimationGroup("/res/textures/entity_rockbug.json");
+		sapling = ImageLoader.loadImage("/res/textures/entity_sapling.png");
+		shrub = ImageLoader.loadImage("/res/textures/entity_shrub.png");
+		tree = loadImageArray(ImageLoader.loadImage("/res/textures/entity_tree.png"), 32);
 		
-		//row 5
-		log = sheet.crop(0, height * 4, height, width);
-		stones = sheet.crop(width, height * 4, height, width);
-		spear = sheet.crop(width * 2, height * 4, height, width);
-		axe = sheet.crop(width * 3, height * 4, height, width);
-		pickaxe = sheet.crop(width * 4, height * 4, height, width);
-		apple = sheet.crop(width * 5, height * 4, height, width);
-		coin = sheet.crop(width * 6, height * 4, height, width);
-		ironOre = sheet.crop(width * 7, height * 4, height, width);
-		//row 6
-		rockbug[0] = sheet.crop(0, height * 5, height, width);
-		rockbug[1] = sheet.crop(width, height * 5, height, width);
-		rockbug[2] = sheet.crop(width * 2, height * 5, height, width);
-		rockbug[3] = sheet.crop(width * 3, height * 5, height, width);
-		rockbug[4] = sheet.crop(width * 4, height * 5, height, width);
+		//Item
+		apple = ImageLoader.loadImage("/res/textures/item_apple.png");
+		axe = ImageLoader.loadImage("/res/textures/item_axe.png");
+		bridgeBuilder = ImageLoader.loadImage("/res/textures/item_bridgeBuilder.png");
+		coin = ImageLoader.loadImage("/res/textures/item_bridgeBuilder.png");
+		ironOre = ImageLoader.loadImage("/res/textures/item_ironOre.png");
+		log = ImageLoader.loadImage("/res/textures/item_log.png");
+		pickaxe = ImageLoader.loadImage("/res/textures/item_pickaxe.png");
+		spear = ImageLoader.loadImage("/res/textures/item_spear.png");
+		stones = ImageLoader.loadImage("/res/textures/item_stones.png");
 		
-		donkey = sheet.crop(185, 202, 64, 80);
+		//Misc
+		unknown = ImageLoader.loadImage("/res/textures/misc_unknownTexture.png");
 		
-		//buildings
-		blacksmith = BuildingSheet.crop(0 , 0, 128, 220);
+		//Tile
+		barrier = ImageLoader.loadImage("/res/textures/tile_barrier.png");
+		dirt = ImageLoader.loadImage("/res/textures/tile_dirt.png");
+		grass = ImageLoader.loadImage("/res/textures/tile_grass.png");
+		grassBorder = loadImageArray(ImageLoader.loadImage("/res/textures/tile_grassBorder.png"), new int[] {32, 32, 4, 4}, new int[] {7, 4, 32, 32}, 4);
+		sand = ImageLoader.loadImage("/res/textures/tile_sand.png");
+		sandBorder = loadImageArray(ImageLoader.loadImage("/res/textures/tile_sandBorder.png"), new int[] {16, 32, 16, 16, 32, 16, 16, 16}, new int[] {16, 16, 16, 16, 16, 16, 32, 32}, 8);
+		water = ImageLoader.loadImage("/res/textures/tile_water.png");
+		woodenPlanks = ImageLoader.loadImage("/res/textures/tile_woodenPlanks.png");
+		
+		//UI
+		inventory = ImageLoader.loadImage("/res/textures/ui_inventoryScreen.png");
+		startButton = loadImageArray(ImageLoader.loadImage("/res/textures/ui_startButton.png"), 32);
+		
+	}
+	
+	private static BufferedImage[] loadImageArray(BufferedImage source, int[] frameWidth, int[] frameHeight, int size) {
+		BufferedImage[] output = new BufferedImage[size];
+		int currentX = 0;
+		for(int i = 0; i < size; i++) {
+			output[i] = source.getSubimage(currentX, 0, frameWidth[i], frameHeight[i]);
+			currentX += frameWidth[i];
+		}
+		return output;
+	}
+	private static BufferedImage[] loadImageArray(BufferedImage source,int frameWidth) {
+		BufferedImage[] output = new BufferedImage[source.getWidth()/frameWidth];
+		for(int i = 0; i < output.length; i++) {
+			output[i] = source.getSubimage(frameWidth * i, 0, frameWidth, source.getHeight());
+		}
+		return output;
 	}
 }

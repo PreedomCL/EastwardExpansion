@@ -68,7 +68,7 @@ public class Inventory {
 		if(!active)
 			return;
 		
-		g.drawImage(Assets.inventoryScreen, 0, 0, 1120 , 630,null);
+		g.drawImage(Assets.inventory, 0, 0, 1120 , 630,null);
 		
 		for(int i = 0; i < 10; i++) {
 			if(inventoryItems[i] == null)

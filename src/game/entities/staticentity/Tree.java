@@ -43,16 +43,20 @@ public class Tree extends StaticEntity{
 	@Override
 	public void render(Graphics g) {
 		
-		if(health == 10) {
-			g.drawImage(Assets.tree[0], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		if(health < 2) {
+			g.drawImage(Assets.tree[5], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(health < 4) {
+			g.drawImage(Assets.tree[4], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(health < 6) {
+			g.drawImage(Assets.tree[3], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(health < 8) {
+			g.drawImage(Assets.tree[2], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		}else if(health < 10) {
+			g.drawImage(Assets.tree[1], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 		}else {
-			
-			try{
-				g.drawImage(Assets.tree[4 -((int) (health / 3))], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-			}catch(Exception e){
-				g.drawImage(Assets.tree[3 -(Math.abs((int) (health / 3)))], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-				
-			}
+			g.drawImage(Assets.tree[0], (int)(x - handler.getGameCamera().getxOffset()), (int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 		}
+		
+		
 	}
 }
